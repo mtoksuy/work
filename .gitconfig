@@ -1,0 +1,11 @@
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[user]
+	name = mtoksuy
+	email = mtoksuy@programmerbox.com
+
+[alias]
+    l = log --all --graph --pretty='format:%C(yellow)%h%C(green)%d %C(red)%ar %C(reset)%s'
