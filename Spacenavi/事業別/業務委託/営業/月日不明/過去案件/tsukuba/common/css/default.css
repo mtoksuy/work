@@ -1,0 +1,13 @@
+@charset "shift_jis";
+
+/* 全ページ共通の枠組み指定 */
+@import "basic.css";
+
+/* 本文中で呼び出すレイアウトに関する指定 */
+@import "layout.css";
+
+/* 本文中で呼び出すパーツに関する指定 */
+@import "component.css";
+
+/* フォントに関する指定 */
+@import "font.css";

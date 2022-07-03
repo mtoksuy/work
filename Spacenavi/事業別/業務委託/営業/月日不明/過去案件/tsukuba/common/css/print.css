@@ -1,0 +1,28 @@
+ @charset "shift_jis";
+body {
+	font-family:"‚l‚r ‚oƒSƒVƒbƒN", Osaka, "ƒqƒ‰ƒMƒmŠpƒS Pro W3";
+}
+img {
+	border:0;
+}
+a:link {
+	color:#432DB2;
+	text-decoration:underline;
+}
+a:visited {
+	color:#432DB2;
+	text-decoration:underline;
+}
+a:hover {
+	color:#432DB2;
+	text-decoration:underline;
+}
+a:active {
+	color:#432DB2;
+	text-decoration:underline;
+}
+/* ”ñ•\¦‚É‚·‚éIDAclass‚ğw’è */
+
+#xxx {
+	display:none;
+}

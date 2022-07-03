@@ -1,0 +1,229 @@
+@charset "utf-8";
+/*************
+デフォルト設定
+*************/
+body {
+	background-color: #FFFCF6;
+	font-family: sans-serif;
+	margin: 0;
+	padding: 0;
+}
+img {
+   vertical-align:bottom
+}
+h1,h2,h3,h4,h5 {
+	color:#3f3f3f;
+	margin:0;
+}
+h1 {
+
+}
+h2 {
+
+}
+h3 {
+
+}
+h4 {
+
+}
+h5 {
+
+}
+ul {
+	color:#4D4D4D;
+}
+p {
+	color:#4D4D4D;
+	margin:0;
+	font-size: 15px;
+}
+strong {
+	color:#4D4D4D;
+}
+img {
+	border: medium none;
+}
+a {
+	text-decoration: none;
+}
+a:link {
+	color: #006699;
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+	-moz-text-decoration-style: dashed;
+}
+.clear {
+	clear: both;
+}
+.clearfix:after {
+	clear: both;
+	content: ".";
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+/*********
+共通クラス
+*********/
+.m_0 {
+	margin: 0;
+}
+.m_b_0 {
+
+}
+
+}
+.text_left {
+	text-align: left;
+}
+.text_center {
+	text-align: center;
+}
+.text_right {
+	text-align: right;
+}
+.f_w_normal {
+	font-weight: normal;
+}
+.inline {
+	display: inline;
+}
+.block {
+	display: block;
+}
+
+
+
+
+section, article, aside, hgroup, header, footer, nav, figure, figcaption, summary {
+	display: block;
+}
+/*****************
+全体コンテンツ設定
+*****************/
+#wrapper {
+    width: 780px;
+    margin: 0 auto;
+}
+/*******
+
+******/
+#GUnload {
+	margin:0 auto;
+  width: 1000px;
+}
+#view_area {
+	height: 450px;
+	margin: 0 auto;
+	width: 780px;
+}
+#map_area {
+	width:400;
+  margin: 0 auto;
+	height:300;
+}
+
+#svp_area {
+	width:724px;
+ height:400px;
+ margin: 0 auto;
+ padding: 5px 0px 10px 0px;
+/*
+ border: 1px dashed tomato;
+*/
+ border-radius: 2px;
+}
+#svp {
+	width:724px;
+ height:400px;
+ margin: 0 auto;
+}
+#map {
+width:350px;
+ height:300px;
+ margin: 0 auto;
+}
+
+
+#text_area {
+		margin: 0 10px 0 0;
+    float: left;
+    width: 310px;
+}
+
+
+
+
+
+
+
+
+
+/****
+
+*******/
+.y_l_btn {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 45px;
+    height: 110px;
+}
+.y_r_btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 45px;
+    height: 110px;
+}
+
+.slide_show {
+    margin: 0 auto;
+    position: relative;
+}
+.slide_show_contents {
+    margin: 0 auto;
+    overflow: hidden;
+    width: 620px;
+}
+.slide_show_contents span {
+	position: absolute;
+	width: 90px;
+}
+.slide_show_contents img {
+	margin: 25px 0 0;
+	width: 95px;
+	height: 65px;
+}
+
+.slide_show_contents ul {
+	height: 110px;
+	margin: 0;
+	padding: 0;
+/*
+	left: -105px;
+*/
+	width: 5000px !important;
+	position: relative;
+}
+.slide_show_contents li {
+	list-style: none;
+	float: left;
+	margin: 0 10px 0 0px;
+	padding: 0;	
+}
+.slide_show_contents li:first-child {
+	margin: 0 10px 0 0px;
+}
+
+
+
+
+
+

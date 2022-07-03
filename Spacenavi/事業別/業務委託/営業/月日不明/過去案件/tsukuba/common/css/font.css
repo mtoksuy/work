@@ -1,0 +1,120 @@
+@charset "shift_jis";
+/* フォントに関する指定 */
+/* フォントサイズ調整ここから */
+body {
+	color:#333333;
+	font-size:62.5%;
+}
+
+
+
+h1 {
+	margin:0 0 13px;
+	font-size: 2em;
+	line-height: 1.2em;
+	font-weight: bold;
+	color:#34105a;
+	border-bottom:3px solid #e5e5e5;
+	padding:0 0 7px;
+	font-weight:normal;
+}
+h1 span{
+	font-size:60%;
+}
+
+h2 {
+	margin:20px 0;
+	font-size: 1.4em;
+	line-height: 1.8em;
+	font-weight: bold;
+	color:#62338f;
+	background-image:url(../images/bg_h2.gif);
+	background-position:0 0;
+	background-repeat:repeat-y;
+	padding:0 0 0 18px;
+}
+
+#other h2 {
+	margin:22px 0 12px;
+	font-size: 1.6em;
+	line-height: 1em;
+	font-weight: bold;
+	color:#333333;
+	border-left:3px solid #a0a0a0;
+	padding:10px 0 0 9px;
+	background:none;
+}
+#other h2 img{
+	float:right;
+	margin:-5px 0 0;
+}
+
+
+h3 {
+	margin:25px 0 18px;
+	background-image:url(../images/bg_h3.gif);
+	background-position:0 0;
+	background-repeat:no-repeat;
+	border-bottom:1px dotted #999999;
+	font-size:1.3em;
+	line-height:1.6em;
+	padding:0 0 0 24px;
+	color:#62338f;
+}
+
+h4 {
+	margin:18px 0;
+	font-size: 1.2em;
+	line-height: 1.6em;
+	font-weight: bold;
+	color:#62338f;
+}
+h5 {
+	margin:14px 0;
+	font-size: 1.2em;
+	line-height: 1.6em;
+	font-weight: bold;
+	color:#333333;
+}
+
+
+/* リンク */
+a:link {
+	color: #0066cc;
+	text-decoration:none;
+}
+a:visited {
+	color: #654e7c;
+}
+a:hover {
+	color: #654e7c;
+}
+a:active {
+	color: #654e7c;
+}
+
+
+/* 文章 */
+em {
+	font-style:italic;
+}
+strong {
+	font-weight:bold;
+}
+.large {
+	font-size:140%;
+}
+.small {
+	font-size:85%;
+}
+#main p{
+	font-size:1.2em;
+	line-height:1.6em;
+}
+#other #main p{
+	font-size:1.4em;
+	line-height:1.6em;
+}
+#other #main p.totop{
+	font-size:1em;
+}

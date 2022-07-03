@@ -1,0 +1,48 @@
+@charset "shift_jis";
+/* 本文中で呼び出すレイアウトに関する指定 */
+
+/* 右寄せ */
+.right {
+	float: right;
+}
+img.right {
+	margin:0.3em 0 0.3em 0.5em;
+}
+.text_right {
+	text-align:right;
+}
+
+/* 左寄せ */
+.left {
+	float: left;
+}
+img.left {
+	margin:0.3em 0.5em 0.3em 0;
+}
+
+/* 中央 */
+.center {
+	text-align:center;
+}
+
+/* floatの解除 */
+.clr {
+	clear:both;
+}
+
+/* 画像関連の配置 */
+img.space {
+	margin:0.3em 0.5em 0.3em 0;
+}
+.img_caption {
+	margin:0;
+	font-size:0.8em;
+	text-align:center
+}
+.img_detail {
+	display:block;
+	margin:0 0 1em 0;
+	font-size:1.0em;
+	width:200px;
+	text-align:left;
+}

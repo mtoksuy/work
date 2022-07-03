@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><!-- InstanceBegin template="/Templates/template.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>360°キャンパスツアー｜筑波大学</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<!-- InstanceBeginEditable name="head3" -->
+<meta name="description" content="説明文" />
+<meta name="keywords" content="キーワード" />
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" type="text/css" href="../common/css/default.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../common/css/print.css" media="print" />
+<link rel="stylesheet" type="text/css" href="css/common.css" media="all" />
+
+<!-- Google Maps APIの読み込み -->
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script type="text/javascript" src="../common/js/script.js"></script>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">google.load("jquery", "1.7");</script>
+<script type="text/javascript" src="js/common/jquery.easing.1.3.js"></script>
+
+<!-- InstanceBeginEditable name="head2" -->
+<script type="text/javascript" src="../common/js/jquery.flatheights.js"></script>
+<script type="text/javascript" src="../common/js/myscript.js"></script>
+<script type="text/javascript" src="js/common/utils.js"></script>
+<script type="text/javascript" src="js/common/common.js"></script>
+
+
+
+<!-- InstanceEndEditable -->
+<!--[if lt IE 9.0]>
+<script type="text/javascript" src="/common/js/PIE.js"></script>
+<script type="text/javascript" src="/common/js/IE.js"></script>
+<![endif]-->
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+<!-- InstanceParam name="category" type="text" value="" -->
+</head>
+<body id="">
+
+<!-- ヘッダー -->
+<div id="header">
+	<div class="wrapper">
+		<p id="logo"><a href="../index.html"><img src="../common/images/logo.gif" alt="筑波大学" width="187" height="52" /></a></p>
+		<div id="head_right">
+			<ul id="language">
+				<li><a href="../english/index.html"><img src="../common/images/txt_english.gif" width="36" height="12" alt="english" /></a></li>
+				<li><a href="#"><img src="../common/images/txt_chainese.gif" width="21" height="12" alt="中文" /></a></li>
+				<li class="end"><a href="#"><img src="../common/images/txt_korean.gif" width="31" height="12" alt="한국어" /></a></li>
+			</ul>
+			<ul id="headlink">
+				<li><a href="#"><img src="../common/images/hlink01.gif" alt="サイトマップ" width="82" height="19" /></a></li>
+				<li><a href="#"><img src="../common/images/hlink02.gif" alt="お問い合わせ一覧" width="101" height="19" /></a></li>
+				<li class="end"><a href="#"><img src="../common/images/hlink03.gif" alt="アクセスマップ" width="91" height="19" /></a></li>
+			</ul>
+			<div id="search">
+				<input type="text" class="txt" /><input type="image" src="../common/images/btn_search.gif" alt="検索" />
+			</div>
+			<ul id="visitor">
+				<li><a href="../admission/index.html"><img src="../common/images/visitor01.gif" alt="本学で学びたい方へ" width="179" height="40" /></a></li>
+				<li><a href="#"><img src="../common/images/visitor02.gif" alt="在学生の方へ" width="179" height="40" /></a></li>
+				<li><a href="#"><img src="../common/images/visitor03.gif" alt="卒業生の方へ" width="178" height="40" /></a></li>
+				<li class="end"><a href="#"><img src="../common/images/visitor04.gif" alt="一般・研究者の方へ" width="178" height="40" /></a></li>
+			</ul>
+			<ul id="gnavi">
+				<li><a href="../about/index.html"><!-- InstanceBeginEditable name="EditRegion3" --><img src="../common/images/gnavi01.png" alt="大学案内" width="101" height="36" class="imgover" /><!-- InstanceEndEditable --></a></li>
+				<li><a href="../organization/index.html"><!-- InstanceBeginEditable name="EditRegion4" --><img src="../common/images/gnavi02.png" alt="学群・大学院" width="101" height="36" class="imgover" /><!-- InstanceEndEditable --></a></li>
+				<li><a href="../education/index.html"><!-- InstanceBeginEditable name="EditRegion5" --><img src="../common/images/gnavi03.png" alt="教育" width="101" height="36" class="imgover" /><!-- InstanceEndEditable --></a></li>
+				<li><a href="../research/index.html"><!-- InstanceBeginEditable name="EditRegion6" --><img src="../common/images/gnavi04.png" alt="研究" width="101" height="36" class="imgover" /><!-- InstanceEndEditable --></a></li>
+				<li><a href="../campuslife/index.html"><!-- InstanceBeginEditable name="EditRegion7" --><img src="../common/images/gnavi05.png" alt="キャンパスライフ" width="110" height="36" class="imgover" /><!-- InstanceEndEditable --></a></li>
+				<li><a href="../community/index.html"><!-- InstanceBeginEditable name="EditRegion8" --><img src="../common/images/gnavi06.png" alt="社会連携" width="101" height="36" class="imgover" /><!-- InstanceEndEditable --></a></li>
+				<li class="end"><a href="../global/index.html"><!-- InstanceBeginEditable name="EditRegion9" --><img src="../common/images/gnavi07.png" alt="国際交流" width="102" height="36" class="imgover" /><!-- InstanceEndEditable --></a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- //ヘッダー --> 
+<!-- メインエリア -->
+
+<div id="bread">
+	<div class="wrapper">
+		<ul>
+			<li id="home"><a href="../index.html">HOME</a></li>
+			<!-- InstanceBeginEditable name="EditRegion10" -->
+			<li>360°キャンパスツアー</li>
+			<!-- InstanceEndEditable -->
+		</ul>
+		<p><a href="#" onclick="window.print(); return false;"><img src="../common/images/btn_print.gif" width="80" height="22" alt="印刷" /></a></p>
+	</div>
+</div>
+<div id="category">
+	<p><!-- InstanceBeginEditable name="EditRegion11" --><img src="images/category.jpg" alt="360°キャンパスツアー" width="960" height="75" /><!-- InstanceEndEditable --></p>
+</div>
+<div id="contents">
+	<div class="wrapper">
+
+
+
+
+
+
+
+
+
+
+		<div id="main"><!-- InstanceBeginEditable name="EditRegion13" -->
+			<h1>360°キャンパスツアー</h1>
+			<p>筑波大学のキャンパスをGoogleストリートビューで閲覧できます。<br />
+			画面をドラッグすることで、周囲の風景を360°見渡すこともできますので、是非、隅々まで散策してみてください。</p>
+			<div id="area">
+				<div id="area_in">
+					<!-- slide_show -->
+					<div class="slide_show">
+						<span class="y_l_btn">
+							<img width="16" height="100" alt="" src="images/icon_left.gif">
+						</span>
+						<div class="slide_show_contents">
+							<ul class="clearfix">
+								<li class="brinkSoft"><span>石の広場</span><img src="images/sample01.jpg" width="100" height="75" alt="" /></li>
+								<li><span>体育・芸術エリア</span><img src="images/sample01.jpg" width="100" height="75" alt="" /></li>
+								<li><span>体育施設エリア</span><img src="images/sample01.jpg" width="100" height="75" alt="" /></li>
+								<li><span>第一エリア</span><img src="images/sample01.jpg" width="100" height="75" alt="" /></li>
+								<li><span>第二・第三エリア</span><img src="images/sample01.jpg" width="100" height="75" alt="" /></li>
+								<li><span>本部棟</span><img src="images/sample01.jpg" width="100" height="75" alt="" /></li>
+								<li><span>かえで通り7</span><img src="images/sample01.jpg" width="100" height="75" alt="" /></li>
+								<li><span>かえで通り8</span><img src="images/sample01.jpg" width="100" height="75" alt="" /></li>
+							</ul>
+						</div>
+						<span class="y_r_btn">
+							<img width="16" height="100" alt="" src="images/icon_right.gif">
+						</span>
+					</div>
+				</div>
+			</div>
+<div class="boxset">
+	<!-- ストリートビュー表示 -->
+	<div id="svp_area">
+		<div id="svp"></div>
+	</div>
+<div class="leftbox">
+<h2>石の広場／噴水</h2>
+	<p>第2エリアと第3エリアで学ぶ学生の憩いの場です。天気の良い日には、噴水を見ながら芝生の上でランチタイムを楽しむ学生の姿がよく見られます。</p>
+	<p>石の広場は秋に行われる学園祭「雙峰祭」のメインステージとして利用されるなど、筑波大学を象徴する場所のひとつです。</p>
+</div>
+<div class="rightbox">
+	<!-- 地図の埋め込み表示 -->
+	<div id="map"></div>
+</div>
+</div>
+
+
+
+
+		<!-- InstanceEndEditable -->
+			<p class="totop"><a href="#header">このページのトップへ</a></p>
+		</div>
+		<div id="side"><!-- InstanceBeginEditable name="EditRegion12" -->
+			<ul id="sub">
+				<li class="on"><a href="index.html">360°キャンパスツアー</a>
+					<ul>
+						<li><a href="index.html">360°キャンパスツアー</a></li>
+					</ul>
+				</li>
+			</ul>
+			<!-- InstanceEndEditable --></div>
+	</div>
+</div>
+<!-- //メインエリア --> 
+<!-- フッター -->
+<div id="footer">
+	<div id="sitemap">
+		<div class="wrapper">
+			<div class="inner">
+				<div class="in">
+					<h2><img src="../common/images/title_sitemap01.gif" alt="大学案内" width="57" height="12" /></h2>
+					<ul>
+						<li><a href="#">学長室</a></li>
+						<li><a href="#">筑波大学建学の理念</a></li>
+						<li><a href="#">筑波大学の基本的な目標</a></li>
+						<li><a href="#">沿革</a></li>
+						<li><a href="#">組織・機構</a></li>
+					</ul>
+				</div>
+				<div class="in">
+					<h2><img src="../common/images/title_sitemap02.gif" alt="学群・大学院" width="79" height="12" /></h2>
+					<ul>
+						<li><a href="#">学群・学類一覧（学士課程）</a></li>
+						<li><a href="#">研究科・専攻（大学院課程）一覧</a></li>
+						<li><a href="#">グローバル教育院</a></li>
+						<li><a href="#">東京キャンパス社会人大学院（夜間）の博士課程，修士課程，専門職学位課程の研究科</a></li>
+						<li><a href="#">昼夜開講制大学院</a></li>
+					</ul>
+				</div>
+				<div class="in">
+					<h2><img src="../common/images/title_sitemap03.gif" alt="教育" width="35" height="12" /></h2>
+					<ul>
+						<li><a href="#">筑波スタンダード／大学・大学院教育フレームワーク</a></li>
+						<li><a href="#">学群：履修要覧</a></li>
+						<li><a href="#">学群：開設授業科目一覧</a></li>
+						<li><a href="#">学群：「総合科目」の紹介</a></li>
+						<li><a href="#">学群：教職課程</a><a href="#"></a></li>
+					</ul>
+				</div>
+				<div class="in">
+					<h2><img src="../common/images/title_sitemap04.gif" alt="研究" width="36" height="12" /></h2>
+					<ul>
+						<li><a href="#">研究者総覧</a></li>
+						<li><a href="#">研究戦略イニシアティブ推進機構</a></li>
+						<li><a href="#">最先端研究開発支援プログラム</a></li>
+						<li><a href="#">グローバルＣＯＥプログラム</a></li>
+						<li><a href="#">筑波大学/若手研究者の自立的研究環境整備促進プログラム/次代を担う若手大学人育成イニシアティブ</a><a href="#"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="inner">
+				<div class="in">
+					<h2><img src="../common/images/title_sitemap05.gif" alt="キャンパスライフ" width="105" height="12" /></h2>
+					<ul>
+						<li><a href="#">心や体の健康についてご相談のある方は</a></li>
+						<li><a href="#">キャンパス・施設紹介</a></li>
+						<li><a href="#">学年暦</a></li>
+						<li><a href="#">学内行事</a></li>
+						<li><a href="#">総合相談窓口</a></li>
+					</ul>
+				</div>
+				<div class="in">
+					<h2><img src="../common/images/title_sitemap06.gif" alt="社会連携" width="60" height="12" /></h2>
+					<ul>
+						<li><a href="#">社会貢献・地域連携</a></li>
+						<li><a href="#">高大連携の部屋|筑波大学教育社会連携推進室</a></li>
+						<li><a href="#">Tsukuba 3E Forum | HOME</a></li>
+						<li><a href="#">夏休み自由研究お助け隊</a></li>
+						<li><a href="#">本学職員への兼業依頼</a></li>
+					</ul>
+				</div>
+				<div class="in">
+					<h2><img src="../common/images/title_sitemap07.gif" alt="国際交流" width="59" height="12" /></h2>
+					<ul>
+						<li><a href="#">国際連携ポリシー</a></li>
+						<li><a href="#">国際化戦略</a></li>
+						<li><a href="#">グローバル30（国際化拠点整備事業）</a></li>
+						<li><a href="#">海外拠点</a></li>
+						<li><a href="#">国際交流状況</a></li>
+					</ul>
+				</div>
+				<div class="in">
+					<h2><img src="../common/images/title_sitemap08.gif" alt="広報・情報公開" width="95" height="12" /></h2>
+					<ul>
+						<li><a href="#">筑波大学の取組みと機能強化</a></li>
+						<li><a href="#">キャンパスアルバム</a></li>
+						<li><a href="#">お知らせ・情報一覧</a></li>
+						<li><a href="#">中期計画</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="wrapper">
+		<ul id="footlink">
+			<li><a href="#">サイトマップ</a></li>
+			<li><a href="#">教職員専用</a></li>
+			<li><a href="#">このサイトについて</a></li>
+		</ul>
+		<div id="copyright">〒305-8577　茨城県つくば市天王台1-1-1　電話029-853-2111（代表）<br />
+			Copyright &copy; 
+			<script language="JavaScript" type="text/javascript">year();</script> 
+			University of Tsukuba All Rights Reserved.</div>
+	</div>
+	<!-- //フッター --></div>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,359 @@
+--------------------------
+【VPN情報】
+※PIN番号は【4182729】
+--------------------------
+【検証ssh情報】
+https://camelove.backlog.com/wiki/GP_DEV/%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9%2F%E3%82%B5%E3%83%BC%E3%83%90%E6%8E%A5%E7%B6%9A%E6%83%85%E5%A0%B1%E3%83%BB%E8%B5%B7%E5%8B%95%E7%8A%B6%E6%85%8B%E4%B8%80%E8%A6%A7
+
+# GOOPASSDEVWP01 magazine sshログイン
+ssh -i /Users/souya_matsuoka/.ssh/goopassdevwp01.pem bitnami@172.31.40.28
+↓
+ssh -i /Users/souya_matsuoka/.ssh/goopassdevwp01.pem bitnami@172.31.43.204
+
+# GOOPASSDEVTRAVEL01	 sshログイン
+ssh -i /Users/souya_matsuoka/.ssh/goopassdevwp01.pem bitnami@172.31.47.227
+
+【goopass本体】
+# GOOPASS_DEV01-01	sshログイン
+ssh -i /Users/souya_matsuoka/.ssh/goopassdev01.pem ec2-user@172.31.44.92
+# DBデータダウンロード
+scp -r -i /Users/souya_matsuoka/.ssh/goopassdev01.pem ec2-user@172.31.44.92:/tmp/masked_db.20210927.dump.gz /Users/souya_matsuoka/Desktop/
+# 画像データダウンロード
+scp -r -i /Users/souya_matsuoka/.ssh/goopassdev01.pem ec2-user@172.31.44.92:/tmp/save_image.20210927.tar.gz /Users/souya_matsuoka/Desktop/
+一時的
+scp -r -i /Users/souya_matsuoka/.ssh/goopassdev01.pem ec2-user@172.31.44.92:/home/ec2-user/camelove_iida/masked_db.20210927.dump.gz /Users/souya_matsuoka/Desktop/
+
+
+/tmp/masked_db.20210927.dump.gz 
+参考までに画像データは以下です。
+/tmp/save_image.20210927.tar.gz
+
+
+【dockerセットアップ】
+## docker-compose.sample.yml にて
+schemaspy群を削除
+
+## 移動
+cd /Users/souya_matsuoka/goopass/docker
+
+## 以下でs.shを作成
+vi s.sh
+
+MYSQL_PASS=pass
+
+if [ ! -e docker-compose.yml ]; then
+    cp docker-compose.sample.yml docker-compose.yml
+fi
+
+for i in ../app/config/eccube/*.yml.dev; do
+  cp ${i} ${i%.dev}
+done
+
+# docker起動
+docker-compose up -d
+
+# htaccess関連
+cp ./app/settings/www/htaccess ../.htaccess
+cp ./app/settings/www/html/htaccess ../html/.htaccess
+# 画像導入
+cp -r /Users/souya_matsuoka/Desktop/oomoto_goopass/html/upload/save_image ../html/upload/
+
+## shを動かす
+sh s.sh
+
+## dbまわり
+mysql -h 127.0.0.1 -u root -p${MYSQL_PASS} < mysql/init.sql
+mysql -h 127.0.0.1 -u root -p${MYSQL_PASS} goopass_db < /Users/souya_matsuoka/Desktop/goopass_db.dump
+
+【docker】
+# app bash移動
+# コンテナ内で打つ
+docker exec -it app bash
+## 確認
+php app/console migrations:status
+## 更新
+php app/console migrations:migrate
+
+【twigキャッシュ元】
+/Users/souya_matsuoka/goopass/vendor/twig/twig/lib/Twig/Cache/Filesystem.php
+write関数の中身を削除
+↓
+app/cacheを削除
+
+【勉強場所】
+/*
+{{ url('homepage') }}
+*/
+{% set foo = url('homepage') %}
+{{ foo }}
+{% set aa = url('homepage')|replace({ '/index.php': '' }) %}
+{{ aa }}
+    <link rel="canonical" href="{{ url('homepage')|replace({ '/index.php': '' }) }}"/>
+99行
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------
+【検証場所移動】
+cd /home/bitnami/apps/wordpress/htdocs
+--------------------------
+【DBログイン】
+# ログイン
+mysql -ubn_wordpress -pab19c96cc1
+--------------------------
+【DB情報】
+/** The name of the database for WordPress */
+define( 'DB_NAME', 'bitnami_wordpress' );
+
+/** MySQL database username */
+define( 'DB_USER', 'bn_wordpress' );
+
+/** MySQL database password */
+define( 'DB_PASSWORD', 'ab19c96cc1' );
+
+/** MySQL hostname */
+define( 'DB_HOST', 'localhost:3306' );
+--------------------------
+【DBバックアップ取得】
+# バックアップ取得
+mysqldump -ubn_wordpress  -p bitnami_wordpress > /tmp/db_backup_2021_05_28.sql
+↓
+ab19c96cc1
+--------------------------
+【ローカルからscpでダウンロード・アップデート】
+-r：再帰。まるごとダウンロード
+-i：鍵設定
+# 基本的なダウンロード
+scp -r -i /Users/souya_matsuoka/.ssh/goopassdevwp01.pem bitnami@172.31.40.28:リモートディレクトリ ローカルディレクトリ
+
+# 画像群ダウンロード
+scp -r -i /Users/souya_matsuoka/.ssh/goopassdevwp01.pem bitnami@172.31.40.28:/home/bitnami/apps/wordpress/htdocs/wp-content/uploads /Applications/MAMP/htdocs/goopassMagazine/wp-content/
+# 画像群アップロード(一旦、別ネームでアップ)
+scp -r -i /Users/souya_matsuoka/.ssh/goopassdevwp01.pem /Applications/MAMP/htdocs/goopassMagazine/wp-content/test_uploads bitnami@172.31.40.28:/home/bitnami/apps/wordpress/htdocs/wp-content/
+
+# DBバックアップファイルダウンロード
+scp -i /Users/souya_matsuoka/.ssh/goopassdevwp01.pem bitnami@172.31.40.28:/tmp/db_backup_2021_05_28.sql /Users/souya_matsuoka/Desktop/
+
+# アップロード
+scp -i /Users/souya_matsuoka/.ssh/goopassdevwp01.pem ローカルディレクトリ bitnami@172.31.40.28:リモートディレクトリ
+scp -i /Users/souya_matsuoka/.ssh/goopassdevwp01.pem /Users/souya_matsuoka/Desktop/local.txt bitnami@172.31.40.28:/tmp/
+
+
+# webp アップロード
+scp -r -i /Users/souya_matsuoka/.ssh/20200608051151.pem /Applications/MAMP/htdocs/goopassMagazine/webp_create root@160.251.79.37:/var/www/html/
+
+# webp アップロード
+scp -r -i /Users/souya_matsuoka/.ssh/20200608051151.pem /Applications/MAMP/htdocs/goopassMagazine/wp-content/uploads root@160.251.79.37:/var/www/html/
+
+# webp ダウンロード
+scp -r -i /Users/souya_matsuoka/.ssh/20200608051151.pem root@160.251.79.37:/var/www/html/uploads /Applications/MAMP/htdocs/goopassMagazine/wp-content/
+
+# uploadを作ってる所有者
+drwxr-xr-x  3 daemon daemon
+--------------------------
+【mv】
+mv 移動元 移動先
+# ディレクトリが存在する場合は、リネームではなく移動となります
+--------------------------
+【 mkdir 】
+mkdir 名前
+--------------------------
+【chmod】
+chmod 777 対象ディレクトリorファイル
+
+# 再帰的にディレクトリのみ変更
+find . -type d -print | xargs chmod 755
+
+# 再帰的にファイルのみ変更
+find . -type f -print | xargs chmod 644
+--------------------------
+【chown】
+オプション-R(オプション--recursive)
+ディレクトリ内の所有者も変更する
+
+# チェック
+ls -l
+# 変更
+chown 所有者名 ファイル名またはディレクトリ名
+--------------------------
+【chgrp】
+オプション-R(オプション--recursive)
+ディレクトリ内の所有者も変更する
+
+chgrp グループ名 ディレクトリ名
+
+# 再帰的にディレクトリのみ変更
+find . -type d -print | xargs chgrp グループ名
+--------------------------
+
+
+
+
+--------------------------
+【rsync】
+# 同期する ローカルディレクトリ内をリモート側に同期する
+rsync -av -e "ssh -p 22 -i /Users/souya_matsuoka/.ssh/20200608051151.pem" -r "ローカル" root@160.251.79.37:リモート
+例
+rsync -av -e "ssh -p 22 -i /Users/souya_matsuoka/.ssh/20200608051151.pem" -r "/Applications/MAMP/htdocs/goopassMagazine/webp_create" root@160.251.79.37:/var/www/html/
+
+検証サーバーにrsycdがない・・・。
+rsync -av -e "ssh -p 22 -i /Users/souya_matsuoka/.ssh/goopassdevwp01.pem" -r "/Applications/MAMP/htdocs/goopassMagazine/wp-content/uploads/1000/12" bitnami@172.31.40.28:/home/bitnami/apps/wordpress/htdocs/wp-content/uploads/1000/
+--------------------------
+【削除】
+-i：ファイルの削除前に確認する
+-r：ディレクトリも
+rm -i /tmp/db_backup_2021_05_28.sql
+--------------------------
+【ローカルDBにインポート】
+# 移動
+cd /Applications/MAMP/Library/bin
+# ログイン
+./mysql -u root -p
+
+# データベース選択
+use bitnami_wordpress
+
+# インポート
+source /Users/souya_matsuoka/Desktop/work/Spacenavi/事業別/業務委託/カメラブ/db_backup_2021_05_28.sql 
+--------------------------
+【検証サーバーログイン】
+https://dev.goopass.jp/
+https://dev.goopass.jp/magazine/
+https://dev.goopass.jp/travel/
+https://stg.goopass.jp/travel/
+
+BASIC認証
+camelove
+admin
+--------------------------
+【本番サーバーログイン】
+https://goopass.jp/magazine/login/
+matsuoka@camelove.co.jp
+!yEWzGFfyn#Ev$*eg*xKwhto
+
+https://goopass.jp/travel/login/
+matsuoka@camelove.co.jp
+GpLIx3z)A1xkEkak(4mnG3V(
+
+https://goopass.jp/animal/login/
+matsuoka@camelove.co.jp
+I&fA3dJFbgN(DRyAR9vEk9XD
+
+--------------------------
+
+【検証環境WPログイン】
+https://stg.goopass.jp/magazine/wp-admin/
+matsuoka@camelove.co.jp
+cXHk6UXLBB7Pq&sxoLRrT!1f
+
+https://dev.goopass.jp/magazine/wp-admin/
+https://stg.goopass.jp/travel/wp-admin/
+matsuoka@camelove.co.jp
+O@IvC&8vq^uAFPjrq$O&Imhe
+
+https://stg.goopass.jp/animal/wp-admin/
+matsuoka@camelove.co.jp
+Yp2F(oG4tP!EE(1Aka%D3CpB
+
+--------------------------
+【記事が読み込まれているファイル】
+string(101) "/Applications/MAMP/htdocs/goopassMagazine/wp-content/themes/sango-theme/parts/single/entry-header.php"
+string(102) "/Applications/MAMP/htdocs/goopassMagazine/wp-content/themes/sango-theme/parts/single/entry-content.php"
+--------------------------
+【記事：サムネイルまわり】
+get_template_part('parts/single/entry-header');//タイトルまわり
+
+サムネイルファンクション名
+the_post_thumbnail
+↓
+get_the_post_thumbnail
+/Applications/MAMP/htdocs/goopassMagazine/wp-includes/post-thumbnail-template.php
+↓
+wp_get_attachment_image
+/Applications/MAMP/htdocs/goopassMagazine/wp-includes/media.php
+--------------------------
+【記事：本文画像まわり】
+get_template_part('parts/single/entry-content');//本文まわり
+
+the_content
+--------------------------
+【コンテンツファンクション名】
+the_content
+--------------------------
+【記事ランダム記事まわり】
+
+output_sng_related_posts
+--------------------------
+‪【ウィジェット系】
+
+/Applications/MAMP/htdocs/goopassMagazine/wp-content/themes/sango-theme/library/functions/widget-settings.php
+--------------------------
+【DS_Store削除】
+
+find . -name '.DS_Store' -type f -ls -delete
+--------------------------
+【なぞ便利gitコマンド】
+vi ~/.gitconfig
+
+[alias]
+    l = log --all --graph --pretty='format:%C(yellow)%h%C(green)%d %C(red)%ar %C(reset)%s'
+
+対象ディレクトリに移動して
+git l
+--------------------------
+
+
+<!-- 変換前 -->
+<img src=“画像URL”>
+↓
+<!-- 変換後 -->
+<picture>
+  <source type=“image/webp” srcset=“画像URL(webp)“>
+  <img src=“画像URL(既存)” decoding=“async” loading=“lazy”>
+</picture>
+
+--------------------------
+
+
+
+れびゅー
+つるがいさん
+小畑さん
