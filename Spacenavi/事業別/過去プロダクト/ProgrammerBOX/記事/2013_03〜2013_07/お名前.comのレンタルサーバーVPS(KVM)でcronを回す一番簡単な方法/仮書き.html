@@ -1,0 +1,174 @@
+お名前.comのレンタルサーバーVPS(KVM)でcronを回す一番簡単な方法
+
+
+
+<p class="m_0">僕が cron を使おうかなって思った時にがっつりハマってしまいましたので</p>
+<p>忘備録的に記事を残したいと思います。</p>
+
+<p>先ずは cron とは何ぞや?という所から書いていきます。</p>
+
+<nav class="detail_press_index clearfix">
+	<h2 id="s_0p"><span class="color"> 目次</span></h2>
+	<ul class="left">
+		<li class="n_1"><a href="#1p">cronってなーに?</a></li>
+		<li class="n_2"><a href="#2p">cronで何が出来るの?</a></li>
+		<li class="n_3"><a href="#3p">レンタルサーバーVPS(KVM)で絶対に設定しなければならない事</a></li>
+		<li class="n_4"><a href="#4p">cronの書き方</a></li>
+	</ul>
+</nav>
+<h2 id="s_1p">cronってなーに?</h2>
+<p>まず初めに呼び名論争なのですが、僕は「<em class="marker">クーロン</em>」と読んでいます。で、cron とは、定期的にコマンドやプログラムを実行する機能の名前です。</p>
+<p>因みにここではコマンドは一切叩きません。<em class="marker">お名前.comのレンタルサーバーVPS(KVM)は初心者でもちゃんと設定出来る優しさ設計</em>なのです。</p>
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+
+
+<h2 id="s_2p">cronで何が出来るの?</h2>
+<p>結論から言いますと、何でも出来ます。この子やればすんごく出来る子なんです。</p>
+
+<p class="m_0">具体例から言いますと</p>
+<p class="m_0">・目覚まし</p>
+<p class="m_0">・様々なログ</p>
+<p class="m_0">・サーバの監視</p>
+<p class="m_0">・TwitterのBOT</p>
+<p class="m_0">・画像の自動収集</p>
+<p class="m_0">・ゲームでロボット的な</p>
+<p class="m_0">・ネットの<em class="marker">好きな子の行動を色々</em></p>
+<p>・webサービスで悪質なユーザーを監視</p>
+
+<p>等が出来るようになります。</p>
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+
+
+<h2 id="s_3p">レンタルサーバーVPS(KVM)で絶対に設定しなければならない事</h2>
+<p class="m_0">これをしなければ始まりません。</p>
+<p class="m_0">先ずはレンタルサーバーVPS(KVM)のコントロールパネルにログインしましょう。</p>
+<p class="m_0">ログインしましたら システム設定 をクリックしていただき サービス管理 をクリックして下さい。</p>
+<img class="press_98_image" height="400" src="../img/press/image/image_75.jpg" alt="" widht="640">
+
+<p class="m_0">そうするとよくわからないサービス名が並びますので</p>
+<p class="m_0">下に書いたた<em class="marker">サービス名を自動起動を有効</em>にして下さい。</p>
+<table>
+	<tbody>
+		<tr>
+			<th class="text_left f_w_normal">amavisd</th><td>　メールのウイルススキャン</td>
+		</tr>
+		<tr>
+			<th class="text_left f_w_normal">crond</th><td>　クーロン</td>
+		</tr>
+		<tr>
+			<th class="text_left f_w_normal">dovecot</th><td>　メールサーバ</td>
+		</tr>
+		<tr>
+			<th class="text_left f_w_normal">mysqld</th><td>　SQL</td>
+		</tr>
+		<tr>
+			<th class="text_left f_w_normal">named</th><td>　ネームサーバ</td>
+		</tr>
+		<tr>
+			<th class="text_left f_w_normal">postfix</th><td>　メール転送エージェント</td>
+		</tr>
+		<tr>
+			<th class="text_left f_w_normal">sshd</th><td>　SSH</td>
+		</tr>
+		<tr>
+			<th class="text_left f_w_normal">syslog</th><td>　システムログ</td>
+		</tr>
+	</tbody>
+</table>
+<p class="m_0">よくわからない場合はこんな感じにして下さい。</p>
+<img class="press_98_image" height="400" src="../img/press/image/image_76.jpg" alt="" widht="640">
+
+
+<p class="m_0">設定が完了しましたら<em class="marker">VPSの再起動</em>をしましょう。</p>
+<p class="m_0">メンテナンスというカテゴリーから再起動出来ます。</p>
+<p class="m_0">再起動しないと自動起動設定したサービスが動きません。</p>
+<p class="m_0">ここから起動。</p>
+<img class="press_98_image" height="400" src="../img/press/image/image_77.jpg" alt="" widht="640">
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+
+
+<h2 id="s_4p">cronの書き方</h2>
+<p>次はようやく cron の設定です。</p>
+
+<p class="m_0">ツールというカテゴリーに cron とありますのでクリックして下さい。</p>
+<p>画面が変わりましたら新規登録をクリック</p>
+
+<p class="m_0">分 	時 	日 	月 	曜日</p>
+<p class="m_0">コマンド</p>
+<p>コメント</p>
+
+<p class="m_0">という感じになっていると思いますので</p>
+<p>ここから cron の時間設定の仕方を説明していきます。</p>
+
+
+<table>
+	<tbody>
+		<tr>
+			<th class="text_left f_w_normal">分</th><td>　0〜59と*</td>
+		</tr>
+		<tr>
+			<th class="text_left f_w_normal">時</th><td>　0〜23と*</td>
+		</tr>
+		<tr>
+			<th class="text_left f_w_normal">日</th><td>　0〜31と*</td>
+		</tr>
+		<tr>
+			<th class="text_left f_w_normal">月</th><td>　1〜12と*</td>
+		</tr>
+		<tr>
+			<th class="text_left f_w_normal">曜日</th><td>　0〜7(0と7が日曜日)と*</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>* は全てという意味になります。</p>
+
+
+<table>
+	<tbody>
+		<tr>
+		 <td></td><th>設定例</th><th>説明</th>
+		</tr>
+		<tr>
+			<th class="text_left f_w_normal">リスト</th><td>　0,15,30,45</td><td>　分フィールドで指定した場合、15分に一度処理になります。</td>
+		</tr>
+		<tr>
+			<th class="text_left f_w_normal">範囲</th><td>　1-3</td><td>　曜日フィールドで指定した場合、月曜日～水曜日に処理を実行します。</td>
+		</tr>
+		<tr>
+			<th class="text_left f_w_normal">共存</th><td>　1,3,5-7</td><td>　時間フィールドで指定した場合、1時、3時、5時、6時、7時に処理を実行します。</td>
+		</tr>
+		<tr>
+			<th class="text_left f_w_normal">間隔</th><td>　*/5</td><td>　分フィールドで指定した場合、5分毎に実行します。</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>こんな感じのルールがあるのですが、<em class="marker">おすすめは間隔での設定</em>です。</p>
+
+
+
+<p class="m_0">分 	時 	日 	月 	曜日</p>
+<p>のところへ設定を書きましたら</p>
+<p class="m_0">コマンド</p>
+<p class="m_0">のところへ</p>
+<p>/usr/bin/php -f /var/www/vhosts/ドメイン名/httpdocs/ファイルの場所</p>
+
+<p>と記述するだけです。</p>
+
+<p class="m_0">/usr/bin/php はPHPの事を指しています。</p>
+<p class="m_0">-f は強制実行です</p>
+<p>/var/www/vhosts/ドメイン名/httpdocs/ファイルの場所 はパスです。</p>
+
+<p class="m_0">言葉にすると PHPで指定されたファイルを強制実行する です。</p>
+<p>コメントはお好きなように。</p>
+
+<p>これで様々な間隔の時間でPHPファイルが cron で自動実行されるようになるハズです。</p>
+
+<p>最後に注意してほしい事は実行するファイルのコードに<em class="marker">バグが無いかをくまなく、徹底的に探して</em>下さい。もし、無限ループなどがありますとデフォルトで指定してあるファイル実行時間まで延々と回ってしまって迷惑をかけてしまいますので<em class="marker">間違いが起こらないコードで</em>cronを回しましょう。</p>
+
+<p>通常はshファイルを作成してshファイルに命令を書いてcronを回すのですが、こんな直接なやり方もあるよという記事でした。</p>
+
+<p class="m_0">忘備録として書かせて頂きましたが</p>
+<p>これで誰かのお力になれたら幸いです。</p>
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>

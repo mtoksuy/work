@@ -1,0 +1,307 @@
+<p>Twitterアプリ作りたいなって思い「Twitter API1.1」とシンプルに検索した所、開発系の記事ではなくて言及だけしている記事が多くてビックリしました。開発するにあたっての情報が少ないので、この記事がその役目を負えたら良いなという思いで記事を書かせて頂きます。</p>
+<nav class="detail_press_index clearfix">
+	<h2 id="s_0p"><span class="color">目次</span></h2>
+	<ul class="left no_width">
+		<li class="n_0"><span class="scroll_btn">PHPを使いOAuthを通すTwitter API1.1の使い方を説明していきます</span></li>
+		<li class="n_1"><span class="scroll_btn">Twitterアプリ登録をしよう</span>
+			<ul class="nest">
+				<li><span class="nest_number">1.</span><span class="scroll_btn">登録が完了したら保存しとくもの</span></li>
+			</ul>
+		</li>
+		<li class="n_2"><span class="scroll_btn">OAuth用ライブラリ「twitteroauth」の最新版をダウンロード</span></li>
+		<li class="n_3"><span class="scroll_btn">REST APIを学ぼう</span></li>
+		<li class="n_4"><span class="scroll_btn">Timelineを表示してみる</span></li>
+		<li class="n_5"><span class="scroll_btn">Searchを表示してみる</span></li>
+		<li class="n_6"><span class="scroll_btn">ログイン機能を付けてみよう</span>
+			<ul class="nest">
+				<li><span class="nest_number">1.</span><span class="scroll_btn">コールバック設定をする</span></li>
+			</ul>
+		</li>
+		<li class="n_7"><span class="scroll_btn">まとめ</span></li>
+	</ul>
+</nav>
+
+<h2 class="heading">PHPを使いOAuthを通すTwitter API1.1の使い方を説明していきます</h2>
+<p class="m_0">まず初めに断わっておく事があります。初心者向けに書いていきますので</p>
+<p>「<strong>Twitter API1.1を使って取得したデータを表示する事</strong>」を目的として書かせて頂きます。</p>
+
+<h2 class="heading">Twitterアプリ登録をしよう</h2>
+<p>一番初めにアプリ登録をしましょう。</p>
+
+<p class="m_0"><a target="_blank" href="https://dev.twitter.com/">Twitter Developers</a></p>
+<p>ツイッターデペロッパー(トップページ)</p>
+
+<p class="m_0"><a target="_blank" href="https://dev.twitter.com/apps/new">Create an application | Twitter Developers</a></p>
+<p>ここでアプリの登録を。</p>
+
+
+<h3 class="heading">登録が完了したら保存しとくもの</h3>
+<p>登録が終わりましたら My applications に行き</p>
+
+<p class="m_0">Consumer key</p>
+<p>Consumer secret</p>
+
+<p class="m_0">Access token</p>
+<p>Access token secret</p>
+
+<p>この四つをエディタなどに保存しといて下さい。</p>
+
+<h2 class="heading">OAuth用ライブラリ「<strong>twitteroauth</strong>」の最新版をダウンロード</h2>
+
+<p>今回は<strong>OAuth</strong>用ライブラリ「twitteroauth」を使用してコード説明をしていきますのでダウンロード手順を説明させて頂きます。</p>
+
+<p class="m_0"><a target="_blank" href="https://github.com/abraham/twitteroauth">twitteroauth · GitHub</a></p>
+<p>ここでダウンロード出来ます。</p>
+
+<p class="m_0">GitHubでのダウンロード手順はもう載せなくても</p>
+<p>みんな理解していると思いますので少々省かさせて頂きます。</p>
+
+<p class="m_0">「Download ZIP」をクリックしてダウンロード致しましたらZIPを解凍して下さい。</p>
+<p>解凍が終わりましたら、その中の「twitteroauth」というフォルダ一式使いますので大事にしまっておきましょう。</p>
+
+
+<p class="m_0">OAuth用ライブラリ「twitteroauth」を作成した</p>
+<a target="_blank" href="https://twitter.com/abraham">Abraham Williams</a>氏に敬意を
+<p>勝手に使わせて頂きます。</p>
+
+<h2 class="heading">REST APIを学ぼう</h2>
+<p>APIを使う準備が終わった所でさささーっとだけでいいんでREST APIに目を通していて下さい。</p>
+
+<p class="m_0"><a target="_blank" href="https://dev.twitter.com/docs/api/1.1">REST API v1.1 Resources | Twitter Developers(本家)</a></p>
+<p>英語がわかる方はこちらを。</p>
+
+<p class="m_0"><a target="_blank" href="http://dx.24-7.co.jp/twitterapi1-1-rest-api/">【保存版】TwitterAPI1.1 REST API 全項目解説</a></p>
+<p>APIリソースの説明が1ページでわかる良記事です。</p>
+
+
+<h2 class="heading">Timelineを表示してみる</h2>
+
+<p>では早速<strong>タイムライン</strong>を表示してみましょう。</p>
+
+<div class="html_tab">PHP</div>
+<pre class="brush: php; light:true; tab-size: 2;">
+&lt;?php
+// OAuth用ライブラリ「twitteroauth」
+require_once 'twitteroauth/twitteroauth.php';
+// アプリ登録した際に発行された値を入れて下さい。
+$consumer_key = '*********************';
+$consumer_secret = '******************************************';
+$access_token = '**************************************************';
+$access_token_secret = '******************************************';
+// オブジェクト生成
+$tw_obj = new TwitterOAuth (
+	$consumer_key,
+	$consumer_secret,
+	$access_token,
+	$access_token_secret);
+// REST_API指定(今回はタイムラインのREST_API)
+$tw_rest_api = 'https://api.twitter.com/1.1/statuses/home_timeline.json';
+// メソッド指定
+$request_method = 'GET';
+// オプション指定
+$options = array (
+	'count'=> 20);
+// ユーザータイムライン取得
+$tw_obj_request = $tw_obj->OAuthRequest (
+	$tw_rest_api,
+	$request_method,
+	$options);
+// json形式で取得
+$tw_obj_request_json = json_decode($tw_obj_request, true);
+// 変数生成
+$time_line_texts = '';
+// 取得したデータを回して入れていく
+foreach ($tw_obj_request_json as $key => $value) {
+	$time_line_texts .= '&lt;p&gt;'.$value["text"].'&lt;/p&gt;';
+}
+// 表示
+print($time_line_texts);
+?&gt;
+</pre>
+
+<p class="m_t_30">本番ではアクセストークンをベタ書きしてAPIを動かす事はあり得ないのですが練習という事で使わせて頂きました。取り敢えずコレで表示は出来るようになりました。</p>
+
+<h2 class="heading">Searchを表示してみる</h2>
+<p>次は<strong>サーチ</strong>を表示してみましょう。ですが、やる事はほぼ一緒ですのでTimeLineを表示出来た方はすぐに出来ると思います。</p>
+
+
+<div class="html_tab">PHP</div>
+<pre class="brush: php; light:true; tab-size: 2;">
+&lt;?php
+// OAuth用ライブラリ「twitteroauth」
+require_once 'twitteroauth/twitteroauth.php';
+// アプリ登録した際に発行された値を入れて下さい。
+$consumer_key = '*********************';
+$consumer_secret = '******************************************';
+$access_token = '**************************************************';
+$access_token_secret = '******************************************';
+// オブジェクト生成
+$tw_obj = new TwitterOAuth (
+	$consumer_key,
+	$consumer_secret,
+	$access_token,
+	$access_token_secret);
+// REST_API指定(今回はサーチのREST_API)
+$tw_rest_api = 'https://api.twitter.com/1.1/search/tweets.json';
+// メソッド指定
+$request_method = 'GET';
+// オプションで使用する変数
+$option_q = '東京';
+$option_count = 20;
+// オプション指定
+$options = array (
+	'q' => $option_q, 
+	'count' => $option_count);
+// ユーザータイムライン取得
+$tw_obj_request = $tw_obj->OAuthRequest (
+	$tw_rest_api,
+	$request_method,
+	$options);
+// json形式で取得
+$tw_obj_request_json = json_decode($tw_obj_request, true);
+// 変数生成
+$search_texts = '';
+// 取得したデータを回す
+foreach ($tw_obj_request_json["statuses"] as $key => $value) {
+	// 検索結果をを入れていく
+	$search_texts .= '&lt;p&gt;'.$value["text"].'&lt;/p&gt;';
+}
+print($search_texts);
+?&gt;
+</pre>
+
+<p class="m_t_30">もうタイムラインとほぼ一緒なんです。大体のAPIはこの形で取得出来ますので一度取得出来るようになれば色んなAPIを呼び出す事が出来るようになります。</p>
+
+<h2 class="heading">ログイン機能を付けてみよう</h2>
+<p>本番はここからですね。</p>
+
+<h3 class="heading">コールバック設定をする</h3>
+
+<p>コールバック設定とはログインした際に飛ばすページの事です。そんなのいらないって方は設定しなくていいとは思いますが<em class="blue_2">webサービスを運営するなら必須</em>と考えていて下さい。</p>
+
+<p class="m_0"><a target="_blank" href="https://dev.twitter.com/apps">https://dev.twitter.com/apps</a></p>
+<p class="m_0">ここからアプリ名をクリックして設定タブをクリックしますと設定を変えれますのでコールバック先を明記して下さい。</p>
+<p>例 http://pickle.be/callback/</p>
+
+<p>設定を終えましたら次はログインページを作りましょう。</p>
+
+
+<h4>login.php</h4>
+<div class="html_tab">PHP</div>
+<pre class="brush: php; light:true; tab-size: 2;">
+
+想定ファイル名: index.php or login.php
+
+&lt;?php
+// セッションスタート
+session_start();
+// OAuth用ライブラリ「twitteroauth」
+require_once 'twitteroauth/twitteroauth.php';
+// アプリ登録した際に発行された値を入れて下さい。
+$consumer_key = '*********************';
+$consumer_secret = '******************************************';
+// call_backする場所
+$call_back_url = 'アプリ設定で設定したURL';
+//--------------------------------------
+//セッションのアクセストークンのチェック
+//--------------------------------------
+if((isset($_SESSION["oauth_token"]) && $_SESSION["oauth_token"] !== NULL) && (isset($_SESSION["oauth_token_secret"]) && $_SESSION["oauth_token_secret"] !== NULL)) {
+	// ログインしたらここにくる
+}
+	// ログアウトの状態
+	else {
+		// オブジェクト生成
+		$twitter_oauth_object = new TwitterOAuth (
+			$consumer_key,
+			$consumer_secret);
+		//call_backを指定して request tokenを取得
+		$oOauthToken = $twitter_oauth_object->getRequestToken($call_back_url);
+		//セッション格納
+		$_SESSION['request_token'] = $oOauthToken['oauth_token'];
+		$sToken = $oOauthToken['oauth_token'];
+		$_SESSION['request_token_secret'] = $oOauthToken['oauth_token_secret'];
+		//認証URLの引数 falseの場合はtwitter側で認証確認表示
+		if(isset($_GET['authorizeBoolean']) && $_GET['authorizeBoolean'] != '') {
+			$bAuthorizeBoolean = false;
+		}
+			else {
+				$bAuthorizeBoolean = true;
+			}
+		//Authorize url を取得
+		$sUrl = $twitter_oauth_object->getAuthorizeURL($sToken, $bAuthorizeBoolean);
+	}
+?&gt;
+	<a href="<?php print($sUrl);?>">Twitterアカウントを使いログインする</a>
+</pre>
+
+<p class="m_t_30">こんな感じのコードでログイン機能は完成するのですが、コールバックしたファイルの中でセッションデータを取得しなければなりません。次はコールバックされたファイルのコードを書いていきましょう。</p>
+
+<h4>callback.php</h4>
+<div class="html_tab">PHP</div>
+<pre class="brush: php; light:true; tab-size: 2;">
+
+想定ファイル名: index.php or callback.php
+
+&lt;?php
+//SESSIONスタート
+session_start();
+// OAuth用ライブラリ「twitteroauth」
+require_once 'twitteroauth/twitteroauth.php';
+// アプリ登録した際に発行された値を入れて下さい。
+$consumer_key = '*********************';
+$consumer_secret = '******************************************';
+//-------------------------------------
+//URLパラメータからoauth_verifierを取得
+//-------------------------------------
+if(isset($_GET['oauth_verifier']) && $_GET['oauth_verifier'] != '') {
+	$sVerifier = $_GET['oauth_verifier'];
+}
+	else {
+		echo 'oauth_verifier error!';
+		exit;
+	}
+//-----------------------------------------
+//リクエストトークンでOAuthオブジェクト生成
+//-----------------------------------------
+$oOauth = new TwitterOAuth($consumer_key, $consumer_secret, $_SESSION['request_token'], $_SESSION['request_token_secret']);
+//oauth_verifierを使ってAccess tokenを取得
+$oAccessToken = $oOauth->getAccessToken($sVerifier);
+//-------------------------
+//取得した値をSESSIONに格納
+//-------------------------
+$_SESSION['user_id'] = $oAccessToken['user_id'];
+$_SESSION['screen_name'] = $oAccessToken['screen_name'];
+$_SESSION['oauth_token'] = $oAccessToken['oauth_token'];
+$_SESSION['oauth_token_secret'] = $oAccessToken['oauth_token_secret'];
+// loginページへリダイレクト
+header("Location: トップディレクトリ名とか");
+?&gt;
+</pre>
+
+<p class="m_t_30">これでユーザーのセッションデータを取得できるようになったので、これを元にwebサービスを作る事になるのですが、今回は入門という事でここまでにさせて頂きます。最後にログアウト機能も付けたいと思いますのでログアウトするコードも載せていきます。</p>
+
+<h4>logout.php</h4>
+<div class="html_tab">PHP</div>
+<pre class="brush: php; light:true; tab-size: 2;">
+
+想定ファイル名: index.php or logout.php
+
+&lt;?php
+// セッションスタート
+session_start();
+$_SESSION = array();
+session_destroy();
+header("Location: トップディレクトリ名とか");
+?&gt;
+</pre>
+
+<p class="m_t_30">これで一通りの動きは出来るようになったかと思います。</p>
+
+<h2 class="heading">まとめ</h2>
+
+<p class="m_0">いかがだったでしょうか?</p>
+<p>動かない、わからないという方はTwitterで気軽にリプライを飛ばして下さい。あと僕が勉強した記事は<a href="http://programmerbox.com/2013-07-10_pickle_twitter_app/">PickleというURLがあるツイートだけ見れるTwitterクライアントアプリを12日間で作ってみた。</a>の中にリストとして置いてありますので、そちらもご覧になって下さい。</p>
+
+<p>今回書いた理由は忘備録も含んでいるのですが冒頭に書いたように検索をしても目的の記事が出て来なくて本当にアプリを作るのに時間がかかってしまいました。これから作る人のためにこのようなコード集があればさくっと作れるんじゃないかなっていう思いで記事を書きました。</p>
+
+<p>という事で以上、Twitter API1.1でwebサービスを作ろう!入門チュートリアルでしたー。</p>

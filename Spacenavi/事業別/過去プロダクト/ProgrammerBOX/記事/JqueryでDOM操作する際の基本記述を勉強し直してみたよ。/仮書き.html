@@ -1,0 +1,341 @@
+<p>久し振りにJavaScriptを触ったら物凄く忘れていたので、まずはJqueryの基本記述をもう一度勉強し直してみました！DOMを操作する事って多々あると思いますので、ある意味チートシートのように見て頂くと嬉しいです。DOM以外にも偶数処理やクローン等も載せておきます。</p>
+<nav class="detail_press_index clearfix">
+	<h2 id="s_0p"><span class="color">目次</span></h2>
+	<ul class="left no_width">
+		<li class="n_1"><span class="scroll_btn">親要素を取得する方法</span></li>
+		<li class="n_2"><span class="scroll_btn">子要素を取得する方法</span></li>
+		<li class="n_3"><span class="scroll_btn">兄弟要素を取得する方法</span></li>
+		<li class="n_4"><span class="scroll_btn">要素を書き換えする方法</span></li>
+		<li class="n_5"><span class="scroll_btn">HTMLを追加する方法</span></li>
+		<li class="n_6"><span class="scroll_btn">要素を移動する方法</span></li>
+		<li class="n_7"><span class="scroll_btn">要素を削除する方法</span></li>
+		<li class="n_8"><span class="scroll_btn">数字、奇数、偶数指定で処理したい時</span></li>
+		<li class="n_9"><span class="scroll_btn">要素のクローンを生成したい時</span></li>
+		<li class="n_10"><span class="scroll_btn">勉強する際に参考にした記事</span></li>
+		<li class="n_11"><span class="scroll_btn">まとめ</span></li>
+	</ul>
+</nav>
+
+
+
+<style>
+
+.javascript_tab {
+    background-color: #343434;
+    border-color: #E0E0E0;
+    border-radius: 2px 2px 0 0;
+    border-style: solid solid none;
+    border-width: 1px 1px medium;
+		color: #2688CC;
+    font-size: 64%;
+    font-weight: bold;
+    margin: 0 0 0 30px;
+    max-width: 60px;
+    padding: 3px 0;
+    text-align: center;
+}
+.b_b_1 {
+    border-bottom: 1px solid #00A4E1;
+}
+.m_t_45 {
+	margin-top: 45px !important;
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+<h2 class="heading">親要素を取得する方法</h2>
+<p>まずは親要素の取得系からいきましょー。</p>
+
+
+
+<h3 class="b_b_1">一つ上の親要素取得</h3>
+
+<div class="javascript_tab">Jquery</div>
+<pre class="brush: javascript; light:true; tab-size: 2;">
+// 一つ上の親要素取得
+$('.hoge').parent();
+
+// 要素がdivなら取得する。divでなければ空(Objectは返ってくる)
+$('.hoge').parent('div');
+</pre>
+
+
+<h3 class="m_t_30 b_b_1">親全取得</h3>
+<div class="javascript_tab">Jquery</div>
+<pre class="brush: javascript; light:true; tab-size: 2;">
+// 親全取得
+$('.hoge').parents();
+
+// 親を指定して取得
+$('.hoge').parents('.class_name');
+</pre>
+
+<h3 class="m_t_30 b_b_1">開始要素から最も近い親要素を選択</h3>
+
+<div class="javascript_tab">Jquery</div>
+<pre class="brush: javascript; light:true; tab-size: 2;">
+// 開始要素から最も近い親要素を選択
+$('.hoge').closest('div');
+</pre>
+
+
+
+<h2 class="heading m_t_45">子要素を取得する方法</h2>
+
+<p>次は子要素の取得系。</p>
+
+<h3 class="b_b_1">全ての子要素取得</h3>
+<div class="javascript_tab">Jquery</div>
+<pre class="brush: javascript; light:true; tab-size: 2;">
+// 全ての子要素取得
+$('.hoge').children();
+
+// 指定したタグの要素を全取得。なければ空(Objectは返ってくる)
+$('.hoge').children('p');
+</pre>
+
+<h3 class="m_t_30 b_b_1">要素のテキストノードも含めた全子要素を取得</h3>
+
+<div class="javascript_tab">Jquery</div>
+<pre class="brush: javascript; light:true; tab-size: 2;">
+// 要素のテキストノードも含めた全子要素を取得
+$('.hoge').contents();
+</pre>
+
+
+
+<h3 class="m_t_30 b_b_1">全子孫要素から指定したタグの要素を全取得</h3>
+
+<div class="javascript_tab">Jquery</div>
+<pre class="brush: javascript; light:true; tab-size: 2;">
+
+// 全子孫要素から指定したタグの要素を全取得。なければ空(Objectは返ってくる)
+$('.hoge').find('div');
+</pre>
+
+
+
+<h2 class="heading m_t_45">兄弟要素を取得する方法</h2>
+
+<p>兄弟内の要素を取得するにはこんな感じで。</p>
+
+<h3 class="b_b_1">次にある要素取得(兄弟要素ならば)</h3>
+
+
+<div class="javascript_tab">Jquery</div>
+<pre class="brush: javascript; light:true; tab-size: 2;">
+// 次にある要素取得(兄弟要素ならば)
+$('.hoge').next();
+
+// 絞り込みも可能
+$('.hoge').next('div');
+
+// 現在の要素の次以降にある兄弟要素を全取得
+$('.hoge').nextAll();
+</pre>
+
+<h3 class="m_t_30 b_b_1">前にある要素取得(兄弟要素ならば)</h3>
+<div class="javascript_tab">Jquery</div>
+<pre class="brush: javascript; light:true; tab-size: 2;">
+// 前にある要素取得(兄弟要素ならば)
+$('.hoge').prev();
+
+// 絞り込みも可能
+$('.hoge').prev('div');
+
+// 現在の要素の前以降にある兄弟要素を全取得
+$('.hoge').prevAll();
+</pre>
+
+<h2 class="heading m_t_45">要素を書き換えする方法</h2>
+
+<p>取得系を覚えましたら、次は書き換えを。</p>
+
+<h3 class="b_b_1">テキスト書き換え</h3>
+
+<div class="javascript_tab">Jquery</div>
+<pre class="brush: javascript; light:true; tab-size: 2;">
+// テキスト書き換え
+$('.hoge').text('書き換える');
+</pre>
+
+<h3 class="m_t_30 b_b_1">HTML書き換え</h3>
+<div class="javascript_tab">Jquery</div>
+<pre class="brush: javascript; light:true; tab-size: 2;">
+// HTML書き換え
+$('.hoge').html('書き換える');
+</pre>
+
+<h2 class="heading m_t_30">HTMLを追加する方法</h2>
+
+<p>追加系はかなり重要なので覚えときましょう。</p>
+
+<h3 class="m_t_30 b_b_1">指定した要素内部の先頭に追加</h3>
+
+<div class="javascript_tab">Jquery</div>
+<pre class="brush: javascript; light:true; tab-size: 2;">
+// 先頭にHTML追加
+$('.hoge').prepend('追加');
+</pre>
+
+<h3 class="m_t_30 b_b_1">指定した要素内部の最後に追加</h3>
+
+<div class="javascript_tab">Jquery</div>
+<pre class="brush: javascript; light:true; tab-size: 2;">
+// 要素の内部の最後にHTML追加
+$('.hoge').append('追加');
+</pre>
+
+
+<h3 class="m_t_30 b_b_1">指定した要素の前に追加</h3>
+
+<div class="javascript_tab">Jquery</div>
+<pre class="brush: javascript; light:true; tab-size: 2;">
+// 指定した要素の前に追加
+$('.hoge').before('追加');
+</pre>
+
+<h3 class="m_t_30 b_b_1">指定した要素の後に追加</h3>
+
+<div class="javascript_tab">Jquery</div>
+<pre class="brush: javascript; light:true; tab-size: 2;">
+// 指定した要素の後に追加
+$('.hoge').after('追加');
+</pre>
+
+
+<h2 class="heading m_t_30">要素を移動する方法</h2>
+<p class="m_0">prependTo()、appendTo()、insertBefore()、insertAfter()を使用して移動する方法は</p>
+<p class="m_0">こちらの記事で簡潔に説明されています。</p>
+	<p><a href="http://d.hatena.ne.jp/awacio/20100320/1269090288" target="_blank">オブジェクトの操作その４（HTML 要素の移動） - awacio.log</a></p>
+
+<h3 class="m_t_30 b_b_1">一番上に移動</h3>
+
+<div class="javascript_tab">Jquery</div>
+<pre class="brush: javascript; light:true; tab-size: 2;">
+// 一番上に移動
+$('.hoge').click(function() {
+	var target = $(this);
+	$('.fuga').prepend(target);
+});
+</pre>
+
+<h3 class="m_t_30 b_b_1">一番下に移動</h3>
+
+<div class="javascript_tab">Jquery</div>
+<pre class="brush: javascript; light:true; tab-size: 2;">
+// 一番下に移動
+$('.hoge').click(function() {
+	var target = $(this);
+	$('.fuga').append(target);
+});</pre>
+
+<h3 class="m_t_30 b_b_1">一つ上に移動</h3>
+
+<div class="javascript_tab">Jquery</div>
+<pre class="brush: javascript; light:true; tab-size: 2;">
+// 一つ上に移動
+$('.hoge').click(function() {
+	var target = $(this);
+	var prev = target.prev();
+	prev.before(target);
+});
+</pre>
+
+<h3 class="m_t_30 b_b_1">一つ下に移動</h3>
+
+<div class="javascript_tab">Jquery</div>
+<pre class="brush: javascript; light:true; tab-size: 2;">
+// 一つ下に移動
+$('.hoge').click(function() {
+	var target = $(this);
+	var next = target.next();
+	next.after(target);
+});
+</pre>
+
+<h2 class="heading m_t_30">要素を削除する方法</h2>
+
+<p class="m_0">削除するにも細かい挙動がありますので気をつけたい所です。細かい挙動の説明はこの記事を見て頂くと良いかと思います。</p>
+
+	<p><a href="http://phpjavascriptroom.com/?t=ajax&p=jquery_manipulation_removing" target="_blank">DOM制御･更新処理：削除｜jQuery APIリファレンス｜Ajax｜PHP &amp; JavaScript Room</a></p>
+
+
+<h3 class="m_t_30 b_b_1">要素を削除</h3>
+
+<div class="javascript_tab">Jquery</div>
+<pre class="brush: javascript; light:true; tab-size: 2;">
+// DOMから削除
+$('.hoge').click(function() {
+	$(this).remove();
+});
+</pre>
+
+<h2 class="heading m_t_30">数字、奇数、偶数指定で処理したい時</h2>
+
+<p>短いコードで実装出来ますので便利です。</p>
+
+<div class="javascript_tab">Jquery</div>
+<pre class="brush: javascript; light:true; tab-size: 2;">
+// 3番目のliだけ処理
+$('ul li:nth-child(3)').each(function() {
+	$(this).css( {
+		background: '#ccc'
+	});
+})
+
+// 偶数のliだけ処理
+$('ul li:nth-child(2n)').each(function() {
+	$(this).css( {
+		background: '#ccc'
+	});
+})
+</pre>
+
+<h2 class="heading m_t_30">要素のクローンを生成したい時</h2>
+
+<p>使う機会はそこまでありませんがカンタンに出来ますので覚えといて損はないでしょう。</p>
+
+<div class="javascript_tab">Jquery</div>
+<pre class="brush: javascript; light:true; tab-size: 2;">
+// クローン生成
+$('.hoge').click(function() {
+	var this_clone = $(this).clone();
+	$(this).after(this_clone);
+});
+</pre>
+
+<h2 class="heading m_t_30">勉強する際に参考にした記事</h2>
+
+	<p><a href="http://satussy.blogspot.jp/2011/05/jquery.html" target="_blank">make a record of&#8230;: jQuery親要素&#12289;子要素&#12289;兄弟要素取得のまとめ</a></p>
+
+
+	<p><a href="http://yakinikunotare.boo.jp/orebase/index.php?Javascript%2FjQuery%2F%BB%D2%CD%D7%C1%C7%A4%CE%C1%E0%BA%EE" target="_blank">Javascript/jQuery/子要素の操作 - 俺の基地</a></p>
+
+
+	<p><a href="http://www.geekzshu.com/jquery/126" target="_blank">jqueryでhtmlの書き換えを行う方法</a></p>
+
+
+	<p><a href="http://black-flag.net/jquery/20110601-3147.html" target="_blank">jQueryで（n）番目（ｎ倍数）の特定要素に処理を加える「:nth-child()」のちょっと便利な使い方 | BlackFlag</a></p>
+
+
+	<p><a href="http://d.hatena.ne.jp/awacio/20100320/1269090288" target="_blank">オブジェクトの操作その４（HTML 要素の移動） - awacio.log</a></p>
+
+
+	<p><a href="http://knt45.hatenablog.com/entry/2013/01/31/105806" target="_blank">jQueryで連続したDOM要素のいずれかをクリックした際に、その要素を一番上、一番下、一つ上、一つ下に移動する方法 - knt45の日記</a></p>
+
+
+	<p><a href="http://misato.moo.jp/jquery/jquery_dom_02.html" target="_blank">jqueryを使ってみよう | jqueryのＤＯＭ操作</a></p>
+
+	<p><a href="http://phpjavascriptroom.com/?t=ajax&p=jquery_manipulation_removing" target="_blank">DOM制御･更新処理：削除｜jQuery APIリファレンス｜Ajax｜PHP &amp; JavaScript Room</a></p>
+
+<h2 class="heading">まとめ</h2>
+<p>Jqueryの基本記述の記事なんて恥ずかしくて書けないと躊躇していたのですが、カンタンなコードの中にも細かい違いがありますし、DOM操作はかなり重要ですので、チートシート的な記事にしてみました。</p>

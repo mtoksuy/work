@@ -1,0 +1,452 @@
+<p>マップ や ストリートビュー を利用した事がないという人を捜す事の方が困難になってしまった感があります。わからなくとも使っているんじゃないでしょうか?</p>
+
+<p>この技術を自由自在に カスタマイズ できるようになれば webサービス 作成の幅が広がりますので GoogleMapsAPI V3 を全くわからなくとも、この記事でみなさんが簡単な カスタマイズ をしつつ ウェブサイト に表示出来るようにしたいと思います。</p>
+
+<nav class="detail_press_index clearfix">
+	<h2 id="s_0p"><span class="color"> 目次</span></h2>
+	<ul class="left">
+		<li class="n_1"><a href="#1p">Google Maps API V3とは?</a></li>
+		<li class="n_2"><a href="#2p">Google Maps API V3を読み込もう</a></li>
+		<li class="n_3"><a href="#3p">マップとストリートビューを表示してみよう</a></li>
+	</ul>
+	<ul class="right">
+		<li class="n_4"><a href="#4p">カスタマイズしよう</a></li>
+		<li class="n_5"><a href="#5p">コードボックス</a></li>
+		<li class="n_5"><a href="#6p">まとめ</a></li>
+	</ul>
+</nav>
+<h2 id="s_1p">Google Maps API V3とは?</h2>
+
+<img class="press_image" height="400" alt="API?" widht="640" src="../img/press/image/image_9.jpg">
+
+<blockquote cite="http://suadd.com/wp/about">
+<h3>パソコンと携帯端末の両方で使える地図アプリケーションのためのソリューション</h3>
+<p>注: Google Maps JavaScript API バージョン 3（V3）は、正式な JavaScript API となりました。<em class="marker">JavaScript API バージョン 2 は、Google の廃止ポリシーにより正式に廃止されました。</em>アップデート、拡張された新しいバージョンに、コードを移行することをおすすめします。</p>
+
+<p>Google Maps JavaScript API を使用すると、Google マップをウェブページに埋め込むことができます。この <em class="marker">API のバージョン 3 は</em>、従来のパソコン用ブラウザ アプリケーションとしてだけでなく、<em class="marker">携帯端末でも快適に動作するように設計されています。</em></p>
+
+<p>この API では http://maps.google.co.jp サイトで使用できるような地図を操作し、さまざまなサービスを介してコンテンツを地図に追加するための多数のユーティリティを提供しています。これを利用して、ウェブサイトにパワフルな地図アプリケーションを作成できます。</p>
+
+<p>JavaScript Maps API V3 は、誰でも自由にアクセスできるウェブサイトであれば、<em class="marker">無料で利用できるサービスです。</em>詳細については、利用規約をご覧ください。</p>
+</blockquote>
+<p><a href="https://developers.google.com/maps/documentation/javascript/?hl=ja" target="_blank">パソコンと携帯端末の両方で使える地図アプリケーションのためのソリューション - Google Maps JavaScript API v3 &mdash; Google Developers</a></p>
+<p>要はむちゃくちゃ便利な機能だから、がんがん使えって事ですね。</p>
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+
+
+<h2 id="s_2p">Google Maps API V3を読み込もう</h2>
+
+<img class="press_image" height="400" alt="" widht="640" src="../img/press/image/image_10_1.jpg">
+
+<p class="m_0">で、どうやってその便利な機能は使えるの?って事が一番重要なんですが</p>
+<p class="m_0">これをHTMLファイルに記述するだけでいいんです。</p>
+	<pre class="brush: html; light:true; tab-size: 2;">
+&lt;!-- Google Maps API V3の読み込み --&gt;
+&lt;script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"&gt;&lt;/script&gt;</pre>
+<p>これだけです。</p>
+<p><em class="marker">この絶対パスを読み込むだけで全てが動くようになっており</em>、難しい事はgoogleさんに任せておいてこっちがやる事は設定だけです。ただ一つだけ、この記述内でやる事がありパラメーターの<em class="marker">sensorを記述して GPS機能 を使うかどうかの指定をします。</em></p>
+<table>
+	<tr>
+		<th>?sensor=trueが</th><td>GPS機能 オン</td>
+	</tr>
+	<tr>
+		<th>?sensor=falseが</th><td>GPS機能 オフ</td>
+	</tr>
+</table>
+
+
+
+<p>現状、PCは GPS機能 そのものがないのでオフでいいとは思いますが、GPS機能 をオンにしていても良いんじゃないでしょうか?将来的に。ただ、これをオンにすると、どの程度負担がかかっているかは調べていません。</p>
+
+<p class="m_0">なお、<em class="marker">sensorを送らないとgoogleさんにおこられますので必ず記述しましょう。</em></p>
+<img class="press_mini_image" height="400" alt="Responsive Web Design" widht="640" src="../img/press/image/image_8.jpg">
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+
+
+<h2 id="s_3p">マップとストリートビューを表示してみよう</h2>
+
+<img class="press_image" height="400" alt="" widht="640" src="../img/press/image/image_11.jpg">
+
+<p>では、次にマップとストリートビューを表示させてみましょう。<p>
+<p class="m_0">細かい設定がかなりあるのですが、先ずは表示させたい!って方が多いかと思いますので最小限の記述で表示させましょう。</p>
+	<pre class="brush: html; light:true; tab-size: 2;">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="ja" xmlns="http://www.w3.org/1999/xhtml"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" /&gt;
+		&lt;title&gt;Google Maps JavaScript API V3:サンプルページ&lt;/title&gt;
+		&lt;!-- Google Maps APIの読み込み --&gt;
+		&lt;script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"&gt;&lt;/script&gt;
+		&lt;script type="text/javascript"&gt;</pre>
+	<pre class="brush: javascript; light:true; tab-size: 2;">
+			// 変数群
+			var map,svp;
+			//--------------------------------------------
+			//初期設定(ページを読み込んだ時に実行する関数)
+			//--------------------------------------------
+			function initialize() {
+				// 緯度・経度変数
+				var latlng = new google.maps.LatLng(35.674144,139.77675999999997);
+				// 地図のオプション設定変数
+				var myOptions = {
+					// カメラの向き
+					heading: -20,
+					// 初期のズーム レベル
+					zoom: 16,
+					// 地図の中心点
+					center:latlng,
+					// 地図タイプ
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+				};
+				//地図オブジェクト生成
+				map = new google.maps.Map(document.getElementById('map'), myOptions);
+				// ストリートビューオブジェクト生成
+				svp = new google.maps.StreetViewPanorama(
+					document.getElementById('svp'),{
+						position : map.getCenter()
+					});
+				// ストリートビューオブジェクト詳細設定
+				svp.setPov({heading: -20, pitch: 0, zoom: 0});
+				// マップとストリートビューを一致させる為の記述
+				map.setStreetView(svp);
+			} // function initialize()
+			// ページを読み込んだ時にinitialize()を実行
+			google.maps.event.addDomListener(window, 'load', initialize);</pre>
+
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;/script&gt;
+	&lt;style type="text/css"&gt;</pre>
+
+<pre class="brush: css; light:true; tab-size: 2;">@charset "utf-8";
+/*****************
+全体コンテンツ設定
+*****************/
+#wrapper {
+    width: 780px;
+    margin: 0 auto 50px;
+}
+/*******************************
+ストリートビュー設定＆マップ設定
+*******************************/
+#svp_area {
+	width:780px;
+ height:400px;
+ margin: 0 auto;
+ padding: 5px 0px 10px 0px;
+ border-radius: 2px;
+}
+#svp {
+	width:780px;
+ height:400px;
+ margin: 0 auto;
+}
+#map {
+	width:460px;
+ height:300px;
+ margin: 0 auto;
+}
+#text_area {
+		margin: 0 10px 0 0;
+    float: left;
+    width: 310px;
+}</pre>
+<pre class="brush: html; light:true; tab-size: 2;">	&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;!-- wrapper --&gt;
+		&lt;div id="wrapper"&gt;
+			&lt;h1&gt;Google Maps JavaScript API V3:サンプルページ&lt;/h1&gt;
+			&lt;!-- ストリートビュー表示 --&gt;
+			&lt;div id="svp_area"&gt;
+				&lt;div id="svp"&gt;&lt;/div&gt;
+			&lt;/div&gt; &lt;!-- ストリートビュー表示 --&gt;
+			&lt;!-- text_area --&gt;
+			&lt;div id="text_area"&gt;
+				&lt;h3&gt;八丁堀駅&lt;/h3&gt;
+				&lt;p&gt;八丁堀駅（はっちょうぼりえき）は、東京都中央区八丁堀にある、東京地下鉄（東京メトロ）・東日本旅客鉄道（JR東日本）の駅である。&lt;/p&gt;
+			&lt;/div&gt; &lt;!-- text_area --&gt;
+			&lt;!-- マップ表示 --&gt;
+			&lt;div id="map"&gt;&lt;/div&gt;
+		&lt;/div&gt; &lt;!-- wrapper --&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</pre>
+<p class="m_0"><a href="code_box/1.html" target="_blank">サンプルページ</a></p>
+<p>なお、全コピペでも動く記述なので是非活用して下さい。</p>
+
+<p>では、次は カスタマイズ していきましょう。</p>
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+
+
+<h2 id="s_4p">カスタマイズしよう</h2>
+
+<img class="press_image" height="400" alt="カスタマイズ" widht="640" src="../img/press/image/image_12.jpg">
+
+<p>今回は僕にゆかりのある東京の駅をピックアップし、並べてスライド出来るようにして、その駅をクリックするとストリートビューとマップと説明テキストが変わり、ストリートビューは自動でくるくる廻る仕様にしました。最後にコードボックスとして無料配布致します。</p>
+
+
+<p class="m_0">先ずはカスタマイズ後のHTMLファイルを見て下さい。</p>
+	<pre class="brush: html; light:true; tab-size: 2;">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="ja" xmlns="http://www.w3.org/1999/xhtml"&gt;
+	&lt;head&gt;
+		&lt;meta charset="UTF-8"&gt;
+		&lt;meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" /&gt;
+		&lt;title&gt;360°好きな駅ツアー&lt;/title&gt;
+		&lt;!-- CSS --&gt;
+		&lt;link rel="stylesheet" type="text/css" href="css/common/common.css" media="all"&gt;
+		&lt;!-- Google Maps APIの読み込み --&gt;
+		&lt;script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"&gt;&lt;/script&gt;
+		&lt;!-- jquery-1.7.1 --&gt;
+		&lt;script type="text/javascript" src="js/jquery/jquery-1.7.1.js"&gt;&lt;/script&gt;
+		&lt;!-- マップとストリートビューを表示させるjavascriptファイル --&gt;
+		&lt;script type="text/javascript" src="js/common/common.js"&gt;&lt;/script&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;!-- wrapper --&gt;
+		&lt;div id="wrapper"&gt;
+			&lt;h1&gt;Google Maps JavaScript API V3:サンプルページ&lt;/h1&gt;
+			&lt;!-- ストリートビュー表示 --&gt;
+			&lt;div id="svp_area"&gt;
+				&lt;div id="svp"&gt;&lt;/div&gt;
+			&lt;/div&gt; &lt;!-- ストリートビュー表示 --&gt;
+			&lt;!-- text_area --&gt;
+			&lt;div id="text_area"&gt;
+				&lt;h3&gt;八丁堀駅&lt;/h3&gt;
+				&lt;p&gt;八丁堀駅（はっちょうぼりえき）は、東京都中央区八丁堀にある、東京地下鉄（東京メトロ）・東日本旅客鉄道（JR東日本）の駅である。&lt;/p&gt;
+			&lt;/div&gt; &lt;!-- text_area --&gt;
+			&lt;!-- マップ表示 --&gt;
+			&lt;div id="map"&gt;&lt;/div&gt;
+		&lt;/div&gt; &lt;!-- wrapper --&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</pre>
+<p class="m_0"><a href="code_box/" target="_blank">サンプルページ</a></p>
+<p>JavaScriptやCSSを外部読み込みにしてスッキリしましたね。</p>
+<p class="m_0">では記述したJavaScriptはこちら。</p>
+	<pre class="brush: javascript; light:true; tab-size: 2;">
+// 変数群
+var map,svp;
+//--------
+//初期設定
+//--------
+function initialize() {
+	// 緯度・経度変数
+	var latlng = new google.maps.LatLng(35.674144,139.77675999999997);
+	// 地図のオプション設定変数
+	var myOptions = {
+		// カメラの向き
+		heading: -20,
+		// 初期のズーム レベル
+		zoom: 16,
+		// 地図の中心点
+		center:latlng,
+		// 地図タイプ
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	};
+	//地図オブジェクト生成
+	map = new google.maps.Map(document.getElementById('map'), myOptions);
+	// ストリートビューオブジェクト生成
+	svp = new google.maps.StreetViewPanorama(
+		document.getElementById('svp'),{
+			position : map.getCenter()
+		});
+	// ストリートビューオブジェクト詳細設定
+	svp.setPov({heading: -20, pitch: 0, zoom: 0});
+	// マップとストリートビューの一致させる為の記述
+	map.setStreetView(svp);
+	// 緯度・経度確認
+	google.maps.event.addListener(svp, 'tilesloaded', review);
+	google.maps.event.addListener(svp, 'position_changed', review);
+} // initialize() {
+/***********  固定設定終了 ***********/
+		// 回転関数
+		function rotate() {
+			// カメラの位置取得
+			var pov      = svp.getPov();
+			var _heading = pov['heading'];
+			var _pitch   = pov['pitch'];
+			var _zoom    = pov['zoom'];
+			// 位置をずらす
+			_heading     = _heading + 0.1;
+			// 位置情報をセット(一番大事)
+			svp.setPov( {
+				heading:_heading, pitch:_pitch, zoom:_zoom
+			});
+		}
+		// レビュー関数
+		function review() {
+			if(document.getElementById("res")) {
+				document.getElementById("res").innerHTML = svp.getPosition();
+			}
+		}
+		//------------------------------
+		//ロード時に初期化(スタートです)
+		//------------------------------
+		google.maps.event.addDomListener(window, 'load', initialize);
+
+
+		//--------------------
+		//マウスやアクション系
+		//--------------------
+		$(function() {
+			// 変数宣言
+			var flag = 0;
+			var latlng_array;
+			var svp_area = document.getElementById('svp_area');
+				// 回転くるくる
+				timerID = setInterval('rotate()',20);
+			//------------------------------
+			//svp_areaにマウスオーバーしたら
+			//------------------------------
+			$('#svp_area').mouseover(function() {
+				// くるくる解除
+				clearInterval(timerID);
+			});
+			//----------------------------
+			//svp_areaにマウスアウトしたら
+			//----------------------------
+			$('#svp_area').mouseout(function() {
+				// くるくる再スタート
+				timerID = setInterval('rotate()',20);
+			});
+			//-----------------
+			// 左の矢印クリック
+			//-----------------
+			$('.y_l_btn').click(function() {
+				var left_px     = ($('.slide_show_contents ul').css('left'));
+				left_px         = left_px.replace('px','');
+				left_px         = parseInt(left_px);
+				var image       = $('.slide_show_contents ul li img');
+				var image_widht = image[0].width;
+				if(flag == 0) {
+					var first_li = $('.slide_show_contents ul li').eq(7);
+					$('.slide_show_contents ul').prepend(first_li);
+					$('.slide_show_contents ul').css({'left': -(image_widht + 10) + 'px'});
+					$('.slide_show_contents ul').animate({left: 0 + 'px'} ,500,'swing',function() {
+						flag = 0;
+					});
+					flag = 1;
+				}
+					else {
+					}
+			}); // $('.y_l_btn').click(function() {
+			//-----------------
+			// 右の矢印クリック
+			//-----------------
+			$('.y_r_btn').click(function() {
+				var left_px     = ($('.slide_show_contents ul').css('left'));
+				left_px         = left_px.replace('px','');
+				left_px         = parseInt(left_px);
+				if(isNaN(left_px)) { left_px = 0;}
+				var image       = $('.slide_show_contents ul li img');
+				var image_widht = image[0].width;
+				if(flag == 0) {
+					$('.slide_show_contents ul').animate({left: left_px + -(image_widht + 10) + 'px'} ,500,'swing',function() {
+						var first_li = $('.slide_show_contents ul li').eq(0);
+						$('.slide_show_contents ul').append(first_li);
+						$('.slide_show_contents ul').css({'left': left_px + 'px'});
+						flag = 0;
+					});
+					flag = 1;
+				}
+					else {
+					}
+			}); // $('.y_l_btn').click(function() {
+			//--------------
+			//データセット系
+			//--------------
+			var id = 0;
+			var latlng_i_array  = $([
+				35.674144,
+				35.691918,
+				35.659298,
+				35.698162,
+				35.731098,
+				35.671594,
+				35.703601,
+				35.588408]);
+			var latlng_k_array  = $ ([
+				139.77675999999997,
+				139.701012,
+				139.70043899999996,
+				139.772443,
+				139.710069,
+				139.703004,
+				139.57984999999996,
+				139.727355]);
+//35.674144, 139.77675999999997 八丁堀駅
+//35.691918, 139.701012         新宿駅
+//35.659298, 139.70043899999996 渋谷駅
+//35.698162,139.772443          秋葉原駅
+//35.731098,139.710069          池袋駅
+//35.671594,139.703004          原宿駅
+//35.703601, 139.57984999999996 吉祥寺駅
+//35.588408,139.727355          大森駅
+			var text_area_array = $(['<h3>八丁堀駅</h3><p>八丁堀駅（はっちょうぼりえき）は、東京都中央区八丁堀にある、東京地下鉄（東京メトロ）・東日本旅客鉄道（JR東日本）の駅である。</p>','<h3>新宿駅</h3><p>新宿駅（しんじゅくえき）は、東京都新宿区・渋谷区にある、東日本旅客鉄道（JR東日本）・京王電鉄・小田急電鉄・東京地下鉄（東京メトロ）・東京都交通局（都営地下鉄）の駅である。</p>','<h3>渋谷駅</h3><p>渋谷駅（しぶやえき）は、東京都渋谷区にある、東日本旅客鉄道（JR東日本）・東京急行電鉄（東急）・東京地下鉄（東京メトロ）・京王電鉄の駅である。</p>','<h3>秋葉原駅</h3><p>秋葉原駅（あきはばらえき）は、東京都千代田区にある、東日本旅客鉄道（JR東日本）・東京地下鉄（東京メトロ）・首都圏新都市鉄道の駅である。</p>','<h3>池袋駅</h3><p>池袋駅（いけぶくろえき）は、東京都豊島区にある、東日本旅客鉄道（JR東日本）・東武鉄道（東武）・西武鉄道（西武）・東京地下鉄（東京メトロ）の駅である。</p>','<h3>原宿駅</h3><p>原宿駅（はらじゅくえき）は、東京都渋谷区神宮前一丁目にある、東日本旅客鉄道（JR東日本）山手線の鉄道駅である。</p>','<h3>吉祥寺駅</h3><p>僕は夢を叶えるよ。</p><p>古き友人と最後にあった街。お前は「インドに行ってくる」と言い連絡が途絶えた今、お前は何をしているんだ。もう13年も経つのか。あの頃の夢は叶いそうだよ。死んだなんて言わせねーぞ。もう、お前が住んでいた場所に俺は住んでるんだぞ。会えねー訳がないだろ。</p>','<h3>大森駅</h3><p>大森駅 (東京都) - 東京都大田区にある東日本旅客鉄道（JR東日本）京浜東北線（東海道本線）の駅。</p>']);
+
+			$('.slide_show_contents ul li').each(function() {
+				$(this).data('id',id);
+				id += 1;
+			});
+			//------------
+			//画面きりかえ
+			//------------
+			$('.slide_show_contents ul li').click(function() {
+				var id = $(this).data('id');
+				svp.setPosition(new google.maps.LatLng(latlng_i_array[id], latlng_k_array[id]));
+				map.panTo(new google.maps.LatLng(latlng_i_array[id], latlng_k_array[id]));
+				$('#text_area').html(text_area_array[id]);
+			});
+		}); // $(function() {</pre>
+<p class="m_0">/***********  固定設定終了 ***********/</p>
+<p>というところまでが基本設定でその下がカスタマイズする記述です。</p>
+<p class="m_0">そして、一番大事なのは</p>
+	<pre class="brush: javascript; light:true; tab-size: 2;">
+		//------------------------------
+		//ロード時に初期化(スタートです)
+		//------------------------------
+		google.maps.event.addDomListener(window, 'load', initialize);</pre>
+<p class="m_0">この記述の上にカスタマイズする関数を書かないとエラーになります。</p>
+<p>何故エラーになるかといいますと<em class="marker">全てを読み込む前の記述しか読んでなくそんな関数ねーよ</em>っておこられてしまいます。なお、関数以外のカスタマイズの記述(要はGoogle MapsのAPIを操作する記述)は<code>function initialize() { ここの中に記述しないとエラーになります }</code></p>
+<p>という事でちゃんとカスタマイズ出来るようにGoogle Maps API V3の仕様を勉強しましょう。今回、全部書くと記事が長くなってしまうので省略させて頂きます。その代わりに<em class="marker">新鮮で良い記事をピックアップしました</em>ので、そちらからAPIの事やカスタマイズを覚えて下さい。</p>
+
+<h3>Google Maps API V3関連リンクリスト</h3>
+<p class="m_0">Google Developers</p>
+<p><a href="https://developers.google.com/maps/documentation/javascript/tutorial?hl=ja" target="_blank">スタート ガイド - Google Maps JavaScript API v3 &mdash; Google Developers</a></p>
+
+<p class="m_0">PHP & JavaScript Roomさん</p>
+<p class="m_0"><a href="http://phpjavascriptroom.com/?t=ajax&p=googlemapsapiv3" target="_blank">Google Maps JavaScript API v3｜Google Maps JavaScript API v3｜Ajax｜PHP &amp; JavaScript Room</a></p>
+<p><a href="http://phpjavascriptroom.com/?t=ajax&p=googlemapsapiv3_streetview#a_getposition" target="_blank">ストリートビュー｜Google Maps JavaScript API v3｜Ajax｜PHP &amp; JavaScript Room</a></p>
+
+<p class="m_0">おやじプログラマー日記さん</p>
+<p class="m_0"><a href="http://rnk.mitelog.jp/oyaji/2011/05/googlemap-api-v-aac0.html" target="_blank">おやじプログラマー日記: 「GoogleMap API V3」 の使い方その１</a></p>
+<p class="m_0"><a href="http://rnk.mitelog.jp/oyaji/2011/05/googlemap-api-v-62a7.html" target="_blank">おやじプログラマー日記: 「GoogleMap API V3」 の使い方その２</a></p>
+<p class="m_0"><a href="http://rnk.mitelog.jp/oyaji/2011/05/googlemap-api-v-9e5e.html" target="_blank">おやじプログラマー日記: 「GoogleMap API V3」 の使い方その３（マーカーの表示）</a></p>
+<p class="m_0"><a href="http://rnk.mitelog.jp/oyaji/2011/05/googlemap-api-v-c7e0.html" target="_blank">おやじプログラマー日記: 「GoogleMap API V3」 の使い方その４（イベント）</a></p>
+<p class="m_0"><a href="http://rnk.mitelog.jp/oyaji/2011/05/googlemap-api-v-453b.html" target="_blank">おやじプログラマー日記: 「GoogleMap API V3」 の使い方その５（続イベント）</a></p>
+<p class="m_0"><a href="http://rnk.mitelog.jp/oyaji/2011/05/googlemap-api-v-81ae.html" target="_blank">おやじプログラマー日記: 「GoogleMap API V3」 の使い方その６（続々イベント）</a></p>
+<p class="m_0"><a href="http://rnk.mitelog.jp/oyaji/2011/05/googlemap-api-v-37bb.html" target="_blank">おやじプログラマー日記: 「GoogleMap API V3」 の使い方その７（ポリライン・ポリゴン）</a></p>
+<p class="m_0"><a href="http://rnk.mitelog.jp/oyaji/2011/05/googlemap-api-v-95ae.html" target="_blank">おやじプログラマー日記: 「GoogleMap API V3」 の使い方その８（ジオコーディング）</a></p>
+<p class="m_0"><a href="http://rnk.mitelog.jp/oyaji/2011/06/googlemap-api-v-a058.html" target="_blank">おやじプログラマー日記: 「GoogleMap API V3」 の使い方その９（ルート検索）</a></p>
+<p class="m_0"><a href="http://rnk.mitelog.jp/oyaji/2011/06/googlemap-api-v-51e0.html" target="_blank">おやじプログラマー日記: 「GoogleMap API V3」 の使い方その10（ルート検索2）</a></p>
+<p class="m_0"><a href="http://rnk.mitelog.jp/oyaji/2011/07/googlemap-api-v-5e49.html" target="_blank">おやじプログラマー日記: 「GoogleMap API V3」 の使い方その11（さらにInfowindow）</a></p>
+<a href="" target="_blank"></a>
+
+
+
+
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+<h2 id="s_5p">コードボックス</h2>
+<p class="m_0">今回、作成したサンプルページをCODE BOXにしましたので</p>
+<p>ご自由にダウンロードして下さい。</p>
+<a href="code_box.zip"><img class="o_8" src="../img/common/code_box_download_1.png" widht="150" height="75"></a>
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+
+<h2 id="s_6p">まとめ</h2>
+<p>今回は小さな案件を受けて内容がストリートビューとマップを同時に表示して動きを同期して欲しいという要望で、APIの事は知っていたのですが触れた事はなくアウトプットという意味で記事を書かせて頂きました。</p>
+<p>本当に便利なAPIですのでアクセスが少ないサイトなら使ってもいいんじゃないかなって思っています。webサービスに使うには利用料金が加算される恐れがありますので違うサービスを使用するか独自に作成するしかないのかもしれません。</p>
+<p>一日の使用条件は25,000アクセスまでです。この件数を超えると課金対象になるらしいのですが、現状そこまで厳しくはないようです。詳細はこちらを参照して下さい。<a href="https://developers.google.com/maps/faq?hl=ja#usagelimits">よくある質問 - Google Maps API &mdash; Google Developers</a></p>
+
+<p class="m_0">カスタマイズでどこまでも出来てしまう素晴らしいAPIですので</p>
+<p>みなさんも一度は試す事をお勧め致します。</p>
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>

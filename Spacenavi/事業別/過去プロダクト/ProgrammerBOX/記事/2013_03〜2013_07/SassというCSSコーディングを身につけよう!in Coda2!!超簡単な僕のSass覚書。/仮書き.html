@@ -1,0 +1,530 @@
+<p>半年ほど前から良く話題になるSassとかLessとかってなんだろうなーって思いつつめんどくさそうだからこの手の記事は回避していました。</p>
+
+
+<p>ですが、いつものようにTwitterでつぶやいていたらSassかなり良いよって言われて 「へーそうなんだ〜」と興味を持ち始めて</p>
+
+
+<p>少しずつですが記事を読みあさりながらSassってこうゆう感じなんだーっていうのが掴みかけてきたので記事にしたいと思います。</p>
+<nav class="detail_press_index clearfix">
+	<h2 id="s_0p"><span class="color">目次</span></h2>
+	<ul class="left no_width">
+		<li class="n_1"><span class="scroll_btn">Sassってなーに?</span></li>
+		<li class="n_2"><span class="scroll_btn">まずは開発環境を整えてみよー</span>
+			<ul class="nest">
+				<li><span class="nest_number">1.</span><span class="scroll_btn">Sassをインストール</span></li>
+				<li><span class="nest_number">2.</span><span class="scroll_btn">Coda Sass Plug-inをインストール</span></li>
+				<li><span class="nest_number">3.</span><span class="scroll_btn">Coda Sass Plug-inの設定の説明</span></li>
+				<li><span class="nest_number">4.</span><span class="scroll_btn">Coda Sass Plug-inの使い方</span></li>
+			</ul>
+		</li>
+		<li class="n_3"><span class="scroll_btn">次はSassの基本的な記法を覚えよう</span>
+			<ul class="nest">
+				<li><span class="nest_number">0.</span><span class="scroll_btn">初めに、SCSS記法とSCSS記法の違いについて</span></li>
+				<li><span class="nest_number">1.</span><span class="scroll_btn">ネスト</span></li>
+				<li><span class="nest_number">2.</span><span class="scroll_btn">親セレクタの参照</span></li>
+				<li><span class="nest_number">3.</span><span class="scroll_btn">コメント</span></li>
+				<li><span class="nest_number">4.</span><span class="scroll_btn">変数</span></li>
+				<li><span class="nest_number">5.</span><span class="scroll_btn">演算</span></li>
+				<li><span class="nest_number">6.</span><span class="scroll_btn">ミックスイン</span></li>
+				<li><span class="nest_number">7.</span><span class="scroll_btn">partial</span></li>
+			</ul>
+		</li>
+		<li class="n_4"><span class="scroll_btn">勉強するにあたって参考にした記事</span></li>
+		<li class="n_5"><span class="scroll_btn">まとめ</span></li>
+	</ul>
+</nav>
+
+
+<style>
+.detail_press dl {
+    border-left: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+.text_right {
+    text-align: right;
+}
+.p_0 {
+	padding:  0;
+}
+
+
+
+.nest {
+	padding:  0;
+}
+
+.nest li {
+	margin: 0;
+}
+.nest span {
+
+}
+.nest_number {
+	color:#8E847D; margin-right: 5px;
+}
+</style>
+
+
+<h2 class="heading">Sassってなーに?</h2>
+<p>CSSを拡張しよう!っていう感じのメタ言語らしいです!サスって読むらしいです。なんだか僕的にはいい響き!「<em>ググる</em>」とかと似ているかも。「<strong>Sass</strong><em>る</em>」みたいな。</p>
+
+<p>で、出来る事ってなんだろうなーって調べてみると<em class="blue_2">CSSに変数とか演算とかの便利な概念を取り入れて記述できる</em>みたいです。これはプログラムやっている人からするとすんごい便利ですよね。僕はとりあえず「色」を変数にしたい!!</p>
+
+
+<p class="m_0">で、最初「コンパイルする」って聞いた瞬間に</p>
+<p>「うわ、絶対めんどくさいパターンだ」とずっと思っていたのですが、いざ導入してみるとすんなりいけたので同じ思いをしている方もぜひぜひトライしましょー♪</p>
+
+
+
+<h2 class="heading">まずはCoda2で開発環境を整えてみよー</h2>
+<p>ここでは記事タイトルを見てわかるようにCoda2でSassの環境を整える事を目的としていますので<em>それ以外の環境の方は最後にSass関連の記事集があります</em>のでそちらを参考にして下さい。</p>
+
+<p>あとあとー、Sassを使うにはRubyというプログラミング言語が必要らしいのですが、Mac OS XにはデフォルトでRubyがインストールされているみたいですので、Rubyのインストールは飛ばせます!やった。</p>
+
+<p>また、Coda2にはターミナルが内蔵されてありますので、それを使っていきます。</p>
+
+
+<h3 class="heading">Sassをインストール</h3>
+
+
+
+
+<p class="m_0">ではでは早速Coda2を立ち上げてターミナルを開きましょー!</p>
+<img class="press_screen_shot_image o_8" src="../img/press/image/image_89.jpg" widht="640" height="400" alt="" title="">
+<img class="press_screen_shot_image o_8" src="../img/press/image/image_90.jpg" widht="640" height="400" alt="" title="">
+
+
+<p>開いたらこいつを入力</p>
+
+<div class="css_tab">ターミナル</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+	sudo gem install sass
+</pre>
+
+
+
+
+<p class="m_0">こいつを打つとパスワードを聞かれますのでMacのパスワードを入力しましょー。</p>
+<p>うん、これだけでSassが使えるようになりました!!</p>
+
+<p>で、次はCoda2のプラグインをインストールしましょー。</p>
+
+
+<h3 class="heading">Coda Sass Plug-inをインストール</h3>
+
+
+
+<p>GitHubにある<a target="_blank" href="https://github.com/secca/Coda-Sass-Plug-in"> Coda-Sass-Plug-in</a>にアクセスして<em class="blue_2">ZIPをダウンロード</em>しましょー。</p>
+
+
+
+<p>そして、落としてきたZIPを<em class="blue_2">解凍 or ダブルクリックするだけでインストール完了</em>です!</p>
+
+
+<p class="m_0">後は<em class="blue_2">Coda2を再度立ち上げる</em>と反映していますので</p>
+<p>これで環境を整えるのはこれで完了です!うん、簡単。</p>
+
+<h3 class="heading">Coda Sass Plug-inの設定の説明</h3>
+
+<p>では、このプラグインの説明もしていきます。</p>
+
+
+<p class="m_0">設定の画面はこんな感じの所にあります。</p>
+<img class="press_screen_shot_image o_8" src="../img/press/image/image_87.jpg" widht="640" height="400" alt="" title="">
+
+<p class="m_0">ここをクリックするとこんな画面が開きます。(うん、英語ばっかでわかんない。)</p>
+<img class="press_screen_shot_image o_8" src="../img/press/image/image_88.jpg" widht="640" height="400" alt="" title="">
+
+
+<p>で、ここの説明をするために引用させていただきます。</p>
+
+
+
+<blockquote cite="http://fukuyama.co/sass">
+<dl>
+    <dt>Css Save Folder Path</dt>
+    <dd>保存先のパスを設定します。下のセレクトメニューから相対パスか絶対パスかを選べます。相対パスの[../]でひとつ前の階層に生成する設定にしています。</dd>
+    <dt>Make css save folder if needed</dt>
+    <dd>チェックを入れると指定したフォルダが存在しなかったら新しくつくる。</dd>
+    <dt>Css Creation</dt>
+    <dd>チェックを入れると、普通にscssを保存した場合、cssも自動で書き出されます。(Coda2では使えないのでCtrl+Shift+sを押す必要があります)</dd>
+    <dt><s>Output Style</s> 別ソースが消えたのでこちらのオプションはありません。</dt>
+    <dd><s>圧縮、1行、複数行、入れ子(インデント)の4種類から書き出しの形式をえらべます。これ便利◎</s></dd>
+  </dl>
+
+<p class="m_0">Codaで並べてリアルタイムに確認したいところですが、生成されたcssファイルはとじて開き直さないと更新されません。残念。</p>
+</blockquote>
+<p class="text_right">引用元:<a target="_blank" href="http://fukuyama.co/sass">CodaにSass導入！まとめ。Coda2も</a></p>
+
+
+
+<h3 class="heading">Coda Sass Plug-inの使い方</h3>
+
+<p>では次は使い方にいきましょー!</p>
+
+
+<p class="m_0">まずはSassを使う為に.scssファイルを作成しましょう。</p>
+<p class="m_0">自分で拡張子を.scssにすればいいだけですが、ここからでもいけます。</p>
+<img class="press_screen_shot_image o_8" src="../img/press/image/image_91.jpg" widht="640" height="400" alt="" title="">
+
+<p class="m_0">開いたら適当にこんな記述をして・・・</p>
+<div class="css_tab">scss</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+    $width: 600px;  
+    $bgColor: #eee;  
+
+    #main {  
+        width: $width - 3;
+        background: $bgColor;  
+    }
+</pre>
+
+<p>「<strong>コントロール＋シフト＋S</strong>」で保存!!</p>
+
+<p class="m_0">すると、<em class="blue_2">設定していた保存先のパスにCSSが生成</em>されます。</p>
+<p>(デフォルトでは保存したファイルと同じフォルダーに保存されます。)</p>
+
+
+<p>生成されたCSSはこんな感じになりました!!</p>
+
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+#main {
+  width: 597px;
+  background: #eeeeee; }
+</pre>
+
+<p class="m_t_15">うおーー!Sassすげーーー!!</p>
+
+
+<h2 class="heading">次はSassの基本的な記法を覚えよう</h2>
+
+<p>Sassを動かす事が出来ましたので次は基本的な記法を覚えていきましょー。</p>
+
+<h3 class="heading">初めに、SCSS記法とSASS記法の違いについて</h3>
+<p>Sassには二つの記法があるので、その違いを見ましょう。</p>
+
+<blockquote cite="http://fukuyama.co/sass">
+
+<p>Sassと言えば、昨今<em class="blue_2">SCSS記法の方がメジャー</em>で、Web上で見かける資料などもSCSS記法が殆どなのですが、もう一つSASS記法（SASSシンタックス）という書き方があります。SassのSASSみたいな言い方になってしまって非常にわかりにくいのですが、もともとSassはSASS記法で書かれていたものの、CSSとはかなり見た目が違い、もともとCSSの記法に慣れ親しんでいたWebデザイナーにとっては敷居が高い感じになってしまったので、<em class="blue_2">Sass3.0から、より元のCSSと近いSCSS（Sassy CSS）記法が採用され、そちらのほうが主流になったという流れ</em>のようです。</p>
+
+	<h4>古い方のSASS記法ルール</h4>
+	<ul>
+		<li> インデントでブロックを表す</li>
+		<li> 波括弧 {} がない</li>
+		<li> セミコロン ; がない</li>
+		<li> : の後にスペースが必須</li>
+		<li> @mixin →=</li>
+		<li> @include →+</li>
+		<li> 拡張子が.sass</li>
+	</ul>
+</blockquote>
+<p class="text_right">引用元:<a target="_blank" href="http://d.hatena.ne.jp/ken_c_lo/20121220/1355948089">【ズボンを脱ごう】SassのSASS記法の魅力【カッコイイ】</a></p>
+
+<p>との事です。よくわかんないんで<em>SCSS記法</em>でいきましょー。</p>
+
+
+<p>ではSassで出来る事の説明にいきます。</p>
+<h3 class="heading">ネスト</h3>
+<p>ネスト(入れ子)を覚えると通常のCSS記述が冗長に感じるくらい便利な記述です!</p>
+
+
+<div class="css_tab">SCSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+#main {
+	width: 100%;
+	p { 
+		font-size: 82%;
+	}
+}
+/** ↓変換後↓ **/
+#main {
+  width: 100%; }
+  #main p {
+    font-size: 82%; }
+</pre>
+
+<h3 class="heading m_t_60">親セレクタの参照</h3>
+<p>「<strong>&</strong>」でネストしている親を参照できるようになります。便利!</p>
+<div class="css_tab">SCSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+a {
+	font-weight: bold;
+	&:hover {
+		text-decoration: none;
+	}
+}
+/** ↓変換後↓ **/
+a {
+  font-weight: bold; }
+  a:hover {
+    text-decoration: none; }
+</pre>
+
+
+<h3 class="heading m_t_60">コメント</h3>
+<p>次はコメントの挙動を見ていきましょー。様々な言語で利用出来る「<em>//</em>」のコメントはSCSSでも使えるんですが、CSSに変換後は消えるようになっています。</p>
+
+<div class="css_tab">SCSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+// メインだよ
+
+/** メインだよ **/
+
+/*********
+メインだよ
+*********/
+#main {
+	width: 100%;
+	p { 
+		font-size: 82%;
+	}
+}
+/** ↓変換後↓ **/
+
+/** メインだよ **/
+/*********
+メインだよ
+*********/
+#main {
+  width: 100%; }
+  #main p {
+    font-size: 82%; }
+</pre>
+
+<h3 class="heading m_t_60">変数</h3>
+
+<p class="m_0">「<strong>$</strong>」を付けると変数になるらしいです。PHPみたい 笑</p>
+<p>挙動もシンプルだし使いやすいと思いますよー。</p>
+
+<div class="css_tab">SCSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+$main_w_size: 100%;
+$sub_main_w_size: 80%;
+$main_background_color: #3d3d3d;
+$main_p_size: 82%;
+$test_text_1: "てすと"; /** ""をつけてみる **/
+$test_text_2: てすと; /** テキストのみ **/
+$test_text_3:てすと; /** :のあとすぐ記述 **/
+
+$main_w_size: $sub_main_w_size; /** 変数に変数を使ってみる **/
+
+#main {
+	width: $main_w_size;
+	background: $main_background_color;
+	p { 
+		font-size: $main_p_size;
+		content: $test_text_1;
+		content: $test_text_2;
+		content: $test_text_3;
+	}
+}
+/** ↓変換後↓ **/
+#main {
+  width: 80%;
+  background: #3d3d3d; }
+  #main p {
+    font-size: 82%;
+    content: "てすと";
+    content: てすと;
+    content: てすと; }
+</pre>
+
+<h3 class="heading m_t_60">演算</h3>
+<p>足し算とか引き算が出来ちゃうみたいなんです!使い道はかなりありそうですねー。あと少し変わった挙動をするんで気をつけていきたい所ですね。</p>
+
+
+<div class="css_tab">SCSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+$test_size_1: 100;
+$test_size_2: 100px;
+$test_size_3: 100%;
+
+$test_color_1: 888; /* バグの元 */
+$test_color_2: #888;
+$test_color_3: blue;
+
+#main {
+	width: $test_size_1 + 10;
+	width: $test_size_2 + 10;
+	width: $test_size_3 + 10;
+
+	width: $test_size_1 + 10px;
+	width: $test_size_2 + 10px;
+/* エラー	width: $test_size_3 + 10px; */
+
+	width: $test_size_1 + 10%;
+/* エラー		width: $test_size_2 + 10%; */
+ 	width: $test_size_3 + 10%;
+
+	p { 
+/* バグの元		color: $test_color_1 + 555; */
+/* バグの元		color: $test_color_2 + 555; */
+/* バグの元		color: $test_color_3 + 555; */
+
+		color: $test_color_1 + #555;
+		color: $test_color_2 + #555;
+		color: $test_color_3 + #555;
+	}
+}
+/** ↓変換後↓ **/
+#main {
+  width: 110;
+  width: 110px;
+  width: 110%;
+
+  width: 110px;
+  width: 110px;
+
+  width: 110%;
+  width: 110%; }
+  #main p {
+    color: white;  /* ちょうどエラーにならない進数だったが、バグの元 なので#のみを使用した方が良い */
+    color: #dddddd;
+    color: #5555ff; }
+</pre>
+
+
+
+<h3 class="heading m_t_60">ミックスイン</h3>
+
+<p>ミックスインとはなんぞや?<strong>インクルード</strong>(外部読み込み)の事のようですね。</p>
+<p>「<strong>@mixin </strong>」の後に任意の英数字。これで定義して、後で「<strong>@include </strong>」任意の英数字で定義したミックスインをインクルードする感じです。</p>
+
+
+<p>かなり便利なのですが、この機能も様々な記事で妙な挙動が書かれてますので使う時は気をつけていきたいですね。</p>
+<div class="css_tab">SCSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+@mixin display_inline_block_IE_hack {
+  display: inline-block;  
+  *display: inline;  
+  *zoom: 1;  
+}
+.box {
+	background: #fff;
+	@include display_inline_block_IE_hack;
+}
+/** ↓変換後↓ **/
+.box {
+  background: #fff;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1; }
+</pre>
+
+
+
+
+<h3 class="heading m_t_60">partial</h3>
+
+<p class="m_0">partialってなに?って思いますよねー。僕はそう思いました。</p>
+<p>そこで引用もしつつ説明していきます。
+
+
+<h4>SCSSファイルの分割方法</h4>
+<blockquote cite="">
+
+<p>この<code>scss</code>フォルダーにアンダースコア(_)で始まるファイルがありますが、これを<em>partial</em>と呼びます。名前の通り「部分的な」スタイルシートで、メインとなるSCSSファイルにインポートして使う小さなSCSSコードが詰まったものです。partialについてはこれからちゃんと説明しますが、どこに置くと良いかはわかったと思います。</p>
+
+<p>〜略〜</p>
+
+<p>Sassでは巨大なスタイルシートを<em>partial</em>に分割でき、<code>@import</code> (CSSのそれとは少し違いますが)を使ってそれらを参照することができます。そうするとメインとなるSCSSファイルを更新した時、そのインポートしたpartialは出力されるCSSファイルにマージされます。(ただしURLを指定してインポートした場合は通常のCSSのそれと同じように動作します。)</p>
+
+<pre>
+@import 'shared/global';
+@import 'pages/home';
+@import 'pages/blog';
+</pre>
+
+<p>これをコンパイルすると全てのスタイルを含む一つのファイルになります。Sassでは更に読み込み速度の最適化のためにCSSの出力から空白や改行を削除して圧縮することもできます。</p>
+
+
+<p>ひとつだけ注意することがあります。それはpartialは少し特別なSCSSファイルで、通常のスタイルシートのようには扱えません。<em class="blue_2">ひとまとめにしたいコードは<em>必ず</em>全てメインのスタイルシートで<code>@import</code>しなければなりません</em>。また<em>partialのファイル名はアンダースコア</em>(_)で始めます。例えば上記コードでは<code>pages/home</code>というpartialを読み込んでいますが、そのファイルは<code>pages/_home.scss</code>という名前でなくてはなりません(このパスは常にメインのSCSSファイルに対する相対パスである必要があります)。このアンダースコアによってSassのコンパイラーはそのファイルがpartialなのかどうかを知ることができ、それによってCSSに変換すべきではないということを判断します。この制限はそれぞれのpartialに意図を持たせて論理的に整理することができることとの妥当なトレード・オフだと思います。</p>
+
+</blockquote>
+<p class="text_right">引用元:<a target="_blank" href="http://hail2u.net/documents/ala-getting-started-with-sass.html">Sassで行こう</a></p>
+
+<div class="css_tab">SCSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+/** _hedder.scssの記述 **/
+.hedder {
+	width: 100%;
+}
+
+/** _main.scssの記述 **/
+.main {
+	width: 100%;
+}
+
+/** _fooder.scssの記述 **/
+.fooder {
+	width: 100%;
+}
+
+/************************************/
+/** コンパイルするscssの記述 **/
+@import "hedder";
+@import "main";
+@import "fooder";
+/** ↓変換後↓ **/
+.hedder {
+  width: 100%; }
+
+.main {
+  width: 100%; }
+
+.fooder {
+  width: 100%; }
+</pre>
+
+
+<p class="m_t_30">以上、「次はSassの基本的な記法を覚えよう」でした!!</p>
+
+
+<h2 class="heading">勉強するにあたって参考にした記事</h2>
+
+<h3>がっつり覚えたい方はこちらの記事が参考になります</h3>
+
+<p class="m_0"><a target="_blank" href="http://hail2u.net/documents/ala-getting-started-with-sass.html">Sassで行こう</a></p>
+<p>絶対に読んで欲しい翻訳された記事。</p>
+
+
+<p class="m_0"><a target="_blank" href="http://css-happylife.com/archives/sass/">Sassを覚えよう</a></p>
+<p>Volで分けていてSassの出来る事とか色々網羅しているのでここを読めば間違いないです。</p>
+
+
+<h3>[環境]Mac + coda2の方はこちらの記事が参考になります</h3>
+<p class="m_0"><a target="_blank" href="http://www.webcreatorbox.com/tech/css-sass/">効率良くCSSコーディングできるSassを使ってみよう！Mac+Codaなら設定も簡単！</a></p>
+<p>Manaさんの記事。僕はここから勉強しました。</p>
+
+<p class="m_0"><a target="_blank" href="http://webourgeon.com/2013/03/09/coda2-sass-compass-terminal/">Coda2 と Sass とか Compass とか黒い画面とか</a></p>
+<p>もっと奥深い事をしたい時はこちらの記事。</p>
+
+<p class="m_0"><a target="_blank" href="http://fukuyama.co/sass">CodaにSass導入！まとめ。Coda2も</a></p>
+<p>Coda-Sass-Plug-inの設定方法はこちらの記事が為になりました。</p>
+
+
+<h4>[Coda-Sass-Plug-in]</h4>
+<p class="m_0"><a target="_blank" href="https://github.com/secca/Coda-Sass-Plug-in"> Coda-Sass-Plug-in</a></p>
+<p>記事見なくても出来る方用にリンク貼付けときます。</p>
+
+
+<h3>[環境]Windowsの方はこちらの記事が参考になります</h3>
+<p class="m_0"><a target="_blank" href="http://wp.yat-net.com/?p=2344">コーディングのスピードアップに最適なSassを使ってみた。環境構築から基礎的な記述までを紹介します。</a></p>
+<p>YATさんの記事です。</p>
+
+<h3>Sass関連記事</h3>
+<p class="m_0"><a target="_blank" href="http://notnil-creative.com/blog/archives/1908">本格的に制作にSassを導入してみたわけだが</a></p>
+<p>ほうほう。良い記事です。</p>
+
+<p class="m_0"><a target="_blank" href="http://php-fan.org/css%E6%8B%A1%E5%BC%B5%E3%83%A1%E3%82%BF%E8%A8%80%E8%AA%9Escsssass%E3%81%A8less.html">CSS拡張メタ言語SCSS(Sass)とLESS</a></p>
+<p>どちらかというとLESSよりの記事です。</p>
+
+<h2 class="heading">まとめ</h2>
+<p>この開発手法をどれだけ実務に落とし込めるかがSassを使っている人の課題なのかなって感じました。</p>
+<p>去年、実務で使っている人は僕の知り合いでは皆無で、今年になってから少しずつ、少しずつ増えてきているのかなって</p>
+<p>なによりもSass自体を1人で開発しているプロジェクトに取り入れてもあんまり意味がないと思いますし、チームが大きすぎてもダメで、小さい2人〜8人くらいのチーム規模だとSassは本来の成果が出せるんじゃないかなって思っています。</p>
+<p>これから流行るか廃るかはわかんないですけど、どんなプロジェクトに入っても大丈夫なようにSassで開発する手法も覚えていて損はない筈です。<p>

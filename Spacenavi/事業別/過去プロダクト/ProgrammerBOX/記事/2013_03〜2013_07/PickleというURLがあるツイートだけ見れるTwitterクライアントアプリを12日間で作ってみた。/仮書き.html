@@ -1,0 +1,289 @@
+<p>Twitterで仲良くして頂いている方と会話をしていた時にタイトルのようなクライアントアプリを作るって決めてから、その日の夜にTwitter API1.1って何だろうって軽く検索していたら意外と簡単な雰囲気でコードが書かれていたので開発に手をつけました。Pickleを作った理由、工程、ネーミングの由来等を書いていきます。</p>
+<nav class="detail_press_index clearfix">
+	<h2 id="s_0p"><span class="color">目次</span></h2>
+	<ul class="left no_width">
+		<li class="n_1"><span class="scroll_btn">Pickleとは?</span>
+			<ul class="nest">
+				<li><span class="nest_number">1.</span><span class="scroll_btn">Pickleの想い</span></li>
+				<li><span class="nest_number">2.</span><span class="scroll_btn">Pickleの使い方</span></li>
+				<li><span class="nest_number">3.</span><span class="scroll_btn">ネーミングの由来</span></li>
+			</ul>
+		</li>
+		<li class="n_2"><span class="scroll_btn">Pickleを作るきっかけはここからスタートしました</span></li>
+		<li class="n_3"><span class="scroll_btn">いざ、開発してみるとエラーの山に・・・</span></li>
+		<li class="n_4"><span class="scroll_btn">神記事が僕の前に現れました</span></li>
+		<li class="n_5"><span class="scroll_btn">完成までにかかった開発期間は12日間</span></li>
+		<li class="n_6"><span class="scroll_btn">Twitterでネーミングを募集してみた</span></li>
+		<li class="n_7"><span class="scroll_btn">Pickleで絶対に達成したいリスト</span></li>
+		<li class="n_8"><span class="scroll_btn">Pickleを開発する際に勉強になった記事リスト</span></li>
+		<li class="n_9"><span class="scroll_btn">まとめ</span></li>
+	</ul>
+</nav>
+<h2 class="heading">Pickleとは?</h2>
+
+<p>まずはここから説明していきたいと思います。</p>
+
+<p class="m_0"><a target="_blank" href="http://pickle.be/">Pickle</a></p>
+<p>Pickle(ピックル)はURLがあるツイートだけ見れるTwitterクライアントアプリケーションです。</p>
+
+<h3 class="heading">Pickleの想い</h3>
+<ol class="clearfix">
+			<li>
+				<dl>
+					<dt><img width="16" height="16" style="margin-bottom: -1px; margin-right: 3px;" src="http://pickle.be/img/pickle_icomoon/smiley_1.png">どんな人に?</dt>
+					<dd>クリエティブな仕事をしている人の為に作りました。</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt><img width="12" height="15" style="margin-right: 3px;" src="http://pickle.be/img/pickle_icomoon/user_1.png">ワークタイム中に情報を得たいあなたに</dt>
+					<dd>ワークタイム中でもPickleをさっと開いてURLのみを閲覧する事が出来ます。</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt><img width="16" height="14" style="margin-right: 4px;" src="http://pickle.be/img/pickle_icomoon/feed_1.png">情報を得るもう一つの手段</dt>
+					<dd>Pickleを使えばフォローしている人達が注目している記事も瞬時に見つかります。</dd>
+				</dl>
+			</li>
+		</ol>
+
+<h3 class="heading">Pickleの使い方</h3>
+<ol class="clearfix">
+			<li>
+				<dl>
+					<dt><img width="17" height="14" style="margin-right: 4px;" src="http://pickle.be/img/pickle_icomoon/history_1.png">TLを見る</dt>
+					<dd>URLがあるツイートだけを見る事が出来ます。</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt><img width="16" height="16" style="margin-bottom: -1px; margin-right: 3px;" src="http://pickle.be/img/pickle_icomoon/star_1.png">お気に入りに入れる</dt>
+					<dd>後で読みたい記事やお気に入りにとして残したいツイートをお気に入りへ。</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt><img width="16" height="16" style="margin-bottom: -2px; margin-right: 5px	;" src="http://pickle.be/img/pickle_icomoon/share_1.png">Buzzを見る</dt>
+					<dd>1日、1週間、1ヶ月のレンジで注目の記事を気軽に見つける事が出来ます。</dd>
+				</dl>
+			</li>
+		</ol>
+
+<h3 class="heading">ネーミングの由来</h3>
+<p class="m_0">Pickle(ピックル)とはピクルスのようなという発想と</p>
+<p>LINKをPickするという意味合いからPickleと名付けました。:)</p>
+
+<h2 class="heading">Pickleを作るきっかけはここからスタートしました</h2>
+
+<p>こんなツイートをしました。</p>
+
+<blockquote class="twitter-tweet"><p>わーん。もう、TLで質の高い記事をツイートしているのを発見するのは効率悪すぎるなー。目視て。。。そうゆうクライアントかツールないのかなぁ。なかったら作ろ、時間短縮にもなるし。</p>&mdash; マツオカソウヤ (@mtoksuy) <a href="https://twitter.com/mtoksuy/statuses/349616186549473280">June 25, 2013</a></blockquote>
+
+<p class="m_t_60">その後にこんなやり取りがありました。</p>
+
+<blockquote class="twitter-tweet" data-conversation="none"><p><a href="https://twitter.com/mtoksuy">@mtoksuy</a> 面白かったのでつい笑　その面白いの種類がすごく気になります、単純にTL荒らしまくってハリケーンの如く大災害みたいなものかと思うのですがあばばば。TL早すぎて有益な記事見つけるの大変と仰っていたので、「あっ･･･」となりまして･･･。</p>&mdash; うんせせ(サイケデリア充) (@unkonoseseragi) <a href="https://twitter.com/unkonoseseragi/statuses/349774427103305728">June 26, 2013</a></blockquote>
+
+
+<p>やばい、あのツイートで傷つけてしまったかも、、と思いPickleを作ろうと決意。</p>
+
+
+<p class="m_0">早速、夜にTwitterAPI1.1なるものを探しまくりました。</p>
+<blockquote class="twitter-tweet"><p>おいら、これ見てURLを張っているツイートのみのTLを表示するクライアント作る!! | PHPで『Twitter API 1.1』を使って、つぶやきの検索結果を取得したときのメモ | ユメミチ <a href="http://t.co/FPqKwhDjp0">http://t.co/FPqKwhDjp0</a></p>&mdash; マツオカソウヤ (@mtoksuy) <a href="https://twitter.com/mtoksuy/statuses/349863032375091200">June 26, 2013</a></blockquote>
+
+<h2 class="heading m_t_30">いざ、開発してみるとエラーの山に・・・</h2>
+<p>もう、アクセストークンとかなんやらで意味が分からない挙動に速攻で挫折しました。</p>
+<p>ログイン機能を使わないでAPIだけで呼び出して表示するのは<a target="_blank" href="http://dreamsway.net/2999.html">PHPで『Twitter API 1.1』を使って、つぶやきの検索結果を取得したときのメモ</a>に載っているソースコードでまるまるコピーすれば動くのですが実現したい事は<strong>ログイン機能を付けてユーザー情報を参照</strong>する事でしたので、どうすればいいのかわからなくなってしまいハマってしまいました。</p>
+<p>まさに<strong>わからない事がわからない</strong>状況に陥ってしまいました。</p>
+
+<h2 class="heading">神記事が僕の前に現れました</h2>
+
+<p>開発総時間 2時間も経たない内に「もう無理かも。。」と諦め半分でひたすら様々な方法でググりまくった結果、神記事に出会えました。</p>
+<p class="m_0"><strong>神記事</strong></p>
+<p><a target="_blank" href="http://www.tryphp.net/2011/09/27/utopics-phptwitteroauth1/">PHP と Twitter API で OAuth 認証を行う 「タイムライン取得」「呟き（つぶやき）投稿」「ログイン」</a></p>
+
+<p class="m_0">この記事半端ないです。この記事を見るだけでwebサービスは作れます。</p>
+<p>本当に、本当にありがとうございました!</p>
+
+<h2 class="heading">完成までにかかった開発期間は12日間</h2>
+
+<p class="m_0">ログイン機能が実装されてからの開発はサクサク進みました。</p>
+<p>開発にかかった時間を大雑把ですが、さらしたいと思います。</p>
+
+
+<h3>サーバサイド</h3>
+<ol class="clearfix">
+			<li>
+				<dl>
+					<dt>データベース</dt>
+					<dd>全てに絡まっている場所ですので時間は計算しにくいですが2日はかかりました。</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt>URL抽出機能</dt>
+					<dd>少し前にBuzzfeedというwebサービスで様々な機能を作りましたので、そこから拝借。最適化しなおして3時間はかかりました。</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt>設定機能</dt>
+					<dd>APIの制限で自由に出来ませんでした。3時間くらい。</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt>Ajax機能(お気に入り機能、フィードバック機能)</dt>
+					<dd>Jqueryでやりたいなーってところから入ったので少し時間がかかりました。1日くらい。</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt>Buzz機能</dt>
+					<dd>まだ完全には完成はしていないのですが、2日はかけました。</dd>
+				</dl>
+			</li>
+		</ol>
+
+<h3>フロントサイド</h3>
+<ol class="clearfix">
+			<li>
+				<dl>
+					<dt>マークアップ</dt>
+					<dd>かかった時間は計算しにくいですが2日くらい。</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt>デザイン</dt>
+					<dd>デザインというデザインしていなくてすいません。。1日くらい。</dd>
+				</dl>
+			</li>
+		</ol>
+
+<h3>ドメインとサーバ</h3>
+<ol class="clearfix">
+			<li>
+				<dl>
+					<dt>ドメイン</dt>
+					<dd>ドメインを取得したのですが、ここが一番時間かかりました。というのも相手側のトラブルでネームサーバーの変更が出来ない状態で急いでいる趣旨を伝えてようやく復旧しました。10日間は待ちました。。</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt>サーバ</dt>
+					<dd>最初から借りていましたのでそこに入れました。3分。</dd>
+				</dl>
+			</li>
+		</ol>
+
+
+<p>とまぁ、振り返るとやりたい事がシンプルでしたのでサクサクと開発は進みました。ただ、12日間もかかってしまい自分自身の技術力のなさと集中力のなさが露呈してしまい、これからはその足りない部分を補完しながら次の新たなサービスを作れたらなって考えています。</p>
+
+<h2 class="heading">Twitterでネーミングを募集してみた</h2>
+<p class="m_0">URLを抽出してTL表示出来た頃に、このwebサービスは完成できると思いましたのでネーミングを考えたのですが、中々良い案が浮かんで来なかったのでTwitterで募集してみました。</p>
+<p><small>※全員にツイート表示許可は得ました。</small></p>
+
+
+
+<blockquote class="twitter-tweet"><p>【ゆるぼ】URLがあるツイートだけ見れるクライアントアプリ(閲覧とふぁぼに特化)作ったけど名前が決まっていないのでアプリ名募集。拡張機能としてはユーザーのTLを自動集計して人気のある記事(URL)を1日、1週間、1ヶ月で見れるページも作成。</p>&mdash; マツオカソウヤ (@mtoksuy) <a href="https://twitter.com/mtoksuy/statuses/350261264213229568">June 27, 2013</a></blockquote>
+
+
+<p class="m_t_30">ネーミングを考えてくれた優しい方々。</p>
+
+
+<blockquote class="twitter-tweet"><p>ゆーあーるえるを狙ってげっと。とかね？</p>&mdash; うんせせ(サイケデリア充) (@unkonoseseragi) <a href="https://twitter.com/unkonoseseragi/statuses/350263303781625857">June 27, 2013</a></blockquote>
+
+
+<blockquote class="twitter-tweet"><p>つぶっくまーく！tbookmark？</p>&mdash; 岸本健一郎 (@ken_kishimoto) <a href="https://twitter.com/ken_kishimoto/statuses/350264605060251650">June 27, 2013</a></blockquote>
+
+
+<blockquote class="twitter-tweet"><p>進撃のブックマーク！</p>&mdash; 岸本健一郎 (@ken_kishimoto) <a href="https://twitter.com/ken_kishimoto/statuses/350265549915308033">June 27, 2013</a></blockquote>
+
+
+
+<blockquote class="twitter-tweet"><p>今思いついた！えきちゅう！！（有益な情報中毒）</p>&mdash; うんせせ(サイケデリア充) (@unkonoseseragi) <a href="https://twitter.com/unkonoseseragi/statuses/350266519499972609">June 27, 2013</a></blockquote>
+
+
+<blockquote class="twitter-tweet"><p>「ハイパーリンク」と「タイムライン」でHyperLine..</p>&mdash; 鈴木 うし 4.3 (@g737a6b) <a href="https://twitter.com/g737a6b/statuses/350267294330527744">June 27, 2013</a></blockquote>
+
+
+<blockquote class="twitter-tweet" data-conversation="none"><p><a href="https://twitter.com/mtoksuy">@mtoksuy</a> 「つまみぐい」を提案しますー。「今日のつまみぐい」とか「今月のおいしいところ」とかが機能名のイメージです。「つぃまみぐい」を思いついたのですが、言いにくくて。</p>&mdash; 狛犬丸によ (@komainumaru) <a href="https://twitter.com/komainumaru/statuses/350266132009201666">June 27, 2013</a></blockquote>
+
+
+<blockquote class="twitter-tweet" data-conversation="none"><p><a href="https://twitter.com/mtoksuy">@mtoksuy</a> LinkだけをpickしてくれるのでLinpick(リンピク)ってどうでしょう｜ω・）</p>&mdash; 角田(Scoob実行委員会)綾佳 (@spicagraph) <a href="https://twitter.com/spicagraph/statuses/350272702529015808">June 27, 2013</a></blockquote>
+
+
+
+<blockquote class="twitter-tweet" data-conversation="none"><p><a href="https://twitter.com/mtoksuy">@mtoksuy</a> つまみつながりで、LINKとpinchos（スペインの串にささったつまみ）あわせて「linchos」（リンチョス）も考えてみました。チョスにほんのりとchoiceの面影も入れつつ…。エキゾチックすぎますが。「clippingmania」も考え文字制限でアウト。</p>&mdash; 狛犬丸によ (@komainumaru) <a href="https://twitter.com/komainumaru/statuses/350285354684776448">June 27, 2013</a></blockquote>
+
+
+
+<blockquote class="twitter-tweet" data-conversation="none"><p><a href="https://twitter.com/mtoksuy">@mtoksuy</a> 「URLがあるツイートだけ見れる」「閲覧とふぁぼに特化」←という事なので、ふぁぼ＋ツイート＝「ふぁぼツイ」で考えました～！(&#39;ω&#39;)ノ</p>&mdash; がちょぴん (@iriereggaemuzik) <a href="https://twitter.com/iriereggaemuzik/statuses/350487095124574209">June 28, 2013</a></blockquote>
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p class="m_0">みんな面白おかしく考えていただきました!</p>
+<p class="m_0">この集まったネーミングを頭の中に入れ</p>
+<p>考えて考え抜いて「Pickle」というネーミングが生まれました。</p>
+
+
+
+<p class="m_0">ネーミングを提案してくれた人達にここで感謝を</p>
+<p>本当に助かりました!!</p>
+
+<h2 class="heading">Pickleで絶対に達成したいリスト</h2>
+
+<p>アウトプットを目的として書かせて頂きます。</p>
+
+<ol class="clearfix">
+			<li>
+				<dl>
+					<dt>シンプル性</dt>
+					<dd>webサービスとしてのシンプル、設計としてのシンプルさを失わないように。</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt>ワークタイム中に情報収集する事を当たり前に</dt>
+					<dd>忙しくても情報収集は必要です。ワークタイム中に活用する習慣を。</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt>情報収集のもう一つの手段として</dt>
+					<dd>このような情報収集する手段を広める。</dd>
+				</dl>
+			</li>
+		</ol>
+
+
+<h2 class="heading">Pickleを開発する際に勉強になった記事リスト</h2>
+<p class="m_0"><a target="_blank" href="https://dev.twitter.com/">Twitter Developers</a>(本家)</p>
+<p>英語が読めるならここだけで十分ですね。</p>
+
+<p class="m_0"><a target="_blank" href="http://www.tryphp.net/2011/09/27/utopics-phptwitteroauth1/">PHP と Twitter API で OAuth 認証を行う 「タイムライン取得」「呟き（つぶやき）投稿」「ログイン」</a></p>
+<p class="m_0">この記事がなかったら僕は本気で挫折していました。</p>
+<p><small>※ 1.1じゃない記述も多いので注意が必要です。</small></p>
+
+
+
+<p class="m_0"><a target="_blank" href="http://dx.24-7.co.jp/twitterapi1-1-rest-api/">【保存版】TwitterAPI1.1 REST API 全項目解説</a></p>
+<p>APIリソースの説明が1ページでわかる良記事です。</p>
+
+<p class="m_0"><a target="_blank" href="http://dreamsway.net/2999.html">PHPで『Twitter API 1.1』を使って、つぶやきの検索結果を取得したときのメモ</a></p>
+<p>超シンプルな動かせるソースコードが載っているのでここから始めるといいですね。</p>
+
+<p class="m_0"><a target="_blank" href="http://www.koikikukan.com/archives/2012/10/02-005555.php">jQuery.ajax()のまとめ</a></p>
+<p>ここでJqueryのAjaxを勉強しました。</p>
+
+
+<h2 class="heading">まとめ</h2>
+<p>初めてTwitter API1.1に触れたのですが物凄く楽しいです!!色々と制限がキツい感じは否めませんが、作ってみて感じた事は「誰にでも簡単にwebサービスは作れる」という事でした。</p>
+
+<p>本当にアイデア次第で面白いものが作れるような気はします。あと、ユーザー登録を省けるというのは作り手だけではなくユーザーも手間が省けるのでこれはこれでいいのかな。<p>
+
+<p>今回、具体的な作り方は紹介出来なかったのですが難しい事はそんなにありませんので、みなさんも面白いアイデアがありましたらぜひぜひトライしましょー。</p>
+
+<p class="m_0">という事で</p>
+<p>以上、<a target="_blank" href="http://pickle.be/">Pickle</a>が生まれたストーリーでした。:)<p>

@@ -1,0 +1,610 @@
+<p class="m_0">最近はフラットデザインに押されて急速に使われなくなった感があるCSS3エフェクトなんですが、こうも使わないと忘れちゃいそうなので、今回はCSS3で作るエフェクトの再勉強を兼ねて記事を書いていきたいと思います。</p>
+
+<nav class="detail_press_index clearfix">
+	<h2 id="s_0p"><span class="color"> 目次</span></h2>
+	<ul class="left no_width">
+		<li class="n_1"><a href="#1p">初めに引用元を紹介します</a></li>
+		<li class="n_2"><a href="#2p">CSS ボックスシャドウエフェクト - デモ & 解説</a></li>
+		<li class="n_3"><a href="#3p">まとめ</a></li>
+</nav>
+
+
+
+<style>
+.container_xxx {
+    height: auto;
+    margin: 30px auto;
+    min-height: 400px;
+    padding: 25px;
+    width: 900px;
+}
+.container_xxx h2 {
+    margin-top: 30px;
+}
+
+
+.box {
+    background: none repeat scroll 0 0 #F3F3F3;
+    border-radius: 2px 2px 2px 2px;
+    height: 200px;
+    margin: 40px auto;
+    width: 70%;
+}
+.box h3 {
+    position: relative;
+    text-align: center;
+    top: 80px;
+}
+.effect1 {
+    box-shadow: 0 10px 6px -6px #777777;
+}
+.effect2 {
+    position: relative;
+}
+.effect2:before, .effect2:after {
+    background: none repeat scroll 0 0 #777777;
+    bottom: 18px;
+    box-shadow: 0 15px 10px #777777;
+    content: "";
+    left: 10px;
+    max-width: 300px;
+    position: absolute;
+    top: 80%;
+    transform: rotate(-3deg);
+		-webkit-transform: rotate(-3deg);
+		-moz-transform: rotate(-3deg);
+		-ms-transform: rotate(-3deg);
+		-o-transform: rotate(-3deg);
+    width: 50%;
+    z-index: -1;
+}
+.effect2:after {
+    left: auto;
+    right: 10px;
+    transform: rotate(3deg);
+		-webkit-transform: rotate(3deg);
+		-moz-transform: rotate(3deg);
+		-ms-transform: rotate(3deg);
+		-o-transform: rotate(3deg);
+}
+.effect3 {
+    position: relative;
+}
+.effect3:before {
+    background: none repeat scroll 0 0 #777777;
+    bottom: 18px;
+    box-shadow: 0 15px 10px #777777;
+    content: "";
+    left: 10px;
+    max-width: 300px;
+    position: absolute;
+    top: 80%;
+    transform: rotate(-3deg);
+		-webkit-transform: rotate(-3deg);
+		-moz-transform: rotate(-3deg);
+		-ms-transform: rotate(-3deg);
+		-o-transform: rotate(-3deg);
+    width: 50%;
+    z-index: -1;
+}
+.effect4 {
+    position: relative;
+}
+.effect4:after {
+    background: none repeat scroll 0 0 #777777;
+    bottom: 18px;
+    box-shadow: 0 15px 10px #777777;
+    content: "";
+    left: auto;
+    max-width: 300px;
+    position: absolute;
+    right: 10px;
+    top: 80%;
+    transform: rotate(3deg);
+		-webkit-transform: rotate(3deg);
+		-moz-transform: rotate(3deg);
+		-ms-transform: rotate(3deg);
+		-o-transform: rotate(3deg);
+    width: 50%;
+    z-index: -1;
+}
+.effect5 {
+    position: relative;
+}
+.effect5:before, .effect5:after {
+    background: none repeat scroll 0 0 #777777;
+    bottom: 25px;
+    box-shadow: 0 35px 20px #777777;
+    content: "";
+    left: 10px;
+    max-width: 300px;
+    position: absolute;
+    top: 80%;
+    transform: rotate(-8deg);
+		-webkit-transform: rotate(-8deg);
+		-moz-transform: rotate(-8deg);
+		-ms-transform: rotate(-8deg);
+		-o-transform: rotate(-8deg);
+    width: 50%;
+    z-index: -1;
+}
+.effect5:after {
+    left: auto;
+    right: 10px;
+    transform: rotate(8deg);
+		-webkit-transform: rotate(8deg);
+		-moz-transform: rotate(8deg);
+		-ms-transform: rotate(8deg);
+		-o-transform: rotate(8deg);
+}
+.effect6 {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    position: relative;
+}
+.effect6:before, .effect6:after {
+    border-radius: 100px 100px 100px 100px / 10px 10px 10px 10px;
+    bottom: 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    content: "";
+    left: 10px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    z-index: -1;
+}
+.effect6:after {
+    left: auto;
+    right: 10px;
+    transform: skew(8deg) rotate(3deg);
+		-webkit-transform: skew(8deg) rotate(3deg);
+		-moz-transform: skew(8deg) rotate(3deg);
+		-ms-transform: skew(8deg) rotate(3deg);
+		-o-transform: skew(8deg) rotate(3deg);
+}
+.effect7 {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    position: relative;
+}
+.effect7:before, .effect7:after {
+    border-radius: 100px 100px 100px 100px / 10px 10px 10px 10px;
+    bottom: 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    content: "";
+    left: 10px;
+    position: absolute;
+    right: 10px;
+    top: 0;
+    z-index: -1;
+}
+.effect7:after {
+    left: auto;
+    right: 10px;
+    transform: skew(8deg) rotate(3deg);
+		-webkit-transform: skew(8deg) rotate(3deg);
+		-moz-transform: skew(8deg) rotate(3deg);
+		-ms-transform: skew(8deg) rotate(3deg);
+		-o-transform: skew(8deg) rotate(3deg);
+}
+.effect8 {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    position: relative;
+}
+.effect8:before, .effect8:after {
+    border-radius: 100px 100px 100px 100px / 10px 10px 10px 10px;
+    bottom: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 10px;
+    z-index: -1;
+}
+.effect8:after {
+    left: auto;
+    right: 10px;
+    transform: skew(8deg) rotate(3deg);
+		-webkit-transform: skew(8deg) rotate(3deg);
+		-moz-transform: skew(8deg) rotate(3deg);
+		-ms-transform: skew(8deg) rotate(3deg);
+		-o-transform: skew(8deg) rotate(3deg);
+}
+.detail_press h3.m_t_60 {
+    margin: 60px 0 15px;
+}
+</style>
+
+
+
+
+
+
+<h2 id="s_1p">初めに引用元を紹介します</h2>
+<p class="m_0"><a target="_blank" href="http://www.paulund.co.uk/creating-different-css3-box-shadows-effects">Paulund</a></p>
+<p>例のボックスシャドウなんですが2012年このサイトのエフェクトは日本に居るweb系の人ならば一度は見ているくらい有名になったんじゃないでしょうか?</p>
+<p>敬意を込めて引用させて頂きます。</p>
+<blockquote cite="">
+</blockquote>
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+
+<h2 id="s_2p">CSS ボックスシャドウエフェクト - デモ & 解説</h2>
+<p>8種類のエフェクトがどう記述されていて、それがどう表示されているのかを解説していきます。</p>
+<p>まず初めに、そのエフェクトをかけるボックスのCSSを見て下さい。</p>
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+.box {
+    background: none repeat scroll 0 0 #F3F3F3;
+    border-radius: 2px 2px 2px 2px;
+    height: 200px;
+    margin: 40px auto;
+    width: 70%;
+}
+</pre>
+<p>まぁ、至って普通なボックスですね、これに全てエフェクトをかけていきます。</p>
+
+
+<h3 class="m_t_60">Effect 1</h3>
+
+<div class="box effect1">
+	<h3>Effect 1</h3>
+</div>
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+	.effect1 {
+	    box-shadow: 0 10px 6px -6px #777777;
+	}
+</pre>
+<div class="html_tab m_t_30">HTML</div>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;div class="box effect1"&gt;
+		&lt;h3&gt;Effect 1&lt;/h3&gt;
+	&lt;/div&gt;
+</pre>
+<p>これはいたって普通の記述のボックスシャドウですね。</p>
+
+<h3 class="m_t_60">Effect 2</h3>
+<div class="box effect2">
+	<h3>Effect 2</h3>
+</div>
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+	.effect2 {
+	    position: relative;
+	}
+	.effect2:before, .effect2:after {
+	    background: none repeat scroll 0 0 #777777;
+	    bottom: 18px;
+	    box-shadow: 0 15px 10px #777777;
+	    content: "";
+	    left: 10px;
+	    max-width: 300px;
+	    position: absolute;
+	    top: 80%;
+	    transform: rotate(-3deg);
+			-webkit-transform: rotate(-3deg);
+			-moz-transform: rotate(-3deg);
+			-ms-transform: rotate(-3deg);
+			-o-transform: rotate(-3deg);
+	    width: 50%;
+	    z-index: -1;
+	}
+	.effect2:after {
+	    left: auto;
+	    right: 10px;
+	    transform: rotate(3deg);
+			-webkit-transform: rotate(3deg);
+			-moz-transform: rotate(3deg);
+			-ms-transform: rotate(3deg);
+			-o-transform: rotate(3deg);
+	}
+</pre>
+<div class="html_tab m_t_30">HTML</div>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;div class="box effect2"&gt;
+		&lt;h3&gt;Effect 2&lt;/h3&gt;
+	&lt;/div&gt;
+</pre>
+
+<p>隙間があるかのように影があります。美しい。</p>
+<p class="m_0">なにやらいきなり難しくなりましたね。</p>
+<p>ですが、これは一つずつ手順を理解していけば簡単なんです。</p>
+<p>まずこいつのカラクリを目で見ましょう。</p>
+<div class="box effect2" style="z-index: 0;">
+	<h3>Effect 2</h3>
+</div>
+<p class="m_0">このボックスの裏はこんな感じになっていて</p>
+<p>二つのボックスシャドウを作り影だけを魅せているんですねー。</p>
+<p>で、どうやったらそうなるの?って疑問があると思います。ここは少しトリッキーな事をしています。
+<p>CSSの記述を見てもらうとbeforeとafterで全く同じ記述ですよね?これは記述を減らしているんです。キモはafterで<code>left: auto;</code> にすると取り敢えず固定ではなくなります。そして<code>right: 10px;</code>をすると右からの表示になるんです。</p>
+<p>後は<code>z-index</code>や<code>transform</code>をいじくるだけです。</p>
+
+<p>そう、実は簡単なんです。</p>
+
+
+<h3 class="m_t_60">Effect 3</h3>
+<div class="box effect3">
+	<h3>Effect 3</h3>
+</div>
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+	.effect3:before {
+	    background: none repeat scroll 0 0 #777777;
+	    bottom: 18px;
+	    box-shadow: 0 15px 10px #777777;
+	    content: "";
+	    left: 10px;
+	    max-width: 300px;
+	    position: absolute;
+	    top: 80%;
+	    transform: rotate(-3deg);
+			-webkit-transform: rotate(-3deg);
+			-moz-transform: rotate(-3deg);
+			-ms-transform: rotate(-3deg);
+			-o-transform: rotate(-3deg);
+	    width: 50%;
+	    z-index: -1;
+	}
+	.effect3 {
+	    position: relative;
+	}
+</pre>
+<div class="html_tab m_t_30">HTML</div>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;div class="box effect3"&gt;
+		&lt;h3&gt;Effect 3&lt;/h3&gt;
+	&lt;/div&gt;
+</pre>
+<p>これはさっきの片方バージョン。</p>
+
+<div class="box effect3" style="z-index: 0;">
+	<h3>Effect 3</h3>
+</div>
+<p>裏はこんな感じ。片方ないだけなんで実装も簡単ですね。</p>
+
+
+
+<h3 class="m_t_60">Effect 4</h3>
+<div class="box effect4">
+	<h3>Effect 4</h3>
+</div>
+
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+	.effect4:after {
+	    background: none repeat scroll 0 0 #777777;
+	    bottom: 18px;
+	    box-shadow: 0 15px 10px #777777;
+	    content: "";
+	    left: auto;
+	    max-width: 300px;
+	    position: absolute;
+	    right: 10px;
+	    top: 80%;
+	    transform: rotate(3deg);
+			-webkit-transform: rotate(3deg);
+			-moz-transform: rotate(3deg);
+			-ms-transform: rotate(3deg);
+			-o-transform: rotate(3deg);
+	    width: 50%;
+	    z-index: -1;
+	}
+	.effect4 {
+	    position: relative;
+	}
+</pre>
+<div class="html_tab m_t_30">HTML</div>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;div class="box effect4"&gt;
+		&lt;h3&gt;Effect 4&lt;/h3&gt;
+	&lt;/div&gt;
+</pre>
+<p>片方逆バージョン。</p>
+
+
+<div class="box effect4" style="z-index: 0;">
+	<h3>Effect 4</h3>
+</div>
+<p>このエフェクトもこうなっています。</p>
+
+
+
+
+<h3 class="m_t_60">Effect 5</h3>
+<div class="box effect5">
+	<h3>Effect 5</h3>
+</div>
+
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+	.effect5:before, .effect5:after {
+	    background: none repeat scroll 0 0 #777777;
+	    bottom: 25px;
+	    box-shadow: 0 35px 20px #777777;
+	    content: "";
+	    left: 10px;
+	    max-width: 300px;
+	    position: absolute;
+	    top: 80%;
+	    transform: rotate(-8deg);
+			-webkit-transform: rotate(-8deg);
+			-moz-transform: rotate(-8deg);
+			-ms-transform: rotate(-8deg);
+			-o-transform: rotate(-8deg);
+	    width: 50%;
+	    z-index: -1;
+	}
+	.effect5:after {
+	    left: auto;
+	    right: 10px;
+	    transform: rotate(8deg);
+			-webkit-transform: rotate(8deg);
+			-moz-transform: rotate(8deg);
+			-ms-transform: rotate(8deg);
+			-o-transform: rotate(8deg);
+	}
+</pre>
+<div class="html_tab m_t_30">HTML</div>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;div class="box effect5"&gt;
+		&lt;h3&gt;Effect 5&lt;/h3&gt;
+	&lt;/div&gt;
+</pre>
+<p>浮かせているような、そう思わせられますね。</p>
+
+<p>これはエフェクト2とやっている事は似ていてシャドウの大きさを広げているだけですね、角度も少し強めに傾けています。</p>
+
+<div class="box effect5" style="z-index: 0;">
+	<h3>Effect 5</h3>
+</div>
+<p>裏はこうなっていて、すんごい浮かんでいる感じです。影の力ってすごいですよね。</p>
+
+
+<h3 class="m_t_60">Effect 6</h3>
+<div class="box effect6">
+	<h3>Effect 6</h3>
+</div>
+
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+	.effect6 {
+	    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	    position: relative;
+	}
+	.effect6:before, .effect6:after {
+	    border-radius: 100px 100px 100px 100px / 10px 10px 10px 10px;
+	    bottom: 0;
+	    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+	    content: "";
+	    left: 10px;
+	    position: absolute;
+	    right: 10px;
+	    top: 50%;
+	    z-index: -1;
+	}
+	.effect6:after {
+	    left: auto;
+	    right: 10px;
+	    transform: skew(8deg) rotate(3deg);
+			-webkit-transform: skew(8deg)  rotate(3deg);
+			-moz-transform: skew(8deg)  rotate(3deg);
+			-ms-transform: skew(8deg)  rotate(3deg);
+			-o-transform: skew(8deg)  rotate(3deg);
+	}
+</pre>
+<div class="html_tab m_t_30">HTML</div>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;div class="box effect6"&gt;
+		&lt;h3&gt;Effect 6&lt;/h3&gt;
+	&lt;/div&gt;
+</pre>
+<p>ちょっとした膨らみとその影を表現したエフェクトです。やっぱりこうゆうエフェクトは紙系のコンテンツと相性がいいですね。</p>
+
+<div class="box effect6" style="z-index: 0;">
+	<h3>Effect 6</h3>
+</div>
+<p class="m_0">裏はtop50%の大きさの影を生成し<code>border-radius</code>をかけて丸みを帯びた影にしていますね。</p>
+<p>素晴らしいです。</p>
+
+
+<h3 class="m_t_60">Effect 7</h3>
+<div class="box effect7">
+	<h3>Effect 7</h3>
+</div>
+
+
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+	.effect7 {
+	    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	    position: relative;
+	}
+	.effect7:before, .effect7:after {
+	    border-radius: 100px 100px 100px 100px / 10px 10px 10px 10px;
+	    bottom: 0;
+	    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+	    content: "";
+	    left: 10px;
+	    position: absolute;
+	    right: 10px;
+	    top: 0;
+	    z-index: -1;
+	}
+	.effect7:after {
+	    left: auto;
+	    right: 10px;
+	    transform: skew(8deg) rotate(3deg);
+			-webkit-transform: skew(8deg)  rotate(3deg);
+			-moz-transform: skew(8deg)  rotate(3deg);
+			-ms-transform: skew(8deg)  rotate(3deg);
+			-o-transform: skew(8deg)  rotate(3deg);
+	}
+</pre>
+<div class="html_tab m_t_30">HTML</div>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;div class="box effect7"&gt;
+		&lt;h3&gt;Effect 7&lt;/h3&gt;
+	&lt;/div&gt;
+</pre>
+<p>エフェクト6の全体バージョンですね。</p>
+
+<div class="box effect7" style="z-index: 0;">
+	<h3>Effect 7</h3>
+</div>
+<p>裏はこうなっていてボックスシャドウがはみ出そうな感じです。</p>
+
+
+<h3 class="m_t_60">Effect 8</h3>
+<div class="box effect8">
+	<h3>Effect 8</h3>
+</div>
+
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+	.effect8 {
+	    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	    position: relative;
+	}
+	.effect8:before, .effect8:after {
+	    border-radius: 100px 100px 100px 100px / 10px 10px 10px 10px;
+	    bottom: 10px;
+	    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+	    content: "";
+	    left: 0;
+	    position: absolute;
+	    right: 0;
+	    top: 10px;
+	    z-index: -1;
+	}
+	.effect8:after {
+	    left: auto;
+	    right: 10px;
+	    transform: skew(8deg) rotate(3deg);
+			-webkit-transform: skew(8deg)  rotate(3deg);
+			-moz-transform: skew(8deg)  rotate(3deg);
+			-ms-transform: skew(8deg)  rotate(3deg);
+			-o-transform: skew(8deg)  rotate(3deg);
+	}
+</pre>
+<div class="html_tab m_t_30">HTML</div>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;div class="box effect8"&gt;
+		&lt;h3&gt;Effect 8&lt;/h3&gt;
+	&lt;/div&gt;
+</pre>
+<p class="m_0">エフェクト７の横バージョン。</p>
+<p>この丸みがかかっている感じ、好きです。
+
+<div class="box effect8" style="z-index: 0;">
+	<h3>Effect 8</h3>
+</div>
+<p>もう、見えちゃってるのかって位ボックスシャドウが押し迫っていますね。</p>
+
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+
+
+<h2 id="s_3p">まとめ</h2>
+<p>いかがでしたか?</p>
+<p class="m_0">こんな凄く綺麗なエフェクトも実は簡単なんですよという事を</p>
+<p>お伝えしたく記事を書いてみました。</p>
+
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>

@@ -1,0 +1,113 @@
+<p>急ですが、webサービスやwebサイトの負荷テストは行っていますか?どの程度のアクセスがあった場合にサーバが遅くなってしまうのかをバズる前に検証しておくべきです。</p>
+
+<p>現在,Yahoo、はてブ以外にもGunosy等に載る事で簡単にバズり(普段のPV数 ＋ 想定PV数5000〜30000)その時にサーバが同時アクセスに耐えられなくなり、かなりの機会損失を被ってしまいます。自分のサーバ、または借りているレンタルサーバの能力値を理解していればそれなりの対策が打てるようになるのかなーっと。そうゆう事で負荷テストをオススメします。</p>
+
+<p>今回は記事を書くというよりは負荷テストが出来るwebサービス、ツール、ソフトを紹介している記事をまとめて紹介して最後に要約していきたいと思います。</p>
+</p>
+<nav class="detail_press_index clearfix">
+	<h2 id="s_0p"><span class="color">目次</span></h2>
+	<ul class="left no_width">
+		<li class="n_1"><span class="scroll_btn">負荷テストツールをまとめている記事ベスト3</span></li>
+		<li class="n_2"><span class="scroll_btn">Apache Benchの負荷テスト記事ベスト3</span></li>
+		<li class="n_3"><span class="scroll_btn">データベース負荷テストツールをまとめている記事</span></li>
+		<li class="n_4"><span class="scroll_btn">他ツール負荷テストツール説明記事</span></li>
+		<li class="n_5"><span class="scroll_btn">結局、便利な負荷テストツールはどれ?僕が要約してみた。</span></li>
+	</ul>
+</nav>
+
+<h2 class="heading">負荷テストツールをまとめている記事ベスト3</h2>
+
+<p>負荷テストを出来るサービスやツールを紹介しているまとめ記事を厳選して紹介したいと思いますが重複している所は省かせて頂きます。
+
+<ul>
+	<p class="m_0">やはり、<strong>さぶみっと！JAPANさんの記事が鉄板</strong>ですよね。もうここだけ良いというのはナシの方向で行かせて頂きます。</p>
+	<li class="m_b_15"><p class="m_0"><a target="_blank" href="http://www.submit.ne.jp/714">WEBサイト負荷テストツール7選</a></p>
+		<ul>
+			<li><a target="_blank" href="http://loadimpact.com/">Load Impact</a></li>
+			<li><a target="_blank" href="http://jmeter.apache.org/">Apache JMeter</a></li>
+			<li><a target="_blank" href="http://curl-loader.sourceforge.net/">curl-loader</a></li>
+			<li><a target="_blank" href="http://www.hpl.hp.com/research/linux/httperf/">httperf</a></li>
+			<li><a target="_blank" href="http://www.joedog.org/siege-home/">Siege</a></li>
+			<li><a target="_blank" href="http://www.pylot.org/">Pylot</a></li>
+			<li><a target="_blank" href="http://httpd.apache.org/docs/2.2/programs/ab.html">Apache HTTP server</a></li>
+		</ul>
+	</li>
+	<p class="m_0">こちらはwebアプリよりな負荷テストを紹介しています。</p>
+	<li class="m_b_15"><a target="_blank" href="http://phpspot.org/blog/archives/2009/05/web_45.html">WEBアプリ開発に便利な機能＆負荷テストツール集</a>
+		<ul>
+			<li>機能テストツール集
+				<ul>
+					<li><a target="_blank" href="http://docs.seleniumhq.org/">SeleniumHQ</a></li>
+					<li><a target="_blank" href="http://watir.com/">Watir</a></li>
+					<li><a target="_blank" href="http://www.actiwate.com/">ActiWATE</a></li>
+					<li><a target="_blank" href="http://code.google.com/p/selenium/?redir=1">WebDriver</a></li>
+					<li><a target="_blank" href="http://fwptt.sourceforge.net/">FWPTT</a></li>
+					<li><a target="_blank" href="http://code.google.com/p/ieunit/">IeUnit</a></li>
+					<li><a target="_blank" href="http://lostechies.com/chadmyers/2008/08/29/getting-started-with-jquery-qunit-for-client-side-javascript-testing/">QUnit</a></li>
+				</ul>
+			</li>
+			<li>負荷テストツール集
+				<ul>
+					<li><a target="_blank" href="http://www.microsoft.com/en-us/download/default.aspx">Web Application Stress Tool </a></li>
+					<li><a target="_blank" href="http://tsung.erlang-projects.org/">Tsung</a></li>
+					<li><a target="_blank" href="http://grinder.sourceforge.net/">The Grinder</a></li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+	<p class="m_0">全部かぶっていました。想定外。</p>
+	<li>
+		<a target="_blank" href="http://gmx.dip.jp/wp/2012/04/12/web%E3%82%B5%E3%82%A4%E3%83%88%E3%81%AE%E8%B2%A0%E8%8D%B7%E3%83%86%E3%82%B9%E3%83%88%E3%83%84%E3%83%BC%E3%83%AB/">Webサイトの負荷テストツール</a>
+		</li>
+	</li>
+</ul>
+
+<h2 class="heading">Apache Benchの負荷テスト記事ベスト3</h2>
+
+<p>さてこれだけ並べられてもどうすればいいの?ってなっちゃいますので<strong>一番のオススメはApache Bench</strong>です。この機能での負荷テストのやり方等を紹介している記事を紹介します。</p>
+
+<p class="m_0">8割方この記事で勉強出来ます。</p>
+<p><a target="_blank" href="http://blog.verygoodtown.com/2012/05/apache-bench-ab/">Apache Benchを使った負荷テストのやり方</a>
+</p>
+
+<p class="m_0">winの方はこっちの記事の方が優しめ。</p>
+<p><a target="_blank" href="http://www.mapee.jp/wlh/apacheab.html">Apacheのabでベンチマークテスト</a></p>
+
+<p class="m_0">因みに弾さんもお勧めしています。</p>
+<p><a target="_blank" href="http://blog.livedoor.jp/dankogai/archives/51212610.html">Webサーバーの負荷テストならまずab</a>
+</p>
+
+<p class="m_0">本家。</p>
+<p><a target="_blank" href="http://httpd.apache.org/docs/2.2/programs/ab.html">Apache HTTP server(本家)</a>
+</p>
+
+<h2 class="heading">データベース負荷テストツールをまとめている記事</h2>
+
+<p class="m_0">ちょっと時間がなくて試せていなくて申し訳ないのですが、この記事が鉄板です。</p>
+<p class="m_0"><a target="_blank" href="http://d.hatena.ne.jp/sh2/20090802">データベース負荷テストツールまとめ(1)</a></p>
+<p class="m_0"><a target="_blank" href="http://d.hatena.ne.jp/sh2/20090816">データベース負荷テストツールまとめ(2)</a></p>
+<p class="m_0"><a target="_blank" href="http://d.hatena.ne.jp/sh2/20100112">データベース負荷テストツールまとめ(3)</a></p>
+<p class="m_0"><a target="_blank" href="http://d.hatena.ne.jp/sh2/20100510">データベース負荷テストツールまとめ(4)</a></p>
+<p><a target="_blank" href="http://d.hatena.ne.jp/sh2/20120723">データベース負荷テストツールまとめ(5)</a></p>
+
+<h2 class="heading">他ツール負荷テストツール説明記事</h2>
+<p>上記で説明してきた中のツールの使い方を説明している記事も一応載せときます。</p>
+
+
+<p><a target="_blank" href="http://d.hatena.ne.jp/language_and_engineering/20081014/1223905380">今から３分で jmeter の使い方を身に付ける　（負荷テスト入門）</a>
+</p>
+
+<p><a target="_blank" href="http://shiba-yan.hatenablog.jp/entry/20130429/1367165584">loader.io を使って Web サイトの負荷テストを実行してみた</a></p>
+
+
+<h2 class="heading">結局、便利な負荷テストツールはどれ?僕が要約してみた。</h2>
+
+<p>もうね、これにたどり着いちゃう訳ですよ。色々紹介しといてなんなんですが、こんなに必要ありません。この中から実際に触って簡単かつすぐわかるものを2つ紹介したいと思います。</p>
+
+			<p class="m_0"><a target="_blank" href="http://loadimpact.com/">Load Impact</a></p>
+			<p>コレが一番簡単。URLを入れるだけでかなりの情報が得られます。月に5回ほど無料だそうです。ただ負荷をかけてくれる場所(オーストラリアからとか)がランダムらしいです。有料にすれば東京から負荷をかけれるらしいですがそれだったら他の方法でやった方がいいです。</p>
+
+<p class="m_0"><a target="_blank" href="http://blog.verygoodtown.com/2012/05/apache-bench-ab/">Apache Benchを使った負荷テストのやり方</a>
+</p>
+<p class="m_0"><a target="_blank" href="http://www.mapee.jp/wlh/apacheab.html">Apacheのabでベンチマークテスト</a></p>
+<p>結局の所abにたどり着く訳です。これが最強。</p>

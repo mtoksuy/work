@@ -1,0 +1,698 @@
+<p class="m_0">いやーもうそろそろ夏っすね。女子の浴衣にドキッとくる季節ですね。</p>
+<p>彼女居ませんが。</p>
+
+<p>さて、タイトル通りなんですが、CSSだけで忍者くんに手裏剣を投げさせてみました。意外に楽しかったので公開してみたいと思います。</p>
+<nav class="detail_press_index clearfix">
+	<h2 id="s_0p"><span class="color"> 目次</span></h2>
+	<ul class="left no_width">
+		<li class="n_1"><a href="#1p">この子に投げさせてみたよ</a></li>
+		<li class="n_2"><a href="#2p">実装方法</a></li>
+		<li class="n_3"><a href="#3p">忍者セット無料配布</a></li>
+		<li class="n_4"><a href="#4p">まとめ</a></li>
+	</ul>
+</nav>
+
+
+
+
+<style>
+body {
+	overflow-x: hidden; /* 横のスクロールバーを隠す */
+}
+.ninja_space {
+	position: relative;
+}
+.anime {
+		cursor: pointer;
+    height: 400px;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0px;
+    border-radius: 365px 365px 365px 365px;
+    width: 400px;
+    z-index: 4;
+
+    -webkit-transition: all 0.2s ease 0s;
+       -moz-transition: all 0.2s ease 0s;
+        -ms-transition: all 0.2s ease 0s;
+         -o-transition: all 0.2s ease 0s;
+            transition: all 0.2s ease 0s;
+}
+.anime:hover {
+    opacity: 1;
+    -webkit-transition-duration:0.5s;
+       -moz-transition-duration:0.5s;
+        -ms-transition-duration:0.5s;
+         -o-transition-duration:0.5s;
+            transition-duration:0.5s;
+}
+.maru {
+    left: 261px;
+    position: absolute;
+    top: 99px;
+}
+.maru a {
+    font-size: 131%;
+    color: red;
+    text-decoration: none;
+}
+/* 忍者本体 */
+.ninja {
+    background-image: url("my_ninja_1_left_1.png");
+    background-repeat: no-repeat;
+    width: 400px;
+    height: 400px;
+    position: relative;
+    top: 9px; /* 調整用 */
+    left: 8px; /* 調整用 */
+    z-index: 3;
+}
+/* 左手 */
+.left_hand {
+    background-image: url("left_hand_1.png");
+    background-repeat: no-repeat;
+    width: 29px;
+    height: 55px;
+    position: absolute;
+    top: 277px;
+    left: 237px;
+    z-index: 2;
+
+    /* 角度 */
+    -webkit-transform: rotate(0deg);
+       -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+         -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+
+    /* アニメーションの時間 */
+	  -webkit-animation-duration: 3s;
+	     -moz-animation-duration: 3s;
+	      -ms-animation-duration: 3s;
+	       -o-animation-duration: 3s;
+	          animation-duration: 3s;
+
+	  /* キーフレーム指定 */
+	  -webkit-animation-name: left_hand; 
+	     -moz-animation-name: left_hand;
+	      -ms-animation-name: left_hand;
+	       -o-animation-name: left_hand;
+	          animation-name: left_hand;
+
+	  /* アニメーションを繰り返す */
+	  -webkit-animation-iteration-count: infinite;
+	     -moz-animation-iteration-count: infinite;
+	      -ms-animation-iteration-count: infinite;
+	       -o-animation-iteration-count: infinite;
+	          animation-iteration-count: infinite;
+}
+/* Chrome Safari用 */
+@-webkit-keyframes left_hand {
+  from {
+
+  }
+	10% {
+    -webkit-transform: rotate(-50deg);
+    left: 243px;
+    top: 270px;
+	}
+	15% {
+    -webkit-transform: rotate(-20deg);
+    left: 240px;
+    top: 274px;
+	}
+  to {
+    -webkit-transform: rotate(0deg);
+    left: 237px;
+    top: 277px;
+  }
+}
+/* Firefox用 */
+@-moz-keyframes left_hand {
+  from {
+
+  }
+	10% {
+    -moz-transform: rotate(-50deg);
+    left: 243px;
+    top: 270px;
+	}
+	15% {
+    -moz-transform: rotate(-20deg);
+    left: 240px;
+    top: 274px;
+	}
+  to {
+    -moz-transform: rotate(0deg);
+    left: 237px;
+    top: 277px;
+  }
+}
+/* IE用だけど意味なし 一応記述 */
+@-ms-keyframes left_hand {
+  from {
+
+  }
+	10% {
+    -ms-transform: rotate(-50deg);
+    left: 243px;
+    top: 270px;
+	}
+	15% {
+    -ms-transform: rotate(-20deg);
+    left: 240px;
+    top: 274px;
+	}
+  to {
+    -ms-transform: rotate(0deg);
+    left: 237px;
+    top: 277px;
+  }
+}
+/* Opera用(古いバージョン用に) */
+@-o-keyframes left_hand {
+  from {
+
+  }
+	10% {
+    -o-transform: rotate(-50deg);
+    left: 243px;
+    top: 270px;
+	}
+	15% {
+    -o-transform: rotate(-20deg);
+    left: 240px;
+    top: 274px;
+	}
+  to {
+    -o-transform: rotate(0deg);
+    left: 237px;
+    top: 277px;
+  }
+}
+/* 適応ブラウザ用 */
+@keyframes left_hand {
+  from {
+
+  }
+	10% {
+    transform: rotate(-50deg);
+    left: 243px;
+    top: 270px;
+	}
+	15% {
+    transform: rotate(-20deg);
+    left: 240px;
+    top: 274px;
+	}
+  to {
+    transform: rotate(0deg);
+    left: 237px;
+    top: 277px;
+  }
+}
+/* 手裏剣 */
+.syuriken {
+    background-image: url("syuriken_1.png");
+    background-repeat: no-repeat;
+    height: 50px;
+    left: 231px;
+    position: absolute;
+    top: 300px;
+    width: 50px;
+    z-index: 3;
+
+    /* 角度 */
+    -webkit-transform: rotate(0deg);
+       -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+         -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+
+    /* アニメーションの時間 */
+	  -webkit-animation-duration: 3s;
+	     -moz-animation-duration: 3s;
+	      -ms-animation-duration: 3s;
+	       -o-animation-duration: 3s;
+	          animation-duration: 3s;
+
+	  /* キーフレーム指定 */
+	  -webkit-animation-name: syuriken;
+	     -moz-animation-name: syuriken;
+	      -ms-animation-name: syuriken;
+	       -o-animation-name: syuriken;
+	          animation-name: syuriken;
+
+	  /* アニメーションを繰り返す */
+	  -webkit-animation-iteration-count: infinite;
+	     -moz-animation-iteration-count: infinite;
+	      -ms-animation-iteration-count: infinite;
+	       -o-animation-iteration-count: infinite;
+	          animation-iteration-count: infinite;
+}
+/* Chrome Safari用 */
+@-webkit-keyframes syuriken {
+	from {
+	
+	}
+	10% {
+    -webkit-transform: rotate(-50deg);	
+    left: 247px;
+    top: 283px;
+	}
+	to {
+    -webkit-transform: rotate(1000deg);
+    left: 1500px;
+    top: 0px;
+	}
+}
+/* Firefox用 */
+@-moz-keyframes syuriken {
+	from {
+	
+	}
+	10% {
+    -moz-transform: rotate(-50deg);	
+    left: 247px;
+    top: 283px;
+	}
+	to {
+    -moz-transform: rotate(1000deg);
+    left: 1500px;
+    top: 0px;
+	}
+}
+/* IE用だけど意味なし 一応記述 */
+@-ms-keyframes syuriken {
+	from {
+	
+	}
+	10% {
+    -ms-transform: rotate(-50deg);	
+    left: 247px;
+    top: 283px;
+	}
+	to {
+    -ms-transform: rotate(1000deg);
+    left: 1500px;
+    top: 0px;
+	}
+}
+/* Opera用(古いバージョン用に) */
+@-o-keyframes syuriken {
+	from {
+	
+	}
+	10% {
+    -o-transform: rotate(-50deg);	
+    left: 247px;
+    top: 283px;
+	}
+	to {
+    -o-transform: rotate(1000deg);
+    left: 1500px;
+    top: 0px;
+	}
+}
+/* 適応ブラウザ用 */
+@keyframes syuriken {
+	from {
+	
+	}
+	10% {
+    transform: rotate(-50deg);	
+    left: 247px;
+    top: 283px;
+	}
+	to {
+    transform: rotate(1000deg);
+    left: 1500px;
+    top: 0px;
+	}
+}
+</style>
+
+
+
+
+
+
+<h2 id="s_1p">この子に投げさせてみたよ</h2>
+<div class="ninja_space">
+	<div class="anime">
+		<div class="maru"><a href="http://programmerbox.com/">●</a></div>
+	</div>
+	<div class="ninja"></div>
+	<div class="left_hand"></div>
+	<div class="syuriken"></div>	
+</div>
+
+<p class="m_0">可愛いでしょ?(自分で言うな)夜な夜なレイヤーを重ね合わせこの子は生まれました。</p>
+<p>まぁ、僕なんですが。</p>
+<p>この記事を書く為に忍者セットを作成したんですが、意外にも手裏剣を作るのが大変でした。3レイヤーで出来てます。</p>
+<p><strong>レスポンシブ化しようとしましたがめんどくさくなって固定</strong>にしました。固定良いよ固定。</p>
+
+
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+
+
+<h2 id="s_2p">実装方法</h2>
+<p class="m_0">参考にしたサイト</p>
+<p><a target="_blank" href="https://developer.mozilla.org/ja/docs/Web/CSS/Using_CSS_animations">CSS アニメーション - CSS | MDN</a></p>
+
+
+<p class="m_0">さて、実装方法ですが<strong>CSS3のアニメーションを利用して</strong>動かしています。</p>
+<p>ロジック的には <em class="marker">キーフレーム</em> という CSS3アニメーション の機能を使い、左手やら手裏剣やらを個別にアニメーション指定をして手裏剣を投げています。</p>
+
+<p>もっと時間をかければ面白い挙動が出来そうですね。</p>
+
+<p>一応コードも載せときます。</p>
+
+
+<div class="html_tab">HTML</div>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;div class="ninja_space"&gt;
+		&lt;div class="anime"&gt;
+			&lt;div class="maru"&gt;&lt;a href="http://programmerbox.com/"&gt;●&lt;/a&gt;&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class="ninja"&gt;&lt;/div&gt; <!-- 忍者 -->
+		&lt;div class="left_hand"&gt;&lt;/div&gt; <!-- 左手 -->
+		&lt;div class="syuriken"&gt;&lt;/div&gt; <!-- 手裏剣 -->
+	&lt;/div&gt;
+</pre>
+
+<div class="css_tab m_t_30">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+	body {
+		overflow-x: hidden; /* 横のスクロールバーを隠す */
+	}
+	.ninja_space {
+		position: relative;
+	}
+	/* 忍者本体 */
+	.ninja {
+	    background-image: url("my_ninja_1_left_1.png");
+	    background-repeat: no-repeat;
+	    width: 400px;
+	    height: 400px;
+	    position: relative;
+	    top: 9px; /* 調整用 */
+	    left: 8px; /* 調整用 */
+	    z-index: 3;
+	}
+	/* 左手 */
+	.left_hand {
+	    background-image: url("left_hand_1.png");
+	    background-repeat: no-repeat;
+	    width: 29px;
+	    height: 55px;
+	    position: absolute;
+	    top: 277px;
+	    left: 237px;
+	    z-index: 2;
+	
+	    /* 角度 */
+	    -webkit-transform: rotate(0deg);
+	       -moz-transform: rotate(0deg);
+	        -ms-transform: rotate(0deg);
+	         -o-transform: rotate(0deg);
+	            transform: rotate(0deg);
+	
+	    /* アニメーションの時間 */
+		  -webkit-animation-duration: 3s;
+		     -moz-animation-duration: 3s;
+		      -ms-animation-duration: 3s;
+		       -o-animation-duration: 3s;
+		          animation-duration: 3s;
+	
+		  /* キーフレーム指定 */
+		  -webkit-animation-name: left_hand; 
+		     -moz-animation-name: left_hand;
+		      -ms-animation-name: left_hand;
+		       -o-animation-name: left_hand;
+		          animation-name: left_hand;
+	
+		  /* アニメーションを繰り返す */
+		  -webkit-animation-iteration-count: infinite;
+		     -moz-animation-iteration-count: infinite;
+		      -ms-animation-iteration-count: infinite;
+		       -o-animation-iteration-count: infinite;
+		          animation-iteration-count: infinite;
+	}
+	/* Chrome Safari用 */
+	@-webkit-keyframes left_hand {
+	  from {
+	
+	  }
+		10% {
+	    -webkit-transform: rotate(-50deg);
+	    left: 243px;
+	    top: 270px;
+		}
+		15% {
+	    -webkit-transform: rotate(-20deg);
+	    left: 240px;
+	    top: 274px;
+		}
+	  to {
+	    -webkit-transform: rotate(0deg);
+	    left: 237px;
+	    top: 277px;
+	  }
+	}
+	/* Firefox用 */
+	@-moz-keyframes left_hand {
+	  from {
+	
+	  }
+		10% {
+	    -moz-transform: rotate(-50deg);
+	    left: 243px;
+	    top: 270px;
+		}
+		15% {
+	    -moz-transform: rotate(-20deg);
+	    left: 240px;
+	    top: 274px;
+		}
+	  to {
+	    -moz-transform: rotate(0deg);
+	    left: 237px;
+	    top: 277px;
+	  }
+	}
+	/* IE用だけど意味なし 一応記述 */
+	@-ms-keyframes left_hand {
+	  from {
+	
+	  }
+		10% {
+	    -ms-transform: rotate(-50deg);
+	    left: 243px;
+	    top: 270px;
+		}
+		15% {
+	    -ms-transform: rotate(-20deg);
+	    left: 240px;
+	    top: 274px;
+		}
+	  to {
+	    -ms-transform: rotate(0deg);
+	    left: 237px;
+	    top: 277px;
+	  }
+	}
+	/* Opera用(古いバージョン用に) */
+	@-o-keyframes left_hand {
+	  from {
+	
+	  }
+		10% {
+	    -o-transform: rotate(-50deg);
+	    left: 243px;
+	    top: 270px;
+		}
+		15% {
+	    -o-transform: rotate(-20deg);
+	    left: 240px;
+	    top: 274px;
+		}
+	  to {
+	    -o-transform: rotate(0deg);
+	    left: 237px;
+	    top: 277px;
+	  }
+	}
+	/* 適応ブラウザ用 */
+	@keyframes left_hand {
+	  from {
+	
+	  }
+		10% {
+	    transform: rotate(-50deg);
+	    left: 243px;
+	    top: 270px;
+		}
+		15% {
+	    transform: rotate(-20deg);
+	    left: 240px;
+	    top: 274px;
+		}
+	  to {
+	    transform: rotate(0deg);
+	    left: 237px;
+	    top: 277px;
+	  }
+	}
+	/* 手裏剣 */
+	.syuriken {
+	    background-image: url("syuriken_1.png");
+	    background-repeat: no-repeat;
+	    height: 50px;
+	    left: 231px;
+	    position: absolute;
+	    top: 300px;
+	    width: 50px;
+	    z-index: 3;
+	
+	    /* 角度 */
+	    -webkit-transform: rotate(0deg);
+	       -moz-transform: rotate(0deg);
+	        -ms-transform: rotate(0deg);
+	         -o-transform: rotate(0deg);
+	            transform: rotate(0deg);
+	
+	    /* アニメーションの時間 */
+		  -webkit-animation-duration: 3s;
+		     -moz-animation-duration: 3s;
+		      -ms-animation-duration: 3s;
+		       -o-animation-duration: 3s;
+		          animation-duration: 3s;
+	
+		  /* キーフレーム指定 */
+		  -webkit-animation-name: syuriken;
+		     -moz-animation-name: syuriken;
+		      -ms-animation-name: syuriken;
+		       -o-animation-name: syuriken;
+		          animation-name: syuriken;
+	
+		  /* アニメーションを繰り返す */
+		  -webkit-animation-iteration-count: infinite;
+		     -moz-animation-iteration-count: infinite;
+		      -ms-animation-iteration-count: infinite;
+		       -o-animation-iteration-count: infinite;
+		          animation-iteration-count: infinite;
+	}
+	/* Chrome Safari用 */
+	@-webkit-keyframes syuriken {
+		from {
+		
+		}
+		10% {
+	    -webkit-transform: rotate(-50deg);	
+	    left: 247px;
+	    top: 283px;
+		}
+		to {
+	    -webkit-transform: rotate(1000deg);
+	    left: 1500px;
+	    top: 0px;
+		}
+	}
+	/* Firefox用 */
+	@-moz-keyframes syuriken {
+		from {
+		
+		}
+		10% {
+	    -moz-transform: rotate(-50deg);	
+	    left: 247px;
+	    top: 283px;
+		}
+		to {
+	    -moz-transform: rotate(1000deg);
+	    left: 1500px;
+	    top: 0px;
+		}
+	}
+	/* IE用だけど意味なし 一応記述 */
+	@-ms-keyframes syuriken {
+		from {
+		
+		}
+		10% {
+	    -ms-transform: rotate(-50deg);	
+	    left: 247px;
+	    top: 283px;
+		}
+		to {
+	    -ms-transform: rotate(1000deg);
+	    left: 1500px;
+	    top: 0px;
+		}
+	}
+	/* Opera用(古いバージョン用に) */
+	@-o-keyframes syuriken {
+		from {
+		
+		}
+		10% {
+	    -o-transform: rotate(-50deg);	
+	    left: 247px;
+	    top: 283px;
+		}
+		to {
+	    -o-transform: rotate(1000deg);
+	    left: 1500px;
+	    top: 0px;
+		}
+	}
+	/* 適応ブラウザ用 */
+	@keyframes syuriken {
+		from {
+		
+		}
+		10% {
+	    transform: rotate(-50deg);	
+	    left: 247px;
+	    top: 283px;
+		}
+		to {
+	    transform: rotate(1000deg);
+	    left: 1500px;
+	    top: 0px;
+		}
+	}
+</pre>
+
+<p class="index_scroll m_t_30"><a href="#0p">目次に戻る</a></p>
+
+<h2 id="s_3p">忍者セット無料配布</h2>
+<p>今回作成した忍者の服(顔なし)と手裏剣を無料配布したいと思います。</p>
+<p>画面越しに「<strong>いらねー</strong>」って声が聞こえてきますが、配布します。えぇ、自己満ですよ自己満。こんなにがんばって作ったのに、この記事で使ってお蔵入りするのは<strong>忍びない</strong>ですからね。(これ言いたかっただけ)</p>
+<h3>忍者セットの中身</h3>
+<ul>
+	<li>忍者の服 (拡張子.idrawとpng)</li>
+	<li>手裏剣 (拡張子.idrawとpng)</li>
+	<li>実際に動いているサンプルページ</li>
+</ul>
+
+<p><a href="ninja_animation_kit.zip"><img class="o_8" src="../img/common/code_box_download_1.png" height="75" widht="150"></a></p>
+
+<p>これでキミも手裏剣を投げる忍者に♪</p>
+
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+
+<h2 id="s_4p">まとめ</h2>
+<p class="m_0">実はCSSアニメーションを初めて触ったんですが、コレ面白いっすね。JSでアニメーションを作る方がもちろん細かい挙動が出来るんですが、単純なアニメーションならCSSでやってみてもいいと感じました。</p>
+<p>まぁ、IEがって話になるんですがね。。</p>
+
+
+<p class="m_0">みなさんもCSSのアニメーションで遊んでみては?</p>
+<p>可愛らしいアニメーションや簡単なゲームを作って楽しみましょう!</p>
+
+
+
+
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>

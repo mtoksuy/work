@@ -1,0 +1,463 @@
+レスポンシブwebデザイン の作り方と SEO と UX を考察
+
+<p>2012年に流行した webデザイン の一つが レスポンシブ だ。</p>
+
+<p class="m_0">2013年は更に レスポンシブ は流行ではなく</p>
+<p class="m_0">一つのデザイン定義として定着する年なのではないかと。</p>
+<p>その定着する新しい手法のデザインの作り方と SEO 、 UX の観点から考察していきたい。</p>
+
+<nav class="detail_press_index clearfix">
+	<h2 id="s_0p"><span class="color">レスポンシブwebデザインの作り方 目次</span></h2>
+	<ul class="left">
+		<li class="n_1"><a href="#1p">レスポンシブwebデザインの基本</a></li>
+		<li class="n_2"><a href="#2p">Media Queries ってなーに?</a></li>
+		<li class="n_3"><a href="#3p">Viewport ってなーに?</a></li>
+		<li class="n_4"><a href="#4p">リキッドレイアウト で構築する方法</a></li>
+	</ul>
+	<ul class="right">
+		<li class="n_5"><a href="#5p">SEO的にどうなの?</a></li>
+		<li class="n_6"><a href="#6p">UX的にどうなの?</a></li>
+		<li class="n_7"><a href="#7p">レスポンシブ＆PHP制御</a></li>
+		<li class="n_8"><a href="#8p">まとめ</a></li>
+	</ul>
+</nav>
+<h2 id="s_1p">レスポンシブwebデザインの基本</h2>
+<h3>レスポンシブwebデザイン とは</h3>
+<p><em class="blue">1ファイルでどんなデバイスでも柔軟に対応する事が出来る手法です。</em></p>
+
+<p>この手法が編み出される前は、端末別等で違うCSSファイルを呼び出し、デザインを変えていたかと思いますが、このやり方だとデザインを変更する時に端末別に分けた分のデザインを変更しなくてはなりません。</p>
+<p>レスポンシブwebデザイン もそうゆう意味では変えなくてはならないのですが、 レスポンシブwebデザイン は横幅の計算でデザインしていきますので変更点が少なくなります。</p>
+
+<p>初めは リキッドデザイン と似ていると感じると思いますが、違いはこちら</p>
+
+<table>
+	<tr>
+		<th class="text_left f_w_normal">■リキッドデザイン</th>
+		<td>：ブラウザの横幅サイズに応じて可変するが、レイアウトは同一</td>
+	</tr>
+	<tr>
+		<th class="text_left f_w_normal">■レスポンシブwebデザイン</th>
+		<td>：ブラウザの横幅サイズに応じて可変するが、レイアウトも可変</td>
+	</tr>
+</table>
+
+<p class="m_0">これでレスポンシブwebデザインとはなんぞや？という事を大まかに理解した所</p>
+<p>で早速どうやって構築していくのかを見ていきましょう。</p>
+
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+
+<h2 id="s_2p">Media Queriesってなーに?</h2>
+<h3>Media Queries??</h3>
+<p class="m_0">サイトを レスポンシブwebデザイン にしたくて色んなブログを見てるけど</p>
+<p class="m_0">Media Queries 自体がわからないって人が多いかと思います。</p>
+<p class="m_0">いえ、僕がそうでした。</p>
+<p>いきなり横文字を出されてもわからないもんはわからないのだ。</p>
+
+<p>でも、検索してもMedia Queries自体の説明は省いていきなりこう書けば完成しますみたいなブログばっかでぜんぜんわからないんです。そこでがんばって集めた情報をアウトプットします。</p>
+
+<h3>Media Queries は Media Type の拡張</h3>
+<p>デバイスのスクリーンサイズなどの条件によって、読み込むスタイルが切り替えられるCSS3の機能です。</p>
+
+<p>らしいです。簡単に言うとパソコン用だとかプリンタ用に指定出来る機能の拡張機能らしいです。よくわかんないけど便利な機能が使えるぞって単純な理解でいいと思います。</p>
+
+<h3>じゃーMedia Typeってなーに？</h3>
+<p>そもそもwebサイトだけを作成しているとこの機能を使う機会が中々巡ってきません。なので、この際に覚えると良いかもしれません。</p>
+
+<p>コードで説明すると</p>
+<pre>
+<code><</code><code>link rel="stylesheet" type="text/css" href="all.css" media="all" /</code><code>></code>
+<code><</code><code>link rel="stylesheet" type="text/css" href="screen.css" media="screen" /</code><code>></code>
+<code><</code><code>link rel="stylesheet" type="text/css" href="print.css" media="print" /</code><code>></code>
+</pre>
+
+<p class="m_0">media="all"</p>
+<p class="m_0">media="screen"</p>
+<p class="m_0">media="print"</p>
+<p>この部分がMedia Typeです。</p>
+
+<p>そして、この記述をするとどうなるとか言うと各デバイスで最適化したコンテンツを表示出来る様になります。</p>
+
+<h3>mediaの種類</h3>
+
+
+<dl>
+	<dt>all</dt>
+	<dd>全てのデバイス</dd>
+	<dt>screen</dt>
+	<dd>コンピュータ・スクリーン等</dd>
+	<dt>try</dt>
+	<dd>固定幅の文字グリッドを用いたメディアでテレタイプ、端末、表示能力に制限のある携帯デバイス等。このメディアでは、画素単位 px は使えない。</dd>
+	<dt>tv</dt>
+	<dd>テレビ型デバイス。</dd>
+	<dt>projection</dt>
+	<dd>プロジェクタ。</dd>
+	<dt>handheld</dt>
+	<dd>携帯デバイス。</dd>
+	<dt>print</dt>
+	<dd>プリンター。</dd>
+	<dt>braille</dt>
+	<dd>点字の触覚をフィードバックするデバイス。</dd>
+	<dt>embossed</dt>
+	<dd>点字のページを出力するプリンタ。</dd>
+	<dt>speech</dt>
+	<dd>音声合成機器を示す。CSS2.1 では、将来の拡張予定のために speech を予約するが、未定義とされる。逆に、CSS2 で定義されたメディア・タイプ aural は、CSS2.1 で廃止予定 (deprecated) とされるが、CSS2.1 仕様書の付録で定義されている。</dd>
+</dl>
+<p>中々、細かく定義出来るみたいですね、必要な時が来ましたらやってみたいと思います。</p>
+
+<h3>で、Media Queriesってどう書けば良いの?</h3>
+<p class="m_0">そこなんですよねー。</p>
+<p class="m_0">でもまーこんなバカな僕でも1日で覚えたので</p>
+<p>みなさんもすぐに覚えると思います。</p>
+
+<p class="m_0">今回は外部ファイルでの記述に焦点を当てて説明していきます。</p>
+<p>理由はきれいにまとめやすく可読しやすくなるからです。</p>
+
+<p>まずは、外部ファイルを呼ぶ記述</p>
+<pre>
+	<code><</code><code>link rel="stylesheet" type="text/css" href="style.css"</code><code>></code>
+</pre>
+<p>あれ?いつもの記述と同じじゃないか?そうなんです、ここはいつも通りでいいんです。</p>
+
+<p class="m_0">そしてこの中身がキモです</p>
+<p>説明より先に記述を見て下さい。</p>
+
+<pre>
+	<code>
+/* style.cssの中身 */
+
+@charset "utf-8";
+/*************
+デフォルト設定
+*************/
+
+/*
+	ここにデフォルトの記述をして下さい。
+*/
+
+/************************
+メディアクエリ設定 0〜320
+*************************/
+@media screen and (min-width: 0px) and (max-width: 320px) {
+	.クラス名 {
+		
+	}
+}
+/**************************
+メディアクエリ設定 321〜639
+**************************/
+@media screen and (min-width: 321px) and (max-width: 639px) {
+	.クラス名 {
+		
+	}
+}
+/***************************
+メディアクエリ設定 640〜1079
+***************************/
+@media screen and (min-width: 640px) and (max-width: 1079px) {
+	.クラス名 {
+		
+	}
+}
+/************************
+メディアクエリ設定 1080〜
+************************/
+@media screen and (min-width: 1080px) {
+	.クラス名 {
+		
+	}
+}
+	</code>
+</pre>
+<p class="m_0">これだけで大体のデバイスに対応出来ます。</p>
+<p>わーパチパチ。</p>
+
+<p>一つ一つ説明していくと@mediaでMedia Queriesが始まります。その後に、半角空白を入れてメディアタイプを指定します。ここは大体allかscreenでいいかと思います。次は、andですがちょい説明が難しいかも、、、</p>
+
+
+<p class="m_0">@media screen and (min-width: 0px) and (max-width: 320px)</p>
+<p>これを日本語で言うと「メディアタイプがスクリーンで横幅0pxから横幅320pxまでの条件にあった場合はこの記述を適応する。」です。</p>
+
+
+<p class="m_0">これでほぼレスポンスシブの出来上がりです。</p>
+<p>Media Queriesに関してはこれで説明はおわります。</p>
+
+<p class="m_0">なお、もっと詳細が知りたい場合はこちらの本家サイトを見て下さい。</p>
+<p><a href="http://www.w3.org/TR/css3-mediaqueries/" target="_blank">W3C | Media Queries</a></p>
+
+
+<p class="m_0">なお、 IE では CSS3 が使えません。 Media Queries は CSS3 からなので使用出来ないのですが</p>
+<p>Googleコードで公開されている、 css3-mediaqueries.js を読み込めば IE でも media queries が使えるようになります。</p>
+
+<pre>
+	<code><</code><code>!--[if lt IE 9]></code>
+<code><</code><code>script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"</code><code>></code><code><</code><code>/script></code>
+<code><</code><code>![endif]--</code><code>></code>
+</pre>
+<p>ですが、このブログを見てみると</p>
+<p><a href="http://roka404.blog84.fc2.com/blog-entry-16.html" target="_blank">とあるコーダーの備忘録 |css3-mediaqueries.jsが効かなくて困った時のまとめ</a></p>
+<p>すんなりとはIEに対応出来ないみたいです、要検証。</p>
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+
+<h2 id="s_3p">Viewportってなーに?</h2>
+<p class="m_0">Viewportとは</p>
+<p>簡単に言うとMETAタグです。</p>
+
+<p>iPhone用Safariは、PCにおけるブラウザのウィンドウサイズに該当するViewportという概念を持っていて、デフォルトでViewportの横幅は980pxに設定されています。例えば、横幅が780pxのウェブページでは200pxの余白が生まれ、またリキッドレイアウトでは横幅が強制的に980pxに設定されます。</p>
+
+<p class="m_0">簡単に説明するとデザインしたサイトが小さく表示されます。</p>
+<p>なので、このViewportで設定を行いiPhoneでもちゃんときれいに表示するようにします。</p>
+
+<h3>Viewportのプロパディ</h3>
+<dl>
+	<dt>width</dt>
+	<dd>コンテンツの幅です。何も指定しなければ、デフォルトの980pxになります。200〜10,000px、またはdevice-widthを指定します。</dd>
+	<dt>height</dt>
+	<dd>コンテンツの高さです。200〜10,000px、またはdevice-heightを指定します。</dd>
+	<dt>initial-scale</dt>
+	<dd>倍率です。0 ~ 10の間で指定できます。</dd>
+	<dt>minimum-scale</dt>
+	<dd>最小倍率です。0〜10(倍)で指定します。デフォルトでは0.25です。</dd>
+	<dt>maximum-scale</dt>
+	<dd>最大倍率です。0〜10(倍)で指定します。デフォルトでは1.6です。</dd>
+	<dt>user-scalable</dt>
+	<dd>ユーザーが縮小や拡大できるようにするかどうかです。yes、または no で指定します。デフォルトはyesです。</dd>
+</dl>
+
+<p class="m_0">この6つのプロパディを指定してちゃんと表示するようにします。かなり細かい事が出来るがそこまで操る事は必要としません。大体のデバイスはこの記述でちゃんと表示されるようになります。</p>
+<pre>
+<code><</code><code>meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" /</code><code>></code>
+</pre>
+<p>これで説明はViewportの説明は終わります。</p>
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+
+<h2 id="s_4p">リキッドレイアウトで構築する方法</h2>
+<h3>大体わかったけどどうすればレスポンシブになるの?</h3>
+
+<p class="m_0">いつものようにdivを固定にしたりするとレスポンシブにはほぼ出来ません。</p>
+<p>上級者向けなのでここでは省略させていただきます。</p>
+
+<p>先ずはリキッドレイアウトでのレスポンシブを覚える事を優先してどう記述すればいいかをコードを見ていきましょう。</p>
+
+<h4>HTML</h4>
+<pre>
+<code>
+&lt;div id="wrapper"&gt;
+	&lt;div id="header"&gt;&lt;/div&gt;
+	&lt;div id="main"&gt;&lt;/div&gt;
+	&lt;div id="right_side"&gt;&lt;/div&gt;
+	&lt;div id="footer"&gt;&lt;/div&gt;
+&lt;div&gt;
+</code>
+</pre>
+<p>例えばこんなHTMLがあるとします。</p>
+
+
+<h4>CSS</h4>
+<pre>
+	<code>
+/* style.cssの中身 */
+
+@charset "utf-8";
+/*************
+デフォルト設定
+*************/
+
+/*
+	ここにデフォルトの記述をして下さい。
+*/
+
+	  #wrapper {
+	    width: 95%;
+	  }
+	  #header {
+	    width: 100%
+	  }
+	  #main {
+	    width: 60%;
+	    float: left;
+	  }
+	  #right_side {
+	    width: 30%;
+	    float: right;
+	  }
+	  #footer {
+	    width: 100%;
+	  }
+	  img {
+    width: 100%;
+    height: auto;
+	  }
+
+/************************
+メディアクエリ設定 0〜320
+*************************/
+@media screen and (min-width: 0px) and (max-width: 320px) {
+	  #wrapper {
+	    width: 95%;
+	  }
+	  #header {
+	    width: 100%;
+	  }
+	  #main {
+	    width: 100%;
+	    float: none;
+	  }
+	  #right_side {
+	    width: 100%;
+	    float: none;
+	  }
+	  #footer {
+	    width: 100%;
+	  }
+	  img {
+    width: 100%;
+    height: auto;
+	  }
+}
+	</code>
+</pre>
+<p>CSSの設定はこんな感じでしょうか。</p>
+
+<p>これで横幅321px以上のディスプレイだと2カラムになり320px以下だと1カラムになり、これを基礎に色んなサイズを制御していくといいと思います。</p>
+
+<p>以上でリキッドレイアウトで構築する方法の説明は終わりです。</p>
+
+
+<p class="m_0">この項目でレスポンシブの説明は終わります、もっと詳細を知りたい方は</p>
+<p class="m_0"><a href="http://www.nxworld.net/tips/responsive-web-design.html">レスポンシブWebデザインに関しての備忘録 | NxWorld</a></p>
+<p>こちらのブログが良い記事のリンクをかなり張ってありますのでそちらを参照してみて下さい。</p>
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+<h2 id="s_5p">SEO的にどうなの?</h2>
+<p class="m_0">SEO的にレスポンシブwebデザインはかなり効果が高いと僕は考えています。</p>
+<p>理由は1ファイルで全てのデバイスに対応するから、です。</p>
+
+<p>では何故、1ファイルだとSEO効果が高いかを説明していきます。</p>
+
+<p>先ずは、今までの手法だとPCページとモバイルページをそもそも分けていたりしました。最悪、同じコンテンツが8ページもあるとGoogleさんに認識されてしまいます。そうなるとせっかく被リンクをもらっても分散してしまい、検索結果の順位が下がり、似たようなページが複数あるとgoogleさんから警告すらくるかもしれません。</p>
+
+<p class="m_0">ファイルは一つでもURLは複数あります。</p>
+<p class="m_0">例えばindex.htmlというファイルを一番始めに作成しますよね?</p>
+<p class="m_0">これを自分のドメイン.com/に例えると</p>
+<p class="m_0">http://www.自分のドメイン.com/</p>
+<p class="m_0">http://www.自分のドメイン.com/index.html</p>
+<p class="m_0">http://自分のドメイン.com/</p>
+<p class="m_0">http://自分のドメイン.com/index.html</p>
+<p>と四つもURLが存在する事になってしまいます、これではライバル達に勝てるはずがありません。</p>
+
+<p class="m_0">一つのコンテンツでURLは一つが望ましいです。</p>
+<p>先ずはそれを実装していきましょう。</p>
+
+<p class="m_0">そこで.htaccessというファイルを作成するんですが、</p>
+<p class="m_0">ローカルでいきなり作るとファイルが見えなくなってしまうので適当に</p>
+<p>dthtaccessとか適当に作成しましょう。</p>
+
+<p>中身はこれを入れて下さい。</p>
+<pre>
+	<code>
+<a>
+<Files ~ "^\.(htaccess|htpasswd)$">
+deny from all
+</Files>
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^(www\.自分のドメイン\.com)(:80)? [NC]
+RewriteRule ^(.*) http://自分のドメイン.com/$1 [R=301,L]
+RewriteCond %{THE_REQUEST} ^.*/index.php
+RewriteRule ^(.*)index.php$ http://自分のドメイン.com/$1 [R=301,L]
+RewriteCond %{THE_REQUEST} ^.*/index.html
+RewriteRule ^(.*)index.html$ http://自分のドメイン.com/$1 [R=301,L]
+order deny,allow
+</a>
+	</code>
+</pre>
+<p class="m_0">入れましたらFTP等でサーバーに上げて下さい。上げましたら、名前を.htaccessにして下さい。</p>
+<p class="m_0">これでhttp://自分のドメイン.com/だけになりました。</p>
+<p>パチパチ。</p>
+
+<p>一つ気をつけて頂きたいのがMySQLやWordPressにログインする際に弾かれてしまいますので一時的に中身を消してアップロードしてログインして下さい。または、そのURLのみ弾かないようにするかのどちらかです。</p>
+
+<p>これでSEO対策も完了です。</p>
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+
+<h2 id="s_6p">UX的にどうなの?</h2>
+<p></p>
+これが一番悩ましい所ですよねー。
+ずーっと議論されてきている事なんですけど、全デバイスに対応するという事はPCでもちゃんときれいに見える画像も全部読み込んでいる訳です。そうしますと回線の遅いiPhone等では表示時間が劇的に遅くなります。さんざらレスポンシブwebデザインの説明をしてきたのですが僕は本当にいけない事だと考えています。
+
+表示時間以外にも問題点はたくさんあります。先ずはナビゲーション問題。小さいデバイスになればなるほどナビゲーションの場所は確保しづらくなりますし、表示自体も難しい。
+そうなると何が起こるかというとUIも不適切になり「親切ではないサイト」になってしまう恐れがありますよね。
+
+ブログというカテゴリーはレスポンシブに適していますが中にはまったく適さないサイトカテゴリーもありますのでやはり導入は慎重に行うべきです。
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+
+<h2 id="s_7p">レスポンシブ＆PHP制御</h2>
+<p>そこで一つ提案があります。</p>
+
+<p class="m_0">端末をカテゴリー分けします。</p>
+<ul>
+	<li>・タブレットとモバイル</li>
+	<li>・デスクトップとノート</li>
+</ul>
+
+<p class="m_0">大体この2つのカテゴリーで収まりますので</p>
+<p>この二つをサーバーサイドで制御しCSSだけを差し替える手法を考えました。</p>
+
+<p class="m_0">タブレットとモバイルはレスポンシブで分けるようにして</p>
+<p>デスクトップとノートは固定デザインで分けるイメージでしょうか。</p>
+
+<p>とにかく文章では説明が長くなってしまいますのでコードを記載します。</p>
+
+<pre><code><</code><code>?php 
+	//------------------------
+	//アクセスしてきた端末制御
+	//------------------------
+	$user_agent_array = array(
+		'iPhone',    // Apple iPhone
+		'iPad',      // Apple iPod
+		'iPod',      // Apple iPod touch
+		'Android',   // Android
+		'Macintosh', // mac
+		'Windows'    // Windows
+	);
+	foreach($user_agent_array as $kye => $value) {
+		 if(preg_match("/{$value}/", $_SERVER['HTTP_USER_AGENT']) >= 1) {
+			 $user_agent = $value;
+		 }
+	}
+	switch($user_agent) {
+		case 'iPhone':
+			$common_css = $http.'css/common/responsive_common.css';
+			break;
+		case 'iPad':
+			$common_css = $http.'css/common/responsive_common.css';
+			break;
+		case 'Android':
+			$common_css = $http.'css/common/responsive_common.css';
+			break;
+		case 'Macintosh':
+			$common_css = $http.'css/common/common.css';
+			break;
+		case 'Windows':
+			$common_css = $http.'css/common/common_win.css';
+			break;
+		default:
+			$common_css = $http.'css/common/common.css';
+			break;
+	}
+?</code><code>></code>
+</pre>
+
+<p>大雑把すぎますが、iPhone,iPad,iPod,Android,Macintosh,Windowsで大まかに分けていきます。もっと細かく分けたい人はカスタマイズして下さい。これで$common_cssという変数をhtml側で表示させれば動的にCSSが変わります。</p>
+
+<p>これで何が良くなるのかと言いますと無理にレスポンシブにするとUXが著しく失われてしまう所を各デバイス毎に最適化をしつつ1ファイルで完成させていますのでSEOも最適化に近づきます。</p>
+
+<p>ここではCSSの挙動しか記述していませんが、これで様々な制御が可能になりますので是非試して下さい。</p>
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+
+<h2 id="s_8p">まとめ</h2>
+<p class="m_0">流行り廃りがある中で何故、レスポンシブwebデザインはここまで注目を浴びるのでしょうか?</p>
+<p class="m_0">やはり根底にweb制作者が悩んでいた事を解消する手法だった事が挙げられます。</p>
+<p class="m_0">ですが、やはり制作者側の目線ではなくサイトを閲覧する利用者の目線でデザインも考えなくてはいけません。</p>
+<p class="m_0">そう考えた時にレスポンシブwebデザインを選ぶ事が一番最適なのかと考えると、どうしてもそうではないという所に落ち着きます。</p>
+
+<p>各デバイスのユーザー目線を考慮しつつレスポンシブwebデザインを採用していきましょう。</p>
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>

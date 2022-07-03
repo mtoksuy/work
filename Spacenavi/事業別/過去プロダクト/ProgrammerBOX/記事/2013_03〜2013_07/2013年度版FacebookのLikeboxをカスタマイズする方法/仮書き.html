@@ -1,0 +1,479 @@
+			<p>2012年に色々なブログで紹介されていたカスタマイズ法が絶滅した感があります。</p>
+
+			<p>そこで、アクセストークンとかアプリキーとかめんどくさいんで違う方面から攻めてみました。HTMLとCSSだけでカスタマイズできるようにしたのですが少々冗長気味になってしまっているのが申し訳ないです。</p>
+			<p>まーとりあえず、やり方を紹介していきます。</p>
+<nav class="detail_press_index clearfix">
+	<h2 id="s_0p"><span class="color">目次</span></h2>
+	<ul class="left no_width">
+		<li class="n_1"><span class="scroll_btn">初めに注意点を上げます</span></li>
+		<li class="n_2"><span class="scroll_btn">こんなLileboxにする事が出来ます</span></li>
+		<li class="n_3"><span class="scroll_btn">Likeboxのカスタマイズ方法</span></li>
+		<li class="n_4"><span class="scroll_btn">紹介したデザインのコードはこちら</span></li>
+		<li class="n_5"><span class="scroll_btn">まとめ</span></li>
+	</ul>
+</nav>
+
+
+
+
+<style>
+body {
+	overflow-x: hidden; /* 横のスクロールバーを隠す */
+}
+
+
+/** 追加CSS **/
+.face_book_plgin {
+	width: 100% !important;
+}
+/** その1 **/
+.face_book_plgin_proposal_1 {
+	background-color: #FCFBF9 !important;
+    border-color: #3C599B #ABABAB #ABABAB #1B387A;
+    border-radius: 40px 5px 40px 5px;
+    border-style: solid;
+    border-width: 10px 1px 1px 10px;
+    float: left;
+    margin: 0 0 41.6px;
+    overflow: hidden !important;
+    position: relative;
+    width: 100% !important;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+/** その2 **/
+.face_book_plgin_proposal_2 {
+    border-color: #ACACAC;
+    border-radius: 5px 5px 5px 5px;
+    border-style: solid;
+    border-width: 1px;
+    float: left;
+    margin: 0 0 41.6px;
+    overflow: hidden !important;
+    position: relative;
+    width: 100% !important;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+.face_book_plgin_logo_proposal_2 {
+    height: auto;
+    opacity: 1;
+    position: absolute;
+    right: 0;
+    top: 12px;
+    width: 350px;
+    z-index: -1;
+}
+/** その3 **/
+.face_book_plgin_proposal_3 {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    -moz-box-sizing: border-box;
+    background-color: #FFFFFF;
+    border-color: #D8D8D8;
+    border-image: none;
+    border-radius: 3px 3px 3px 3px;
+    border-style: solid;
+    border-width: 1px 1px 2px;
+    float: left;
+    margin: 0 0 41.6px;
+    overflow: hidden !important;
+    position: relative;
+    vertical-align: top;
+    width: 100% !important;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+/** その4 **/
+.face_book_plgin_proposal_4 {
+    border-color: #000000;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 0;
+    float: left;
+    margin: 0 0 41.6px;
+    overflow: hidden !important;
+    position: relative;
+    width: 100% !important;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+.face_book_plgin_logo_proposal_4 {
+    height: auto;
+    opacity: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 700px;
+    z-index: -1;
+}
+/** その5 **/
+.face_book_plgin_proposal_5 {
+    border-color: #2B2B2D;
+    border-radius: 160px 160px 160px 160px;
+    border-style: solid;
+    border-width: 5px;
+    margin: 0 60% 41.6px 0;
+    overflow: hidden !important;
+    position: relative;
+    width: 250px !important;
+    word-wrap: break-word;
+    word-break: break-all;
+    z-index: 3;
+}
+.face_book_plgin_logo_proposal_5 {
+    height: auto;
+    left: -10px;
+    max-width: 285px !important;
+    opacity: 1;
+    position: absolute;
+    top: -10px;
+    width: 277px;
+    z-index: -1;
+}
+.face_book_plgin_border_top_5 {
+    background: none repeat scroll 0 0 #D2DCE6;
+    height: 1px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 1032px;
+}
+.face_book_plgin_logo_proposal_5_out {
+    height: auto;
+    left: 175px;
+    margin: -112px 0 31px;
+    position: relative;
+    width: 205px;
+    z-index: 2;
+}
+/** その6 **/
+.face_book_plgin_proposal_6 {
+    background: none repeat scroll 0 0 #C0DEED;
+    border-color: #D7EAF3;
+    border-radius: 5px 5px 5px 5px;
+    border-style: solid;
+    border-width: 1px;
+    float: left;
+    margin: 0 0 41.6px;
+    overflow: hidden !important;
+    position: relative;
+    width: 100% !important;
+    word-wrap: break-word;
+    word-break: break-all;
+    z-index: -2;
+}
+.face_book_plgin_logo_proposal_6 {
+    height: auto;
+    left: 0;
+    opacity: 1;
+    position: absolute;
+    top: -70px;
+    width: 2247px;
+    z-index: -1;
+    max-width: 2247px !important;
+}
+.face_book_plgin_border_top_6 {
+    background: none repeat scroll 0 0 #8EC1DA;
+    height: 12px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 1032px;
+}
+.face_book_plgin_border_bottom_6 {
+    background: none repeat scroll 0 0 #C0DEED;
+    bottom: 0;
+    height: 6px;
+    left: 0;
+    position: absolute;
+    width: 1032px;
+}
+.face_book_plgin_border_left_6 {
+    background: none repeat scroll 0 0 #C0DEED;
+    bottom: 0;
+    height: 300px;
+    left: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/** レスポンシブ記述 **/
+@media screen and (min-width: 0px) and (max-width: 768px) {
+	/** 全体 **/
+	.face_book_plgin_border_right {
+		width: 15px !important;
+	}
+	/** その2 **/
+	.face_book_plgin_logo_proposal_2 {
+	    right: 5px;
+	}
+}
+@media screen and (min-width: 0px) and (max-width: 320px) {
+	/** その5 **/
+	.face_book_plgin_proposal_5 {
+	    width: 100% !important;
+	}
+	/** その5 **/
+	.face_book_plgin_logo_proposal_5 {
+	    max-width: 280px !important;
+	}
+	/** その5 **/
+	.face_book_plgin_logo_proposal_5_out {
+	    left: 195px;
+	    margin: -102px 0 31px;
+	}
+}
+
+/** 追加クラス **/
+.black_color {
+	background: #000000 !important;
+}
+.white_color {
+	background: #FFFFFF !important;
+}
+.height_1 {
+	height: 1px !important;
+}
+</style>
+
+
+
+<h2 class="heading">初めに注意点とか色々</h2>
+<ul>
+	<li>Facebookの<em>仕様が変わりデザインが崩れる恐れ</em>があります。</li>
+	<li><strong>レスポンシブにも対応</strong>していますがデザインによって挙動が変わるかもしれません。</li>
+	<li>実装を試して上手く行かない時はご連絡下さい。 <a href="http://twitter.com/mtoksuy" target="_blank">@mtoksuy</a></li>
+	<li>FBページの中で動画やアニメを実装する事も可能ですので<em class="blue_2">実装した勇者は宜しければ、ご連絡頂けたら嬉しい</em>です。</li>
+</ul>
+
+<p class="m_0">「<strong>いや、俺はアクセストークンとか使ってJavaScriptでカスタマイズしたいんだ!!</strong>」って方はこちらの記事を読んで下さい。</p>
+<p>
+<a target="_blank" href="http://tridentwebdesign.blog57.fc2.com/blog-entry-379.html">それでも、Facebook「Like Box」をカスタマイズしたかった。</a></p>
+
+
+<h2 class="heading">こんなLileboxにする事が出来ます</h2>
+
+
+
+<h3>Programmer_BOX_Likebox</h3>
+<p>これを軸に作ります & 紹介が終わったらこのLikeboxのコードで実装を説明していきます。</p>
+						<div class="face_book_plgin_shadow_hidden"> </div>
+					<section class="face_book_plgin">
+						<div class="fb-like-box" data-href="http://www.facebook.com/programmerbox" data-width="694" data-height="" data-show-faces="true" data-stream="false" data-header="false"></div>
+						<div class="face_book_plgin_border_top"> </div>
+						<div class="face_book_plgin_border_right"> </div>
+						<div class="face_book_plgin_border_bottom"> </div>
+						<div class="face_book_plgin_border_left"> </div>
+					</section>
+
+
+
+
+<h3>Facebook_Color_Likebox</h3>
+<p>Facebookカラーで新しめな感じにしました。</p>
+				<div style="padding: 0 11px 0 0;">
+						<div class="face_book_plgin_shadow_hidden"> </div>
+					<section class="face_book_plgin_proposal_1">
+						<div class="fb-like-box" data-href="http://www.facebook.com/programmerbox" data-width="694" data-height="" data-show-faces="true" data-stream="false" data-header="false"></div>
+						<div class="face_book_plgin_border_top"> </div>
+						<div class="face_book_plgin_border_right"> </div>
+						<div class="face_book_plgin_border_bottom"> </div>
+						<div class="face_book_plgin_border_left"> </div>
+					</section>
+</div>
+
+
+
+
+
+<h3>iOS7_Likebox</h3>
+<p>発表されたばかりですからね、ガジェットブログとかで使えそう。</p>
+						<div class="face_book_plgin_shadow_hidden">
+							<div class="category_band facebook_color left_45">Facebook</div>
+						</div>
+					<section class="face_book_plgin_proposal_2">
+						<div class="fb-like-box" data-href="http://www.facebook.com/programmerbox" data-width="694" data-height="" data-show-faces="true" data-stream="false" data-header="false"></div>
+						<img class="face_book_plgin_logo_proposal_2" src="http://programmerbox.com/2013-06-12_facebook_likebox_customize/likebox/test_iphone5-ios7.png">
+						<div class="face_book_plgin_border_top"> </div>
+						<div class="face_book_plgin_border_right"> </div>
+						<div class="face_book_plgin_border_bottom"> </div>
+						<div class="face_book_plgin_border_left"> </div>
+					</section>
+
+
+<h3>Google+box_Likebox</h3>
+<p>Google+のボックスと同じデザインにしてみました。クール。</p>
+
+						<div class="face_book_plgin_shadow_hidden">
+							<div class="category_band facebook_color left_45">Facebook</div>
+						</div>
+					<section class="face_book_plgin_proposal_3">
+						<div class="fb-like-box" data-href="http://www.facebook.com/programmerbox" data-width="694" data-height="" data-show-faces="true" data-stream="false" data-header="false"></div>
+						<div class="face_book_plgin_border_top white_color"> </div>
+						<div class="face_book_plgin_border_right white_color"> </div>
+						<div class="face_book_plgin_border_bottom white_color"> </div>
+						<div class="face_book_plgin_border_left white_color"> </div>
+					</section>
+
+
+
+
+
+<h3>star_night_Likebox</h3>
+<p>ブラック系も一応作ってみました。</p>
+						<div class="face_book_plgin_shadow_hidden">
+							<div class="category_band facebook_color left_45">Facebook</div>
+						</div>
+					<section class="face_book_plgin_proposal_4">
+						<div class="fb-like-box" data-href="http://www.facebook.com/programmerbox" data-width="694" data-height="" data-show-faces="true" data-colorscheme="dark" data-stream="false" data-header="false"></div>
+						<img class="face_book_plgin_logo_proposal_4" src="http://programmerbox.com/2013-06-12_facebook_likebox_customize/likebox/plane_3.png">
+						<div class="face_book_plgin_border_top black_color height_1"> </div>
+						<div class="face_book_plgin_border_right black_color"> </div>
+						<div class="face_book_plgin_border_bottom black_color"> </div>
+						<div class="face_book_plgin_border_left black_color"> </div>
+					</section>
+
+
+
+<h3>Magnifying glass_Likebox</h3>
+<p>虫眼鏡的な。<em class="blue_2">ラーメンどんぶりとか色々作ったのですが奇抜すぎてボツ</em>にしました。<small>※320以下のデバイスだとはみ出てしまいます。作ってから気付いてしまいました。すいません。あとおそらくですがChrome、Safariのバグで画像にポインターを合わせると画像がはみ出てしまいます。調べまくったのですがわからずでした。。</small>
+</p>
+						<div class="face_book_plgin_shadow_hidden">
+							<div class="category_band facebook_color left_45">Facebook</div>
+						</div>
+					<section class="face_book_plgin_proposal_5">
+						<div class="fb-like-box" data-href="http://www.facebook.com/programmerbox" data-width="265" data-height="" data-show-faces="true" data-stream="false" data-header="false"></div>
+						<img class="face_book_plgin_logo_proposal_5" src="http://programmerbox.com/2013-06-12_facebook_likebox_customize/likebox/me_1.png">
+						<div class="face_book_plgin_border_top_5"> </div>
+					</section>
+					<img class="face_book_plgin_logo_proposal_5_out" src="http://programmerbox.com/2013-06-12_facebook_likebox_customize/likebox/bou_1.png">
+
+
+
+
+<h3>Background_Twitter_Likebox</h3>
+<p>Twitterの背景を使いました。かわいい。</p>
+						<div class="face_book_plgin_shadow_hidden">
+							<div class="category_band facebook_color left_45">Facebook</div>
+						</div>
+					<section class="face_book_plgin_proposal_6">
+						<div class="fb-like-box" data-href="http://www.facebook.com/programmerbox" data-width="694" data-height="" data-show-faces="true" data-stream="false" data-header="false"></div>
+						<img class="face_book_plgin_logo_proposal_6" src="http://programmerbox.com/2013-06-12_facebook_likebox_customize/likebox/bg.png">
+						<div class="face_book_plgin_border_top_6"> </div>
+						<div class="face_book_plgin_border_bottom_6"> </div>
+						<div class="face_book_plgin_border_left_6"> </div>
+					</section>
+
+
+
+
+
+<p class="m_0">　</p>
+<h2 class="heading">Likeboxのカスタマイズ方法</h2>
+<p>サンプルの紹介も終わったとこで次は実装の説明をしていきたいと思います。</p>
+
+<p>上記でも説明した通り <em class="blue_2">Programmer_BOX_Likebox のコードで説明</em>していきますね。</p>
+
+<div class="html_tab">HTML</div>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;!-- 影を隠すよ --&gt;
+	&lt;div class="face_book_plgin_shadow_hidden"&gt; &lt;/div&gt;
+	&lt;!-- この中にFBページを閉じ込めるよ --&gt;
+	&lt;section class="face_book_plgin"&gt; &lt;!-- ここでデザインもするよ --&gt;
+		&lt;!-- FBページ --&gt;
+		&lt;div class="fb-like-box" data-href="設置したいFBページURL" data-width="この記事の説明では694だけど自由に書き換える" data-height="" data-show-faces="true" data-stream="false" data-header="false"&gt;&lt;/div&gt;
+		&lt;!-- FBページから強制出力されるborderを隠す(トップ) --&gt;
+		&lt;div class="face_book_plgin_border_top"&gt; &lt;/div&gt;
+		&lt;!-- FBページから強制出力されるborderを隠す(ライト) --&gt;
+		&lt;div class="face_book_plgin_border_right"&gt; &lt;/div&gt;
+		&lt;!-- FBページから強制出力されるborderを隠す(ボトム) --&gt;
+		&lt;div class="face_book_plgin_border_bottom"&gt; &lt;/div&gt;
+		&lt;!-- FBページから強制出力されるborderを隠す(レフト) --&gt;
+		&lt;div class="face_book_plgin_border_left"&gt; &lt;/div&gt;
+	&lt;/section&gt;
+</pre>
+<p>こんな感じのHTMLを貼付けて下さい。<small>※一応書きますけどFBのプラグインjsもどっかに記述して下さい。</small></p>
+
+
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+/** 影を隠す **/
+.face_book_plgin_shadow_hidden {
+    background: none repeat scroll 0 0 #FCFBF9; /** 背景色に合わせる 合わない場合はheight: 0でもおk **/
+    height: 1px;
+}
+/** FBページを出さないようにしてデザイン **/
+.face_book_plgin {
+    background-color: #FCFBF9 !important; /** ここの色に合わせてボーダーを消す色も合わせる !important超大事 **/
+    border-radius: 2px 2px 2px 2px; /** デザイン **/
+    box-shadow: 1px 1px 0 2px rgba(0, 0, 0, 0.05); /** デザイン **/
+    float: left; /** デザイン **/
+    width: 100% !important; /** 超大事 **/
+    margin: 0 0 41.6px; /** デザイン **/
+    overflow: hidden !important;  /** 超大事 **/
+    position: relative; /** 超大事 **/
+    width: 100% !important; /** 超大事 **/
+    word-wrap: break-word; /** 一応記述 **/
+    word-break: break-all; /** 一応記述 **/
+}
+/** borderを隠す(トップ) **/
+.face_book_plgin_border_top {
+    background: none repeat scroll 0 0 #FCFBF9; /** 合わせる **/
+    height: 12px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 1032px;
+}
+/** borderを隠す(ライト) **/
+.face_book_plgin_border_right {
+    background: none repeat scroll 0 0 #FCFBF9; /** 合わせる **/
+    bottom: 0;
+    height: 300px;
+    position: absolute;
+    right: 0;
+    width: 6px;
+}
+/** borderを隠す(ボトム) **/
+.face_book_plgin_border_bottom {
+    background: none repeat scroll 0 0 #FCFBF9; /** 合わせる **/
+    bottom: 0;
+    height: 6px;
+    left: 0;
+    position: absolute;
+    width: 1032px;
+}
+/** borderを隠す(レフト) **/
+.face_book_plgin_border_left {
+    background: none repeat scroll 0 0 #FCFBF9; /** 合わせる **/
+    bottom: 0;
+    height: 300px;
+    left: 0;
+    position: absolute;
+    width: 6px;
+}
+</pre>
+
+<p>CSSはこんな感じで。</p>
+
+<p>これだけで<strong>デザインが自由に出来るLikebox</strong>になりました!パチパチ。</p>
+
+<h2 class="heading">紹介したデザインのコードはこちら</h2>
+
+<p>全部のデザインのコードを載せると記事が読みにくくなると思いましたので他のページにてコードを紹介させて頂きます。</p>
+
+<p><a target="_blank" href="likebox_code.php">サンプルコードはこちらのページ</a></p>
+
+
+<h2 class="heading">まとめ</h2>
+<p>Likeboxのカスタマイズも少しは需要あるのかなって思いで書かせて頂きました!</p>
+<p class="m_0">もう一度書きますが、崩れたりちゃんと表示出来ない方は気軽にご連絡下さい。<a target="_blank" href="http://twitter.com/mtoksuy">@mtoksuy</a></p>
+<p>書いた責任もあるのかなという事で。</p>
+
+
+<p>という事でクレイジーな手法を編み出した方もご連絡下さい 笑</p>
+
+<p>それではまたー。</p>

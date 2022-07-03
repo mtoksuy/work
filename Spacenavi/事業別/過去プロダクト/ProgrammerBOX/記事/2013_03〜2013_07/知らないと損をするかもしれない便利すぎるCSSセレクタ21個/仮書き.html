@@ -1,0 +1,773 @@
+			<p class="m_0">セレクタは知っていても使っているのは4〜6くらいだったんですが、みなさんもそんな感じなのではないでしょうか?(僕と同じにするな)</p>
+<p>で、今回は忘備録的にCSS1〜2のセレクタ特集記事を書いていきます。</p>
+
+
+<nav class="detail_press_index clearfix">
+	<h2 id="s_0p"><span class="color"> 目次</span></h2>
+	<ul class="left no_width">
+		<li class="n_0"><a href="#0p">CSSセレクタって?</a></li>
+		<li class="n_1"><a href="#1p">*　全ての要素</a></li>
+		<li class="n_2"><a href="#2p">要素名.sample　クラス名を付けた要素</a></li>
+		<li class="n_3"><a href="#3p">要素名#sample　要素名#id名</a></li>
+		<li class="n_4"><a href="#4p">:link　未訪問のリンク</a></li>
+		<li class="n_5"><a href="#5p">:visited　訪問済のリンク</a></li>
+		<li class="n_6"><a href="#6p">:hover　マウスが乗っている要素</a></li>
+		<li class="n_7"><a href="#7p">:active　クリック中の要素</a></li>
+		<li class="n_8"><a href="#8p">:focus　フォーカスされてある要素</a></li>
+		<li class="n_9"><a href="#9p">:lang　特定の言語を指定した要素</a></li>
+		<li class="n_10"><a href="#10p">:first-child　要素内の最初の子要素</a></li>
+		<li class="n_11"><a href="#11p">:first-line　要素の最初の一行</a></li>
+		<li class="n_12"><a href="#12p">:first-letter　要素の最初の一文字</a></li>
+		<li class="n_13"><a href="#13p">:before　要素の直前</a></li>
+		<li class="n_14"><a href="#14p">:after　要素の直後</a></li>
+		<li class="n_15"><a href="#15p">要素名[target]　特定の属性を持つ指定要素</a></li>
+		<li class="n_16"><a href="#16p">要素名[target="_blank"]　特定の属性値を持つ指定要素</a></li>
+		<li class="n_17"><a href="#17p">要素名[class~="sample"] 　属性値候補と一致した要素</a></li>
+		<li class="n_18"><a href="#18p">h1, h2, h3, h4, h5　複数のセレクタ</a></li>
+		<li class="n_19"><a href="#19p">p strong　下の階層の子孫要素</a></li>
+		<li class="n_20"><a href="#20p">p > strong　直下の階層の子要素</a></li>
+		<li class="n_21"><a href="#21p">h1 + p　直後に隣接している要素</a></li>
+		<li class="n_22"><a href="#22p">まとめ</a></li>
+	</ul>
+</nav>
+
+		<style>
+.css_tab {
+    background-color: #343434;
+    border-color: #E0E0E0;
+    border-radius: 2px 2px 0 0;
+    border-style: solid solid none;
+    border-width: 1px 1px medium;
+    color: #1AA9FF;
+    font-size: 64%;
+    font-weight: bold;
+    margin: 0 0 0 30px;
+    max-width: 60px;
+    padding: 3px 0;
+    text-align: center;
+}
+.css_tab.m_t_30 {
+    margin: 30px 0 0 30px;
+}
+.html_tab {
+    background-color: #343434;
+    border-color: #E0E0E0;
+    border-radius: 2px 2px 0 0;
+    border-style: solid solid none;
+    border-width: 1px 1px medium;
+    color: #EF9020;
+    font-size: 64%;
+    font-weight: bold;
+    margin: 0 0 0 30px;
+    max-width: 60px;
+    padding: 3px 0;
+    text-align: center;
+}
+.html_tab.m_t_30 {
+	margin: 30px 0 0 30px;
+}
+
+
+.sample_tab {
+    border-color: #E0E0E0;
+    border-style: solid solid none;
+    border-width: 1px 1px medium;
+    color: #336699;
+    border-radius: 2px 2px 0px 0px;
+    font-size: 64%;
+    font-weight: bold;
+    margin: 0px 0 -20px 30px;
+    padding: 3px 0;
+    text-align: center;
+    max-width: 60px;
+}
+.sample_tab.m_t_30 {
+    margin: 30px 0 -20px 30px;
+}
+
+
+.sample_contents {
+    background-color: #F7F7F7;
+    border: 1px solid #E0E0E0;
+    border-radius: 2px 2px 2px 2px;
+    color: #4D4D4D;
+    font-size: 94%;
+    margin: 20px 0 30px;
+    padding: 10px 8px 10px 15px;
+}
+p.sample {
+	color: blue;
+}
+.test_6 {
+	transition: all 3s ease 0s;
+	cursor: pointer;
+}
+.test_6:hover {
+	color: #F7F7F7;
+}
+
+	.test_7 {
+		transition: all 3s ease 0s;
+		cursor: pointer;
+	}
+	.test_7:hover {
+		color: #F7F7F7;
+	}
+	.test_7:active {
+		transition: all 0.3s ease 0s;
+		color: blue;
+	}
+.test_8 {
+
+}
+.test_8 input[type="text"] {
+		transition: all 3s ease 0s;
+		width: 160px;
+		padding: 0;
+}
+.test_8 input[type="text"]:focus {
+	width: 80%;
+		padding: 5px;
+}
+	.test_10 {
+		padding: 0;
+		margin: 0;
+	}
+	.test_10 li {
+		list-style: none outside none;
+	}
+	.test_10 li:first-child {
+		color: blue;	
+	}
+	.test_11 p:first-line {
+		color: blue;	
+	}
+	.test_12:first-letter {
+		font-size: 50px;
+		color: blue;
+	}
+	.test_13:before {
+    content: "この文字はCSSの:beforeで出力しています";
+    font-size: 50px;
+	}
+	.test_14:after {
+    content: "この文字はCSSの:afterで出力しています";
+    font-size: 50px;
+	}
+	.test_15 a[title] {
+    color: blue;
+	}
+	.test_16 a[target="_blank"] {
+    color: blue;
+	}
+	p[class~="test_17"] {
+    color: blue;
+	}
+	p a[title~="あーはん？"] {
+    color: red;
+	}
+	.test_19 p strong {
+		color: blue;
+	}
+	.test_20 p > strong {
+		color: blue;
+	}
+	.test_21 h1 + p {
+		color: blue;
+	}
+		</style>
+
+
+
+
+
+
+
+
+
+<h2 id="s_1p">CSSセレクタって?</h2>
+<p>CSSセレクタはスタイルを適用する対象を指定するもので、CSSをマスターするという事はセレクタをマスターすると同義と言っても過言ではないです。</p>
+
+<p class="m_0">という事で<strong>今回はCSS1〜2のセレクタを使って</strong>サンプルで説明していきます。</p>
+<p>何故CSS3のセレクタも紹介しないの?って声も聞こえてきそうですが、CSS3のセレクタはもの凄く便利ですがIE(6-8)で使えないのです。。。なので、先ずはこのセレクタ達を覚える為に書いていきます。</p>
+
+<small>※ 本当はこれを書いている時点で記事は書き終えていてCSS3を追加するのがめんどくさ(ry</small>
+
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+
+
+<h2 id="s_1p">1.　*　全ての要素</h2>
+
+<p>アスタリスクは(*) 全てという意味です。</p>
+
+<p>だけど、僕的には完全にケツめ(ry</p>
+
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+* {
+	color: blue;
+}
+</pre>
+<p>すべての要素に適用されます。</p>
+
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+p * {
+	color: blue;
+}
+</pre>
+<p><strong>p</strong>要素の中にある要素全てに適用されます。</p>
+<p class="index_scroll m_b_30"><a href="#0p">目次に戻る</a></p>
+
+
+
+<h2 id="s_2p">2.　要素名.sample　クラス名を付けた要素</h2>
+
+<p class="m_0">要素名の後に.クラス名を付けると</p>
+<p>クラス名を指定した要素にスタイルに。</p>
+<p>この記事書いてからこれ見てるんですが、このサンプルってあんまり・・ですよね?p.sampleとかあんまりしねーし。ダセーし。するんなら.a.b {プロパディ}とかの方がいい感じっすね。
+
+
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+	p.sample {
+		color: blue;
+	}
+</pre>
+
+<div class="html_tab m_t_30">HTML</div>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;p class="sample"&gt;この中身に適用されます&lt;p&gt;
+	&lt;div class="sample"&gt;この中身には適用されません&lt;/div&gt;
+</pre>
+
+<div class="sample_tab m_t_30">sample</div>
+<div class="sample_contents">
+	<p class="m_0 sample">この中身に適用されます</p>
+	<div class="m_0">この中身には適用されません</div>
+</div>
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+
+
+<h2 id="s_3p">3.　要素名#sample　要素名#id名</h2>
+
+<p class="m_0">基本的には先ほどのクラスと同じなのですが。idの場合は1つの要素にしか適用されません。</p>
+<p>CSSは関係ないのですがidはページ内で一つだけしか存在させてはいけないらしくて、間違えて存在したとしても先に記述しているidが選ばれます。(#で移動とかjavascriptとかで)</p>
+<p>簡単に一行で言うとプライマリーな存在です。</p>
+
+
+<p>因みに「<strong>キミは僕にとってプライマリなー存在だから</strong>」って告白すると良いってどこかのwebデザイナーさんが言っていたような。</p>
+
+
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+	#sample {
+		color: blue;
+	}
+</pre>
+
+<p class="index_scroll m_t_30"><a href="#0p">目次に戻る</a></p>
+
+
+
+
+
+<h2 id="s_4p">4.　:link　未訪問のリンク</h2>
+
+<p>主にリンクテキストやtext-decorationを定義する時に便利ですね。</p>
+
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+	a:link {
+		color: blue;
+		text-decoration: none;
+	}
+</pre>
+<p class="index_scroll m_t_30"><a href="#0p">目次に戻る</a></p>
+
+
+
+<h2 id="s_5p">5.　:visited　訪問済のリンク</h2>
+<p>訪問済みのリンクの色をカスタマイズしたり、とか。</p>
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+	a:visited {
+		color: blue;
+		text-decoration: none;
+	}
+</pre>
+
+<p class="index_scroll m_t_30"><a href="#0p">目次に戻る</a></p>
+
+<h2 id="s_6p">6.　:hover　マウスが乗っている要素</h2>
+<p>これでいろんなアニメーションしたくなりますよね。</p>
+
+
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+	.test_6 {
+		transition: all 3s ease 0s;
+		cursor: pointer;
+	}
+	.test_6:hover {
+		color: #F7F7F7;
+	}
+</pre>
+
+<div class="html_tab m_t_30">HTML</div>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;span class="test_6"&gt;カーソルをあてて下さい。&lt;/span&gt;
+</pre>
+
+<div class="sample_tab m_t_30">sample</div>
+<div class="sample_contents">
+	<span class="test_6">カーソルをあてて下さい。</span>
+</div>
+
+
+
+<p class="index_scroll m_t_30"><a href="#0p">目次に戻る</a></p>
+
+<h2 id="s_7p">7.　:active　クリック中の要素</h2>
+<p><em class="marker">クリックしている状態</em>の時ですね、<em class="marker">細かいアニメーション</em>を施す時に利用します。</p>
+
+<p class="m_0">あと関係ないんですが、ものすごく遅く「<em class="marker">クリック</em>」って言うとなんでこんなに<em class="marker">いやらしい</em>感じに聞こえるんでしょうね。</p>
+
+<p><small>可愛い女の子の「クリック」が聞きたいって男子は8割っていう噂です。</small></p>
+
+
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+	.test_7 {
+		transition: all 3s ease 0s;
+		cursor: pointer;
+	}
+	.test_7:hover {
+		color: #F7F7F7;
+	}
+	.test_7:active {
+		transition: all 0.3s ease 0s;
+		color: blue;
+	}
+</pre>
+
+<div class="html_tab m_t_30">HTML</div>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;span class="test_7"&gt;クリッククリック!&lt;/span&gt;
+</pre>
+
+<div class="sample_tab m_t_30">sample</div>
+<div class="sample_contents">
+	<span class="test_7">クリッククリック!</span>
+</div>
+
+<p class="index_scroll m_t_30"><a href="#0p">目次に戻る</a></p>
+
+<h2 id="s_8p">8.　:focus　フォーカスされてある要素</h2>
+<p>主にフォームの中で使うイメージですね。綺麗なフォームを作る時に必須なセレクタです。</p>
+
+<p>僕もあの子の事を<strong>フォーカスしたい</strong>って</p>
+<p>深夜に思ってるんですが、どうにかなりませんかね。</p>
+
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+	.test_8 {
+	
+	}
+	.test_8 input[type="text"] {
+			transition: all 3s ease 0s;
+			width: 160px;
+			padding: 0;
+	}
+	.test_8 input[type="text"]:focus {
+		width: 80%;
+			padding: 5px;
+	}
+</pre>
+
+<div class="html_tab m_t_30">HTML</div>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;form class="test_8"&gt;
+		&lt;input type="text" id="name" name="name" value="" placeholder="フォーカスしてくらはい"&gt;
+	&lt;/form&gt;
+</pre>
+
+<div class="sample_tab m_t_30">sample</div>
+<div class="sample_contents">
+	<form class="test_8">
+		<input type="text" id="name" name="name" value="" placeholder="フォーカスしてくらはい">
+	</form>
+</div>
+
+
+
+
+
+<p class="index_scroll m_t_30"><a href="#0p">目次に戻る</a></p>
+
+<h2 id="s_9p">9.　:lang　特定の言語を指定した要素</h2>
+<p>うん、あんま使わないっすけど、グローバルな人材になったら使うとか使わないとか。</p>
+
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+	.test_9:lang {
+		color: black;
+	}
+</pre>
+
+
+<p class="index_scroll m_t_30"><a href="#0p">目次に戻る</a></p>
+
+<h2 id="s_10p">10.　:first-child　要素内の最初の子要素</h2>
+<p>話は変わるんですけど:<em class="marker">last-childってCSS3</em>だったんですね・・・。この記事書いている時に気付いて衝撃でした。これだけでもこの記事を書いた意味は十分あったはず。</p>
+
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+	.test_10 {
+		padding: 0;
+		margin: 0;
+	}
+	.test_10 li {
+		list-style: none outside none;
+	}
+	.test_10 li:first-child {
+		color: blue;	
+	}
+</pre>
+
+<div class="html_tab m_t_30">HTML</div>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;ul class="test_10"&gt;
+		&lt;li&gt;かわります&lt;/li&gt;
+		&lt;li&gt;かわりません&lt;/li&gt;
+	&lt;/ul&gt;
+</pre>
+
+<div class="sample_tab m_t_30">sample</div>
+<div class="sample_contents">
+	<ul class="test_10">
+		<li>かわります</li>
+		<li>かわりません</li>
+	</ul>
+</div>
+
+<p class="index_scroll m_t_30"><a href="#0p">目次に戻る</a></p>
+
+<h2 id="s_11p">11.　:first-line　要素の最初の一行</h2>
+<p>僕コレ使った時ないんですけど多分便利っすよね。</p>
+
+
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+	.test_11 {
+		padding: 0;
+		margin: 0;
+	}
+	.test_11 li {
+		list-style: none outside none;
+	}
+	.test_11 li:first-line {
+		color: blue;	
+	}
+</pre>
+
+<div class="html_tab m_t_30">HTML</div>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;ul class="test_10"&gt;
+		&lt;li&gt;かわります&lt;/li&gt;
+		&lt;li&gt;かわりません&lt;/li&gt;
+	&lt;/ul&gt;
+</pre>
+
+<div class="sample_tab m_t_30">sample</div>
+<div class="sample_contents">
+	<div class="test_11">
+		<p>こうやって適当に打って一行目だけが変わるらしいですよ。でも、レスポンシブにしているとカオスになりそうですね。</p>
+	</div>
+</div>
+
+
+<p class="index_scroll m_t_30"><a href="#0p">目次に戻る</a></p>
+
+
+<h2 id="s_12p">12.　:first-letter　要素の最初の一文字</h2>
+<p>これは使う場面が数多くある感じがしますね。</p>
+
+
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+	.test_12:first-letter {
+		font-size: 50px;
+		color: blue;
+	}
+</pre>
+
+<div class="html_tab m_t_30">HTML</div>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;p class="test_12"&gt;ブルーな1文字目。&lt;/p&gt;
+</pre>
+
+<div class="sample_tab m_t_30">sample</div>
+<div class="sample_contents">
+	<p class="test_12 m_0">ブルーな1文字目。</p>
+</div>
+
+
+<p class="index_scroll m_t_30"><a href="#0p">目次に戻る</a></p>
+
+
+<h2 id="s_13p">13.　:before　要素の直前</h2>
+<p>:beforeと:afterはデザインしていく上で鉄板ですので絶対に覚えた方がいいセレクタナンバーワンです!</p>
+
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+	.test_13:before {
+    content: "この文字はCSSの:beforeで出力しています";
+    font-size: 50px;
+	}
+</pre>
+
+<div class="html_tab m_t_30">HTML</div>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;p class="test_13"&gt;びふぉーあふたー&lt;/p&gt;
+</pre>
+
+<div class="sample_tab m_t_30">sample</div>
+<div class="sample_contents">
+	<p class="test_13 m_0">びふぉーあふたー</p>
+</div>
+
+<p class="index_scroll m_t_30"><a href="#0p">目次に戻る</a></p>
+<h2 id="s_14p">14.　:after　要素の直後</h2>
+<p>こちらが最強セレクタです!<em class="marker">floatをやっつけちゃうやつ</em>です。</p>
+
+
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+	.test_14:after {
+    content: "この文字はCSSの:afterで出力しています";
+    font-size: 50px;
+	}
+</pre>
+
+<div class="html_tab m_t_30">HTML</div>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;p class="test_14"&gt;びふぉーあふたー&lt;/p&gt;
+</pre>
+
+<div class="sample_tab m_t_30">sample</div>
+<div class="sample_contents">
+	<p class="test_14 m_0">びふぉーあふたー</p>
+</div>
+
+<p class="index_scroll m_t_30"><a href="#0p">目次に戻る</a></p>
+<h2 id="s_15p">15.　要素名[target]　特定の属性を持つ指定要素</h2>
+<p>なにやら、ここらへんから普段使わないセレクタの登場ですね。</p>
+<p>説明的には[]に属性名を入れて使うらしいですので、今回はaタグの属性titleで試してみましょう。</p>
+
+
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+	.test_15 a[title] {
+    color: blue;
+	}
+</pre>
+
+<div class="html_tab m_t_30">HTML</div>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;div class="test_15"&gt;
+		&lt;a href="#" title="タイトルあるよ"&gt;タイトルあるよ&lt;/a&gt;
+		&lt;a href="#"&gt;タイトルないよ&lt;/a&gt;
+	&lt;/div&gt;
+</pre>
+
+<div class="sample_tab m_t_30">sample</div>
+<div class="sample_contents">
+	<div class="test_15">
+		<a href="#" title="タイトルあるよ">タイトルあるよ</a>
+		<a href="#">タイトルないよ</a>
+	</div>
+</div>
+
+
+<p class="index_scroll m_t_30"><a href="#0p">目次に戻る</a></p>
+<h2 id="s_16p">16.　要素名[target="_blank"]　特定の属性値を持つ指定要素</h2>
+<p class="m_0">次はもっと的を絞ったセレクタですね!</p>
+<p>ここまでやらなければならない時があるって事ですね!!</p>
+
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+	.test_16 a[target="_blank"] {
+    color: blue;
+	}
+</pre>
+
+<div class="html_tab m_t_30">HTML</div>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;div class="test_16"&gt;
+		&lt;a href="#" target="_blank"&gt;blankあるよ&lt;/a&gt;
+		&lt;a href="#"&gt;blankないよ&lt;/a&gt;
+	&lt;/div&gt;
+</pre>
+
+<div class="sample_tab m_t_30">sample</div>
+<div class="sample_contents">
+	<div class="test_16">
+		<a href="#" target="_blank">blankあるよ</a>
+		<a href="#">blankないよ</a>
+	</div>
+</div>
+
+
+<p class="index_scroll m_t_30"><a href="#0p">目次に戻る</a></p>
+<h2 id="s_17p">17.　要素名[属性名~="属性値"] 　属性値候補と一致した要素</h2>
+<p>すんげーむずかしい。すんげー説明むずかしいよ。。</p>
+
+<p>因みに ~ は<strong>チルダ</strong>っていうらしいです</p>
+
+<p>マ~とか<strong>隠語に使えます</strong>ね。</p>
+
+
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+	p[class~="test_17"] {
+    color: blue;
+	}
+	p a[title~="あーはん？"] {
+    color: red;
+	}
+</pre>
+
+<div class="html_tab m_t_30">HTML</div>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;p class="test_17"&gt;僕のクラスはtest_17です。&lt;/p&gt;
+	&lt;p class="test_17"&gt;僕のクラスはtest_17で&lt;a href="#" title="あーはん？"&gt;titleがあーはん？なaです&lt;/a&gt;が終わったあとのpです&lt;/p&gt;
+</pre>
+
+<div class="sample_tab m_t_30">sample</div>
+<div class="sample_contents">
+	<p class="test_17">僕のクラスはtest_17です。</p>
+	<p class="test_17 m_0">僕のクラスはtest_17で<a href="#" title="あーはん？">titleがあーはん？なaです</a>が終わったあとのpです</p>
+</div>
+
+
+
+
+
+<p class="index_scroll m_t_30"><a href="#0p">目次に戻る</a></p>
+<h2 id="s_18p">18.　h1, h2, h3, h4, h5　複数のセレクタ</h2>
+<p>これはいわゆるアレもコレも一カ所に集めて定義出来る便利なセレクタですね。</p>
+<p>いっその事全部コレで出来たら簡単なんですけどね。</p>
+
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+	.test_18 h1, h2, h3, h4, h5 {
+		color: blue;
+	}
+</pre>
+
+<p class="index_scroll m_t_30"><a href="#0p">目次に戻る</a></p>
+<h2 id="s_19p">19.　p strong　下の階層の子孫要素</h2>
+<p>こりゃー鉄板ですよね。それじゃーpの中のstrongの色を変えてみましょー。</p>
+
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+	.test_19 p strong {
+		color: blue;
+	}
+</pre>
+
+<div class="html_tab m_t_30">HTML</div>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;div class="test_19"&gt;
+		&lt;p&gt;ここはpです&lt;strong&gt;ストローング!!&lt;/strong&gt;ここもpです&lt;/p&gt;
+	&lt;/div&gt;
+</pre>
+
+<div class="sample_tab m_t_30">sample</div>
+<div class="sample_contents">
+	<div class="test_19">
+		<p class="m_0">ここはpです<strong>ストローング!!</strong>ここもpです</p>
+	</div>
+</div>
+
+<p class="index_scroll m_t_30"><a href="#0p">目次に戻る</a></p>
+<h2 id="s_20p">20.　p > strong　直下の階層の子要素</h2>
+<p>こうゆうのって何か日本以外の臭いがするカッコいい感じですよね!!使えばスキルアップするかも!?</p>
+
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+	.test_20 p > strong {
+		color: blue;
+	}
+</pre>
+
+<div class="html_tab m_t_30">HTML</div>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;div class="test_20"&gt;
+		&lt;p class="m_0"&gt;ここはpです&lt;strong&gt;ストローング!!&lt;/strong&gt;ここもpです&lt;span&gt;&lt;strong&gt;ここからpの中のspanの中のストローング!!&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+	&lt;/div&gt;
+</pre>
+
+<div class="sample_tab m_t_30">sample</div>
+<div class="sample_contents">
+	<div class="test_20">
+		<p class="m_0">ここはpです<strong>ストローング!!</strong>ここもpです<span><strong>ここからpの中のspanの中のストローング!!</strong></span></p>
+	</div>
+</div>
+
+
+
+<p class="index_scroll m_t_30"><a href="#0p">目次に戻る</a></p>
+<h2 id="s_21p">21.　h1 + p　直後に隣接している要素</h2>
+<p>これプログラム脳で理解しようとした時の<strong>方向性の違い</strong>にあせったんですよねー。ただの隣のやつに適応するだけなんて。紛らわしい 笑</p>
+
+
+<div class="css_tab">CSS</div>
+<pre class="brush: css; light:true; tab-size: 2;">
+	.test_21 h1 + p {
+		color: blue;
+	}
+</pre>
+
+<div class="html_tab m_t_30">HTML</div>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;div class="test_21"&gt;
+		&lt;p class="m_0"&gt;pです&lt;/p&gt;
+		&lt;h1&gt;h1です&lt;/h1&gt;
+		&lt;p class="m_0"&gt;pです&lt;/p&gt;
+	&lt;/div&gt;
+</pre>
+
+<div class="sample_tab m_t_30">sample</div>
+<div class="sample_contents">
+	<div class="test_21">
+		<p class="m_0">pです</p>
+		<h1>h1です</h1>
+		<p class="m_0">pです</p>
+	</div>
+</div>
+
+
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+
+
+<h2 id="s_22p">まとめ</h2>
+<p>どうでしたか?こんだけ覚えればCSSマスターもすぐなんじゃないかって思っちゃいますよね。でも実際こうやって書いていって1日も経っていないので</p>
+<p><strong>CSSって3日でマスターできるちょろいもん</strong>じゃないのかって半分本気で思っています。</p>
+
+<p>全ての言語に言えますが、本当に簡単なんです。</p>
+<p>簡単な事を難しくしてる<em class="marker">輩</em>が多いだけなんです。これまじ。</p>
+<p class="m_0">あと、脳的に言えば</p>
+<p class="m_0"><strong>難しいと思っているから難しくなる</strong>だけで</p>
+<p><strong>楽勝って思っていれば楽勝になる</strong>んです。</p>
+
+
+<p>悩んでるだけじゃ一歩も前に進めないし、前を見ないで走っても目的地にはたどり着けないけど</p>
+
+
+<p>楽勝だし、絶対にやり遂げてやるっていう<strong>根拠のない自信</strong>が少しでも自分自身を、人生を、押し進めるんじゃないのかなって深夜に思ったり思わなかったり。</p>
+
+<p>ま、深夜の戯れ事でした。</p>
+
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>

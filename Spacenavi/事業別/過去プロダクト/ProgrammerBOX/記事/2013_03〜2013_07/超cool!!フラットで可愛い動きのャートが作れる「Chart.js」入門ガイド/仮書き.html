@@ -1,0 +1,364 @@
+超cool!!フラットで可愛い動きのチャートがHTML5で作れる「Chart.js」入門ガイド
+
+<p>やばい、こいつ可愛い。使い方もむっちゃ簡単でこんなcoolなチャートが出来るなんて。ポートフォリオにも、情報を説明する時にも、どんな時にでも役に立つ事間違いなし!開発者に感謝しつつ、そんな「Chart.js」を紹介していきたいと思います!</p>
+
+<nav class="detail_press_index clearfix">
+	<h2 id="s_0p"><span class="color"> 目次</span></h2>
+	<ul class="left no_width">
+		<li class="n_1"><a href="#1p">Chart.jsとは?</a></li>
+		<li class="n_2"><a href="#2p">こんな感じのチャートが作れます</a></li>
+		<li class="n_3"><a href="#3p">Chart.jsの実装方法</a></li>
+		<li class="n_4"><a href="#4p">ブラウザに可視表示された瞬間にチャートを表示させてみよう</a></li>
+		<li class="n_5"><a href="#5p">レスポンシブ対応のテクニック</a></li>
+		<li class="n_6"><a href="#6p">まとめ</a></li>
+	</ul>
+</nav>
+
+<script type="text/javascript" src="../js/common/Chart.js"></script>
+<script type="text/javascript" src="http://programmerbox.com/js/common/jquery-1.7.1.js"></script>
+<script type="text/javascript" src="../js/common/Chart_Dynamic_View.js"></script>
+
+<h2 id="s_1p">Chart.jsとは?</h2>
+
+<p>デザイナーや開発者がの<strong>簡単にグラフを表示出来るjs</strong>で、表示方法はHTML5のcanvasを利用して表示させます。コード的にはオブジェクト指向のコードで誰でも簡単に編集でき表示ができるようになっています。</p>
+
+<p class="m_0">詳しくは本家サイトへ</p>
+<p class="m_0"><a href="http://www.chartjs.org/" target="_blank">Chart.js</a></p>
+<p><a href="http://www.chartjs.org/docs/" target="_blank">Chart.js・ドキュメント</a></p>
+
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+
+<h2 id="s_2p">こんな感じのチャートが作れます</h2>
+
+<div class="canvas_chart" id="line"></div>
+<div class="canvas_chart" id="bar"></div>
+<div class="canvas_chart" id="radar"></div>
+<div class="canvas_chart" id="pie"></div>
+<div class="canvas_chart" id="polarArea"></div>
+<div class="canvas_chart" id="doughnut"></div>
+
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+
+<h2 id="s_3p">Chart.jsの実装方法</h2>
+
+<h3>初めにChart.jsをダウンロードしよう</h3>
+<p class="m_0"><a href="http://www.chartjs.org/" target="_blank">Chart.js</a></p>
+<p class="m_0">に行き、赤枠に囲ってある Download をクリックして下さい。</p>
+<img class="press_98_image" src="../img/press/image/image_85.jpg" height="400"  widht="640" title="" alt="">
+<p class="m_0">次に GitHub に飛びますので赤枠で囲ってある ZIP をクリックしますとダウンロード出来ますのでダウンロードして下さい。</p>
+<img class="press_98_image" src="../img/press/image/image_86.jpg" height="400"  widht="640" title="" alt="">
+<p class="m_0">ダウンロードが終わりましたらファイルを解凍して開いて下さい。</p>
+<p>解凍しましたらトップに Chart.js がありますので、それをサイトにアップロードしましょう。階層はどこでもいいです。jQuery等と全く同じ要領で。</p>
+
+<p class="m_0">次はチャートを表示したいページのファイルにChart.jsをインクルードしましょう。</p>
+<h4>html</h4>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;script src="アップロードした階層のディレクトリ名/Chart.js"&gt;&lt;/script&gt;
+</pre>
+<p>これでチャートを表示出来る準備は整いましたーパチパチ。</p>
+
+<h3>6種類のチャートの説明と表示する方法</h3>
+
+<p>次はチャートの種類を順番に説明していきます。</p>
+
+<h4>Line charts</h4>
+<div class="canvas_chart" id="line_i"></div>
+<p>おそらく一番凡庸性が高いチャートだと思いますのでこれだけ覚えているだけでいいかも。</p>
+
+<h4>html</h4>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;canvas id="line" height="450" width="600"&gt;&lt;/canvas&gt;
+</pre>
+<h4>javascript</h4>
+<pre class="brush: javascript; light:true; tab-size: 2;">
+	var lineChartData = {
+		labels : ["January","February","March","April","May","June","July"],
+		datasets : [
+			{
+				fillColor : "rgba(220,220,220,0.5)",
+				strokeColor : "rgba(220,220,220,1)",
+				pointColor : "rgba(220,220,220,1)",
+				pointStrokeColor : "#fff",
+				data : [65,59,90,81,56,55,40]
+			},
+			{
+				fillColor : "rgba(151,187,205,0.5)",
+				strokeColor : "rgba(151,187,205,1)",
+				pointColor : "rgba(151,187,205,1)",
+				pointStrokeColor : "#fff",
+				data : [28,48,40,19,96,27,100]
+			}
+		]
+	}
+	var myLine = new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
+</pre>
+<h4 class="m_t_60">Bar charts</h4>
+<div class="canvas_chart" id="bar_i"></div>
+<p>比較すると気とかに使えそうな感じがしますよね。</p>
+<h4>html</h4>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;canvas id="bar" height="450" width="600"&gt;&lt;/canvas&gt;
+</pre>
+<h4>javascript</h4>
+<pre class="brush: javascript; light:true; tab-size: 2;">
+	var barChartData = {
+		labels : ["January","February","March","April","May","June","July"],
+		datasets : [
+			{
+				fillColor : "rgba(220,220,220,0.5)",
+				strokeColor : "rgba(220,220,220,1)",
+				data : [65,59,90,81,56,55,40]
+			},
+			{
+				fillColor : "rgba(151,187,205,0.5)",
+				strokeColor : "rgba(151,187,205,1)",
+				data : [28,48,40,19,96,27,100]
+			}
+		]
+	}
+	var myLine = new Chart(document.getElementById("bar").getContext("2d")).Bar(barChartData);
+</pre>
+<h4 class="m_t_60">Radar charts</h4>
+<div class="canvas_chart" id="radar_i"></div>
+<p>能力値を表したり色々と。</p>
+<h4>html</h4>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;canvas id="radar" height="450" width="450"&gt;&lt;/canvas&gt;
+</pre>
+<h4>javascript</h4>
+<pre class="brush: javascript; light:true; tab-size: 2;">
+	var radarChartData = {
+		labels : ["Eating","Drinking","Sleeping","Designing","Coding","Partying","Running"],
+		datasets : [
+			{
+				fillColor : "rgba(220,220,220,0.5)",
+				strokeColor : "rgba(220,220,220,1)",
+				pointColor : "rgba(220,220,220,1)",
+				pointStrokeColor : "#fff",
+				data : [65,59,90,81,56,55,40]
+			},
+			{
+				fillColor : "rgba(151,187,205,0.5)",
+				strokeColor : "rgba(151,187,205,1)",
+				pointColor : "rgba(151,187,205,1)",
+				pointStrokeColor : "#fff",
+				data : [28,48,40,19,96,27,100]
+			}
+		]		
+	}
+	var myRadar = new Chart(document.getElementById("radar").getContext("2d")).Radar(radarChartData,{scaleShowLabels : false, pointLabelFontSize : 10});
+</pre>
+
+<h4 class="m_t_60">Pie charts</h4>
+<div class="canvas_chart" id="pie_i"></div>
+<p>一番連想しやすいのは時間割とかに使えそうですね。</p>
+<h4>html</h4>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;canvas id="pie" height="450" width="450"&gt;&lt;/canvas&gt;
+</pre>
+<h4>javascript</h4>
+<pre class="brush: javascript; light:true; tab-size: 2;">
+	var pieData = [
+		{
+			value: 30,
+			color:"#F38630"
+		},
+		{
+			value : 50,
+			color : "#E0E4CC"
+		},
+		{
+			value : 100,
+			color : "#69D2E7"
+		}	
+	];
+	var myPie = new Chart(document.getElementById("pie").getContext("2d")).Pie(pieData);
+</pre>
+
+<h4 class="m_t_60">Polar area charts</h4>
+<div class="canvas_chart" id="polarArea_i"></div>
+<p>このチャートだけ特殊でグラフがランダムで場所変わります、何に使えるかは謎。</p>
+<h4>html</h4>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;canvas id="polarArea" height="400" width="400"&gt;&lt;/canvas&gt;
+</pre>
+<h4>javascript</h4>
+<pre class="brush: javascript; light:true; tab-size: 2;">
+	var chartData = [
+		{
+			value : Math.random(),
+			color: "#D97041"
+		},
+		{
+			value : Math.random(),
+			color: "#C7604C"
+		},
+		{
+			value : Math.random(),
+			color: "#21323D"
+		},
+		{
+			value : Math.random(),
+			color: "#9D9B7F"
+		},
+		{
+			value : Math.random(),
+			color: "#7D4F6D"
+		},
+		{
+			value : Math.random(),
+			color: "#584A5E"
+		}
+	];
+	var myPolarArea = new Chart(document.getElementById("polarArea").getContext("2d")).PolarArea(chartData);
+</pre>
+
+<h4 class="m_t_60">Doughnut charts</h4>
+<div class="canvas_chart" id="doughnut_i"></div>
+<p>見た目が一番!という方とドーナツ好きならこれを。</p>
+<h4>html</h4>
+<pre class="brush: html; light:true; tab-size: 2;">
+		&lt;canvas id="doughnut" height="850" width="850"&gt;&lt;/canvas&gt;
+</pre>
+<h4>javascript</h4>
+<pre class="brush: javascript; light:true; tab-size: 2;">
+	var doughnutData = [
+		{
+			value: 30,
+			color:"#F7464A"
+		},
+		{
+			value : 50,
+			color : "#46BFBD"
+		},
+		{
+			value : 100,
+			color : "#FDB45C"
+		},
+		{
+			value : 40,
+			color : "#949FB1"
+		},
+		{
+			value : 120,
+			color : "#4D5360"
+		}			
+	];
+	var myDoughnut = new Chart(document.getElementById("doughnut").getContext("2d")).Doughnut(doughnutData);
+</pre>
+
+<p class="index_scroll m_t_30"><a href="#0p">目次に戻る</a></p>
+
+<h2 id="s_4p">ブラウザに可視表示された瞬間にチャートを表示させてみよう</h2>
+<p>実は、このまま使いますとページを読み込んだ瞬間にチャートが表示されてしまいます。</p>
+<p class="m_0">そこで<strong>Chart_Dynamic_View</strong>というプラグインを作りましたので</p>
+<p class="m_0"><em class="marker">ブラウザに可視表示された瞬間に表示したい</em>って人は使って下さい。</p>
+<p>あ、後<em class="marker">このプラグインはjQueryありき</em>ですので、もしjQueryをインクルードしていない方はインクルードお願いします。</p>
+
+<a href="Chart_Dynamic_View.js.zip"><img class="o_8 m_b_30" src="../img/common/code_box_download_1.png" height="75" widht="150"></a>
+
+<p class="m_0">使い方と仕様の説明をしたいと思います。(ちょっと難しいかも...)</p>
+<p class="m_0">まず初めにChart.js と全く同じ要領でダウンロードしてインクルードして下さい。</p>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;script src="アップロードした階層のディレクトリ名/Chart_Dynamic_View.js"&gt;&lt;/script&gt;
+</pre>
+<p class="m_t_30">次はCSSの追加もお願いします。</p>
+<pre class="brush: css; light:true; tab-size: 2;">
+	.canvas_chart {
+		min-height: 100px;
+	}
+</pre>
+
+<p class="m_t_30">次はチャートを表示したい場所に</p>
+<pre class="brush: html; light:true; tab-size: 2;">
+	&lt;div class="canvas_chart" id="任意の名前"&gt;&lt;/div&gt;
+</pre>
+<p class="m_0">と、記述します。</p>
+<p class="m_0">着火ポイントは class="<em class="marker">canvas_chart</em>" で</p>
+<p>紐付けは id="任意の名前" です。</p>	
+
+<p class="m_0">で、次は紐付けされた 任意の名前 という名前のhtmlを</p>
+<p class="m_0">表示させたいページと同じディレクトリに配置して下さい。</p>
+<p class="m_0">任意の名前.htmlの中身はこんな感じで(<em class="marker">表示したいチャートの記述を</em>)</p>
+<pre class="brush: html; light:true; tab-size: 2;">
+&lt;!doctype html&gt;
+&lt;html&gt;
+	&lt;head&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;canvas id="任意の名前" height="450" width="600"&gt;&lt;/canvas&gt;
+		&lt;script&gt;
+			var lineChartData = {
+				labels : ["January","February","March","April","May","June","July"],
+				datasets : [
+					{
+						fillColor : "rgba(220,220,220,0.5)",
+						strokeColor : "rgba(220,220,220,1)",
+						pointColor : "rgba(220,220,220,1)",
+						pointStrokeColor : "#fff",
+						data : [65,59,90,81,56,55,40]
+					},
+					{
+						fillColor : "rgba(151,187,205,0.5)",
+						strokeColor : "rgba(151,187,205,1)",
+						pointColor : "rgba(151,187,205,1)",
+						pointStrokeColor : "#fff",
+						data : [28,48,40,19,96,27,100]
+					}
+				]
+			}
+		var myLine = new Chart(document.getElementById("任意の名前").getContext("2d")).Line(lineChartData);
+		&lt;/script&gt;
+	&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<p class="m_0">これでいい感じにチャートを表示出来るようになりました!</p>
+<p>わーパチパチ。</p>
+
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+
+
+<h2 id="s_5p">レスポンシブ対応のテクニック</h2>
+<p>様々なデバイスで見られるこのご時世、<em class="marker">このままの表示だと大きさが固定のチャートに</em>なってしまいますので対策もしましょう。</p>
+
+<p class="m_0">今回はCSSをいじるだけでいいように考えました。</p>
+<p class="m_0"><em class="marker">このCSSを記述するだけでレスポンシブにも対応</em>出来ます。</p>
+<pre class="brush: css; light:true; tab-size: 2;">
+	canvas {
+	  height: auto !important;
+	  width: 50% !important;
+	}
+</pre>
+<p class="m_t_30">更に<strong>Chart_Dynamic_View</strong>を使う時は読み込むcanvasにclassを付けといて事前にcss定義をしとけば自由に大きさを操作できます。</p>
+<p class="m_0">こんな感じで</p>
+<pre class="brush: css; light:true; tab-size: 2;">
+	canvas {
+    height: auto !important;
+    width: 50% !important;
+	}
+	.line_canvas {
+    height: auto !important;
+    width: 60% !important;
+	}
+	.bar_canvas {
+    height: auto !important;
+    width: 60% !important;
+	}
+	.radar_canvas {
+    height: auto !important;
+    width: 60% !important;
+	}
+</pre>
+<p class="m_0">こうすればcanvasよりクラスのline_canvasの方が強いので</p>
+<p>line_canvasの記述が適応されます。</p>
+
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+
+<h2 id="s_6p">まとめ</h2>
+<p class="m_0">いやーcanvas楽しいっすね!</p>
+<p>このjsは簡単に楽しくHTML5が体感出来るのが良い所だと思っています。</p>
+
+<p>あと真面目にチャートを表示すれば本気で使えるかと。今回はサーバサイドのスクリプト言語を使わない感じの説明でしたが、使えば楽にチャートを表示できそうですね!</p>
+
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>

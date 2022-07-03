@@ -1,0 +1,311 @@
+レスポンシブwebデザイン クラス継承で記述を最適化する5つのポイント
+
+
+
+			<p class="m_0">最近、CSSをこう記述していてばいいんじゃないかなって考えまして、また レスポンシブwebデザイン について書かせて頂きます。今回はその記述テクニックで誰にでも簡単に実装出来る方法を5つのポイントに分けまして説明していきたいと思います。</p>
+
+
+<nav class="detail_press_index clearfix">
+	<h2 id="s_0p"><span class="color"> 目次</span></h2>
+	<ul class="left">
+		<li class="n_1"><a href="#1p">CSSの読み込みの順番を理解する</a></li>
+		<li class="n_2"><a href="#2p">HTMLを部品化する</a></li>
+		<li class="n_3"><a href="#3p">CSSの記述方法を理解する</a></li>
+		<li class="n_4"><a href="#4p">無駄な継承を極力避けていく</a></li>
+		<li class="n_5"><a href="#5p">各デバイスの解像度を覚える</a></li>
+		<li class="n_6"><a href="#6p">まとめ</a></li>
+	</ul>
+</nav>
+
+<h2 id="s_1p">1.CSSの読み込みの順番を理解する</h2>
+
+<img class="press_image" src="../img/press/image/image_80.jpg" height="400"  widht="640" title="CSSの読み込みの順番を理解する" alt="CSSの読み込みの順番を理解する">
+
+<h3>CSS記述の優先度</h3>
+<p>CSSは上から順番に読み込んでいき後に記述されている指定の優先度が高くなります。このルールを利用しましてCSSで定義した<em class="marker">クラスを重複</em>しながらデザインを変えていきます。</p>
+
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+
+<h2 id="s_2p">2.HTMLを部品化する</h2>
+
+<img class="press_image" src="../img/press/image/image_81.jpg" height="400"  widht="640" title="HTMLを部品化する" alt="HTMLを部品化する">
+
+<p>部品化するって言うと難しくなっちゃうのですが、ヘッダー、コンテンツ、サイドメニュー、フッダーに切り分けるとレスポンシブwebデザインはもの凄く簡単になります。</p>
+
+<p class="m_0">なんでかと言いますと<em class="marker">切り分けられた部品</em>を<em class="marker">表示</em>したり<em class="marker">非表示</em>にしたりするのが</p>
+<p>レスポンシブwebデザイン だからです。</p>
+
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+
+<h2 id="s_3p">3.CSSの記述方法を理解する</h2>
+
+<img class="press_image" src="../img/press/image/image_82.jpg" height="400"  widht="640" title="CSSの記述方法を理解する" alt="CSSの記述方法を理解する">
+
+<p>では、実際にCSSの記述方法を説明していきます。</p>
+<p class="m_0">先ずはこの図を見て下さい。</p>
+<img class="press_98_image" src="../img/press/image/image_79_2.jpg" widht="640" height="400" alt="クラスを継承していくイメージ図" title="クラスを継承していくイメージ図">
+<p><strong>横幅が狭くなる毎(ブレークポイント)にクラスを重複</strong>していきます。</p>
+
+<p>あくまでイメージですのでクラスの量は変わりません、そのクラスのCSS記述の量が増えていく感じです。</p>
+
+<p class="m_0">もの凄く説明下手で申し訳ないですが</p>
+<p>次はどんな記述をすればいいのかを実際にコードを見ていきましょう。</p>
+
+<pre class="brush: css; light:true; tab-size: 2;">
+/*************
+通常記述の場所
+*************/
+
+/*************************
+メディアクエリ設定 0〜1280
+*************************/
+@media screen and (min-width: 0px) and (max-width: 1280px) {
+
+}
+/************************
+メディアクエリ設定 0〜768
+************************/
+@media screen and (min-width: 0px) and (max-width: 768px) {
+
+}
+/************************
+メディアクエリ設定 0〜640
+************************/
+@media screen and (min-width: 0px) and (max-width: 640px) {
+
+}
+/************************
+メディアクエリ設定 0〜480
+************************/
+@media screen and (min-width: 0px) and (max-width: 480px) {
+
+}
+/************************
+メディアクエリ設定 0〜320
+************************/
+@media screen and (min-width: 0px) and (max-width: 320px) {
+
+}
+</pre>
+
+<p>この記述方法ですと、ブレークポイント で何がしたいのかが一目瞭然です。</p>
+
+<p>説明致しますと<strong>ブレークポイントを踏んでいくにつれクラスを重複して継承</strong>させていきます。</p>
+
+<p class="m_0">ProgrammerBOXの中のクラスでコードを表しますと</p>
+<pre class="brush: css; light:true; tab-size: 2;">
+/*************
+通常記述の場所
+*************/
+.main {
+    margin: 0 auto;
+    padding: 0 0 0 30px;
+    width: 1024px;
+}
+/*************************
+メディアクエリ設定 0〜1280
+*************************/
+@media screen and (min-width: 0px) and (max-width: 1280px) {
+
+
+}
+/************************
+メディアクエリ設定 0〜768
+************************/
+@media screen and (min-width: 0px) and (max-width: 768px) {
+	.main {
+	    padding: 0;
+	    width: 96%;
+	}
+}
+/************************
+メディアクエリ設定 0〜640
+************************/
+@media screen and (min-width: 0px) and (max-width: 640px) {
+	.main {
+	    width: 95%;
+	}
+}
+/************************
+メディアクエリ設定 0〜480
+************************/
+@media screen and (min-width: 0px) and (max-width: 480px) {
+
+}
+/************************
+メディアクエリ設定 0〜320
+************************/
+@media screen and (min-width: 0px) and (max-width: 320px) {
+	.main {
+	    width: 94%;
+	}
+}
+</pre>
+
+<p>mainというクラス一つしか使っていませんので間が抜けていますが、このmainの挙動を説明していきたいと思います。</p>
+
+<p class="m_0">先ず1280px以上のブラウザの枠で見られている場合ですと</p>
+<pre class="brush: css; light:true; tab-size: 2;">
+.main {
+    margin: 0 auto;
+    padding: 0 0 0 30px;
+    width: 1024px;
+}
+</pre>
+<p>に、なります。当たり前ですね。</p>
+
+<p class="m_0">1280pxを飛んで768pxになりますと</p>
+<pre class="brush: css; light:true; tab-size: 2;">
+
+	.main {
+	    margin: 0 auto;
+	    padding: 0;
+	    width: 96%;
+	}
+</pre>
+<p>に、なります。</p>
+
+<p class="m_0">次は640px以下の時</p>
+	<pre class="brush: css; light:true; tab-size: 2;">
+	.main {
+	    margin: 0 auto;
+	    padding: 0;
+	    width: 95%;
+	}
+</pre>
+<p>に、なります。</p>
+
+<p class="m_0">最後に320px以下以降</p>
+	<pre class="brush: css; light:true; tab-size: 2;">
+
+	.main {
+	    margin: 0 auto;
+	    padding: 0;
+	    width: 94%;
+	}
+</pre>
+<p>に、なるわけです。</p>
+
+<p>つまり<strong>クラスを重複で継承しつつ優先順位が高い方のプロパディ(widhtとか)が選ばれます</strong>。</p>
+
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+
+<h2 id="s_4p">4.無駄な継承を極力避けていく</h2>
+
+<img class="press_image" src="../img/press/image/image_83.jpg" height="400"  widht="640" title="無駄な継承を極力避けていく" alt="無駄な継承を極力避けていく">
+
+
+<p class="m_0">横幅が小さくなればなるほど<em class="marker">クラスを重複させていくデザイン</em>にしていく訳ですが</p>
+<p>むやみやたらに継承させていくと修正がやりづらくなり、なにより他の人が見た時に理解出来ない恐れがあります。</p>
+
+<p>クラスのプロパディも<strong>既存のプロパディを制御しつつ必要なプロパディだけ追加</strong>していきましょう。</p>
+
+<p class="m_0">HTMLを部品化する の所で紹介したように大枠にすると4枠くらいを制御していく形になります。</p>
+<p>それ以上の制御する場合は必ずコメントアウトを使用し、どうゆう挙動にするのかを書いておくといいかもしれません。</p>
+
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+
+<h2 id="s_5p">5.各デバイスの解像度を覚える</h2>
+
+<img class="press_image" src="../img/press/image/image_84.jpg" height="400"  widht="640" title="各デバイスの解像度を覚える" alt="各デバイスの解像度を覚える">
+
+<p class="m_0">最後になりますが各デバイスのシートを作りましたので</p>
+<p>解像度を覚えて出来るならば<em class="marker">実機で確認</em>しつつ レスポンシブwebデザイン を試して下さい。</p>
+<p class="m_0">iOSのチートシートはこちらを参考にした方がいいでしょう。美しい。</p>
+<p><a target="_blank" href="http://ivomynttinen.com/blog/the-ios-design-cheat-sheet-volume-2/">The iOS Design Cheat Sheet Volume 2</a></p>
+<p class="m_0">androidも見たい場合はこちらのチートシートへ</p>
+<p><a target="_blank" href="http://case-mobile-design.com/devices/resolution-list/">case:MobileDesign! - スマートフォンサイトの制作TIPS BLOG -  | スマートフォン・タブレット画面解像度一覧</a></p>
+
+<h3>Apple Design Cheat Sheet</h3>
+<table class="type_1">
+	<thead>
+		<tr>
+			<th>デバイス名</th>
+			<th>解像度</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>iPhone 5</td>
+			<td>640 x 1136</td>
+		</tr>
+		<tr>
+			<td>iPhone 4/4S</td>
+			<td>640 x 960</td>
+		</tr>
+		<tr>
+			<td>iPhone &amp; iPod Touch
+				<span>1,2,3</span>
+			</td>
+			<td>320 x 480</td>
+		</tr>
+		<tr>
+			<td>Retina iPad
+				<span>iPad 3, iPad 4</span>
+			</td>
+			<td>1536 x 2048</td>
+		</tr>
+		<tr>
+			<td>iPad Mini</td>
+			<td>768 x 1024</td>
+		</tr>
+		<tr>
+			<td>iPad
+				<span>1,2</span>
+			</td>
+			<td>768 x 1024</td>
+		</tr>
+		<tr>
+			<td>MacBook Pro 15インチ Retina</td>
+			<td>2880 x 1800</td>
+		</tr>
+		<tr>
+			<td>MacBook Pro 13インチ Retina</td>
+			<td>2560 x 1600</td>
+		</tr>
+		<tr>
+			<td>MacBook Pro 15インチ</td>
+			<td>1440 x 900</td>
+		</tr>
+		<tr>
+			<td>MacBook Pro 13インチ</td>
+			<td>1280 x 800</td>
+		</tr>
+		<tr>
+			<td>MacBook Air 13インチ</td>
+			<td>1440 x 900</td>
+		</tr>
+		<tr>
+			<td>MacBook Air 11インチ</td>
+			<td>1366 x 768</td>
+		</tr>
+		<tr>
+			<td>iMac 27インチ</td>
+			<td>2560 x 1440</td>
+		</tr>
+		<tr>
+			<td>iMac 21.5インチ</td>
+			<td>1920 x 1080</td>
+		</tr>
+	</tbody>
+</table>
+<p>Retina系は1/2と考えていいです。320px、768pxあたりが重要なので、そこらへんを中心に力を入れて制御していくといいと思います。</p>
+
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+
+<h2 id="s_6p">まとめ</h2>
+
+<p>説明下手な記事になってしまいましたが、この方法での記述が一番理想なんじゃないのかなって現時点では思っております。</p>
+
+<p>小、中規模ならまちがいなくお勧めしますが大規模案件になるとCSSをどう記述していくかで相性が変わると思います。細かいクラスを定義していると修正が難しくなるかもしれません。部品毎にブレークポイントを指定していけば記述も見やすくなるとは思いますが。</p>
+
+<p class="m_0">最後に現在、開発中の</p>
+<p class="m_0">ソーシャルRSSサービス</p>
+<p><a target="_blank" href="http://buzzfeed.jp/">BuzzFeed</a></p>
+<p>というwebサービスがあるのですが、がっつりレスポンシブwebデザインを組み込みましたので勉強中の方は動きだけでも見て下さい。</p>
+
+<p class="index_scroll m_0"><a href="#0p">目次に戻る</a></p>
+
+
+
+

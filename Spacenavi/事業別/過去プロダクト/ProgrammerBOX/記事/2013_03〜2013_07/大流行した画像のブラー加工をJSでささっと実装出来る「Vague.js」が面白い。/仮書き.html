@@ -1,0 +1,74 @@
+<p>ブラー加工とは画像をぼやけさせる加工の事を言うのですが、この加工した画像を使いランディングページを作るアプリが多くあります。ぼやけさせる事により明確にユーザーに見て欲しい文字に焦点を当てられます。</p>
+
+<p>さて、そんなブラー加工ですがPhotoshop等の画像編集ソフトを使わなくてもJS上で加工して表示出来るプラグインがありますので、今回はその「Vague.js」を紹介したいと思います。</p>
+<nav class="detail_press_index clearfix">
+	<h2 id="s_0p"><span class="color">目次</span></h2>
+	<ul class="left no_width">
+		<li class="n_0"><span class="scroll_btn">Vague.js</span></li>
+		<li class="n_1"><span class="scroll_btn">Vague.jsの使い方</span>
+			<ul class="nest">
+				<li><span class="nest_number">1-1.</span><span class="scroll_btn">実装ソースコード</span></li>
+				<li><span class="nest_number">1-2.</span><span class="scroll_btn">オプション</span></li>
+			</ul>
+		</li>
+		<li class="n_9"><span class="scroll_btn">実装する際の注意点</span></li>
+		<li class="n_9"><span class="scroll_btn">まとめ</span></li>
+	</ul>
+</nav>
+<h2 class="heading">Vague.js</h2>
+<p></p>
+
+<h3>Vague.js</h3>
+<p class="m_0">
+	<a target="_blank" href="http://gianlucaguarini.github.io/vague.js/">
+		<img class="press_screen_shot_image o_8 m_0" src="../img/press/image/image_165.jpg" widht="640" height="400" alt="" title="">
+	</a>
+</p>
+<p class="m_0">
+	<a target="_blank" href="http://gianlucaguarini.github.io/vague.js/">Vague.js</a>
+</p>
+<p>このページ自体にブラーがかかっていますので、そこから実装方法も見れます。</p>
+
+
+<h2 class="heading">Vague.jsの使い方</h2>
+<p class="m_0">Vague.jsのgitHubに行ってファイルをダウンロードして来ましたら次は実装ですね。</p>
+<p>こんな感じのソースコードで動きます。</p>
+
+<h3 class="heading">実装ソースコード</h3>
+<div class="html_tab">HTML</div>
+<pre class="brush: html; light:true; tab-size: 2;">
+&lt;!DOCTYPE html&gt;
+&lt;head&gt;
+	&lt;title&gt;Vague.jsの最小実装コード&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;!-- js読み込み --&gt;
+	&lt;script src="http://code.jquery.com/jquery-1.8.2.min.js"&gt;&lt;/script&gt;
+	&lt;script src="Vague.js"&gt;&lt;/script&gt;
+	&lt;!-- ブラーをかけたい画像を用意 --&gt;
+	&lt;img class="container" src="../img/press/image/image_.jpg" widht="640" height="400"&gt;
+	&lt;!-- 実装コード --&gt;
+	&lt;script&gt;
+		var vague = $(".container").Vague({intensity:30});
+		vague.blur();
+	&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p class="m_t_30">
+	<a href="demo.php" target="_blank">デモ</a>
+</p>
+
+<h3 class="heading">オプション</h3>
+<p class="m_0">オプションは1つしかありません。シンプル!</p>
+<p><em>intensity</em>の数値を動かすだけでブラーの強度が変わります。</p>
+
+<p>なお、この数値を動的にする事によって<strong>アニメーションのようなブラー</strong>も可能です。</p>
+
+<h2 class="heading">実装する際の注意点</h2>
+
+<p>本来なら一番最初に記述しておくべき事だったんですが、このJSはJqueryがないと動きません。<strong>Vague.jsを読み込む前に必ずJqueryを読み込みましょう。</strong></p>
+
+
+<h2 class="heading">まとめ</h2>
+<p>なんだか本当にJSってなんでも出来る言語になってしまいましたね。このプラグイン自体もかなり軽量なので導入する事をお勧め致します。まぁ、そんな感じでささっと終わりにします。</p>
