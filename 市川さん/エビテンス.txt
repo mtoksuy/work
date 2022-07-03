@@ -1,0 +1,40 @@
+Coincheck(取引所)で
+2018年05月14日 15:46:47に30万円分(手数料を引いて299,620円)ビットコインを購入いたしました。
+数量は0.31784BTCです。
+レートは942675.56003 BTC/JPYです。
+
+このビットコインを
+バイナンス(取引所)に送りました。
+送金 0.335 BTC
+https://blockchain.info/address/1A5dTCf2XqpEfVvGUoUxRtDgQKYgWMMBGC
+(個人で持っていたBTCも送ってしまいました。)
+
+
+そのあと、バイナンスで各仮想通貨を30万円分購入いたしました。
+↓↓↓↓↓
+-----------------------
+
+## Ripple
+購入：1250 XRP
+金額：0.10518750 BTC
+送金証明書
+https://xrpcharts.ripple.com/#/transactions/779EB8484BA94541583A16C1609AEBA2D142646A1AA3E408E419E66B8945F434
+
+
+## BitCoinChash
+購入：0.641 BCH
+金額：0.105456 BTC
+送金証明書
+https://bch.btc.com/qpwppw9fsda88kyna385nyjalevpvc8pnvasm7ffxm
+
+
+## Verge
+購入：15151 XVG
+金額：0.10378435 BTC
+送金証明書
+https://verge-blockchain.info/address/DCHcBBJkajSvmK1JXNfEUfL17or1YaQdp1
+
+-----------------------
+全てで0.31442785 BTC分購入いたしました。
+手数料を把握していなく、296,403円分の購入となりました。
+完全に計算を合わせる事ができなく、大変申し訳ございません。
