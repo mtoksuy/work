@@ -1,0 +1,167 @@
+==================================
+さくらインターネットVPSサーバー及びドメイン
+==================================
+
+▼会員情報
+
+会員ID    ：cez50856
+ ご契約者名：MESSI株式会社 様
+ 電子メール：lamuda.club@gmail.com
+
+会員メニューログイン
+https://secure.sakura.ad.jp/auth/login
+会員ID    ：cez50856
+パスワード： justfit-24
+
+ サービス名      ：さくらのVPS(v5)  4G TK02
+ サービスコード  ：113302191904
+ お申し込み日    ：2021年12月17日
+ 登録完了日      ：2021年12月17日
+ 利用期限日      ：2022年02月17日
+ 料金支払方法    ：振り込み - 毎月払い
+
+
+▼ドメイン管理情報
+
+【さくら　ドメインコントロールパネル】
+　▽ ログインURL : https://secure.sakura.ad.jp/domain/domains
+　会員ID : cez50856
+　PW : justfit-24
+
+
+▼サーバー情報
+
+ [サーバー基本情報]
+  IPアドレス：160.16.242.201
+
+ [管理用ユーザー]
+   ▽ マニュアルURL
+   https://manual.sakura.ad.jp/vps/support/info/administrative-userl-login.html
+　ID : root
+   初期パスワード：messiverus2020
+
+【VPSサーバーコントロールパネル ログイン情報】
+　▽ ログインURL :　 https://secure.sakura.ad.jp/vps/
+    IPアドレス： 160.16.242.201
+    パスワード： messiverus-2020
+
+
+▼ サービス情報
+
+サービスコード ： 113302217539
+ドメイン       ： verus-gym.com
+
+登録完了日     ： 2021年12月24日
+有効期限日     ： 2022年12月24日
+
+
+==================================
+
+【サーバー接続・設定情報】
+
+●サイト
+・URL
+https://verus-gym.com/
+
+・Webサーバーの公開ディレクトリ
+/var/www/html/
+
+
+★WordPress(新)
+・URL
+https://verus-gym.com/
+
+・管理画面URL
+https://verus-gym.com/wp/wp-login.php
+
+ユーザー名：frontdesign
+パスワード：fd0286167688
+
+
+●WordPress(旧)
+・URL
+https://verus-gym.com/
+
+・管理画面URL
+https://verus-gym.com/wp/wp-login.php
+
+ユーザー名：user1
+パスワード：VfTtLH6faf
+
+・インストールディレクトリ
+/var/www/html/wp
+
+・データベース名
+wordpress
+
+
+●phpMyAdmin
+https://verus-gym.com/phpmyadmin/
+
+ユーザー名：user1
+パスワード：AtaE34mLEh
+
+
+●FTP・SFTP・SSH
+
+ホスト：160.16.242.201
+ユーザー名：user1
+パスワード：GTamJY2NE6
+（wheelグループ〔rootと同じ権限〕とapacheグループに所属させています。
+基本的にrootではなく、このuser1でアクセスした方がよいと思います。）
+
+または
+
+ユーザー名：root
+パスワード：FhA7t93U5B
+
+
+●MariaDB
+
+ユーザー名：user1
+パスワード：AtaE34mLEh
+（rootとほぼ同じ権限を与えています。基本的にrootではなく、このuser1でアクセスした方がよいと思います。）
+
+または
+
+ユーザー名：root
+パスワード：m7TLtaEPjW
+
+
+
+
+【その他の情報】
+
+・OS
+AlmaLinux 8（CentOS系 CentOS8とほぼ同じ）
+（さくらVPS OSカスタムインストールによりインストールしました。）
+
+・PHP
+バージョン 7.4.27
+
+・MariaDB
+バージョン 10.3 
+
+・phpMyAdmin
+バージョン 5.1.1
+（「/usr/share/phpmyadmin/」へインストールしました。
+Apache構成ファイルは「/etc/httpd/conf.d/phpmyadmin.conf」に置いています。）
+
+・Firewalld（パケットフィルタ）
+バージョン 0.9.3
+（SELinuxは無効化しています。）
+
+・vsftpd（FTPサーバ）
+バージョン 3.0.3
+
+・WordPress
+バージョン 5.8.2
+（WordPress本体は「/var/www/html/wp」に設置しました。
+https://verus-gym.com/
+にてWrodPressが起動するようにするために、
+「/var/www/html/」に.htaccessとindex.phpを置いています。）
+
+・SSLについて
+「Let's Encrypt」を使用しています。
+サーバー証明書は「/etc/letsencrypt/live/verus-gym.com/」に置かれています。
+cronで毎週火曜日午前2時にサーバー証明書を自動更新するように設定しています。
