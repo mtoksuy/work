@@ -1,0 +1,32 @@
+@charset "UTF-8";
+.form,
+.last {
+	margin: 30px;
+}
+.m_0 {
+	margin: 0;
+}
+.path {
+	border: 1px solid #DADADA;
+	border-radius: 3px;
+	color: #3A3A3A;
+	font-size: 16px;
+	padding: 5px 7px;
+	width: 200px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+.button {
+	background-color: #599CFC;
+	border: 1px solid #4B8EFD;
+	border-radius: 3px;
+	color: #FCFCFC;
+	cursor: pointer;
+	margin: 0 0 0 0px;
+	padding: 5px;
+	text-decoration: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}

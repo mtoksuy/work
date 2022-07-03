@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript">
+	
+	function getHeight(){
+		var h = document.documentElement.scrollHeight;
+		//もし、内容がなければ、これを実行
+		//h=0;
+
+		//受信側のドメイン
+  		parent.postMessage(h,"http://sapporotest.adrama.jp");
+	}
+</script>
+<style type="text/css">
+	body{
+		margin: 0;
+		padding: 26px 30px;
+		overflow: hidden;
+		background: white;
+    	border: none;
+	}
+	h1{
+		font-weight: bold;
+		margin-top: 0;
+		margin-bottom:0;
+	}
+
+</style>
+
+</head>
+<body class="iframe_text" onload="getHeight()">
+<h1 style="font-size: 17px;color: #fe0002;">イベント営業中止のお知らせ</h1>
+<p style="margin: 0;color: #fe0002;font-size: 14px;">テストtestテストtestテストtestテストtestテスト<br>testテストtestテスト<br><br>testテストtestテストtest<br><br>testテストtestテストtest</p>
+</body>
+</html>

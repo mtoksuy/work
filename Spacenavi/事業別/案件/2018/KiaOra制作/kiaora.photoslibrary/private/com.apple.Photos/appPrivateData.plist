@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Photos</key>
+	<dict>
+		<key>CollapsedSidebarSectionIdentifiers</key>
+		<array/>
+		<key>ExpandedSidebarItemIdentifiers</key>
+		<array>
+			<string>TopLevelAlbums</string>
+			<string>TopLevelSlideshows</string>
+		</array>
+		<key>IPXWorkspaceControllerZoomLevelsKey</key>
+		<dict>
+			<key>kZoomLevelIdentifierAlbums</key>
+			<integer>7</integer>
+			<key>kZoomLevelIdentifierVersions</key>
+			<integer>4</integer>
+		</dict>
+		<key>lastAddToDestination</key>
+		<dict>
+			<key>key</key>
+			<integer>1</integer>
+			<key>lastKnownDisplayName</key>
+			<string>名称未設定アルバム (4)</string>
+			<key>type</key>
+			<string>album</string>
+			<key>uuid</key>
+			<string>yC%hFobNSeufxfcw%tDSuQ</string>
+		</dict>
+		<key>lastKnownItemCounts</key>
+		<dict>
+			<key>other</key>
+			<integer>0</integer>
+			<key>photos</key>
+			<integer>154</integer>
+			<key>videos</key>
+			<integer>3</integer>
+		</dict>
+	</dict>
+</dict>
+</plist>
